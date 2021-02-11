@@ -17,7 +17,7 @@ source:
     folder: bliss
 
 build:
-  number: 0
+  number: 1
   skip: True  # [win]
 
 requirements:
@@ -175,3 +175,5 @@ about:
 extra:
   recipe-maintainers:
     - AntoinePrv
+    - pokutta
+    - fschloesser
