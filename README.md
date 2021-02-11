@@ -144,4 +144,6 @@ Feedstock Maintainers
 =====================
 
 * [@AntoinePrv](https://github.com/AntoinePrv/)
+* [@fschloesser](https://github.com/fschloesser/)
+* [@pokutta](https://github.com/pokutta/)
 
