@@ -20,8 +20,6 @@ fortran_compiler_version:
 - '9'
 gmp:
 - '6'
-gsl:
-- '2.6'
 libblas:
 - 3.8 *netlib
 macos_machine:
@@ -31,12 +29,8 @@ pin_run_as_build:
     max_pin: x.x.x
   gmp:
     max_pin: x
-  readline:
-    max_pin: x
   zlib:
     max_pin: x.x
-readline:
-- '8.0'
 target_platform:
 - osx-64
 zip_keys:
