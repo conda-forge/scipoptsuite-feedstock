@@ -27,11 +27,10 @@ cmake -B scipoptsuite-build -S "${SRC_DIR}/scipoptsuite" \
       -D QUADMATH=ON \
       -D IPOPT=ON \
       -D ZLIB=ON \
-      -D READLINE=ON \
+      -D READLINE=OFF \
       -D SYM=bliss \
       -D BLISS_DIR="${PWD}/bliss-install" \
       -D EXPRINT=cppad \
-      -D GSL=ON \
       -D CLIQUER=ON
 cmake --build scipoptsuite-build --parallel ${CPU_COUNT}
 cmake --install scipoptsuite-build --prefix "${PREFIX}"
