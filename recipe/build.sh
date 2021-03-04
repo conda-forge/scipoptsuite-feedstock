@@ -10,7 +10,7 @@ cmake --build bliss-build --parallel ${CPU_COUNT}
 cmake --install bliss-build --prefix "${PWD}/bliss-install"
 
 # we need librt
-if [ "${OSTYPE}" == "linux-gnu" ] ; then
+if [[ "${target_platform}" == linux-* ]] ; then
     export LDFLAGS="-lrt ${LDFLAGS}"
 fi
 
