@@ -23,5 +23,5 @@ cmake -G"NMake Makefiles" ^
 if errorlevel 1 exit 1
 cmake --build scipoptsuite-build --parallel %CPU_COUNT%
 if errorlevel 1 exit 1
-cmake --install scipoptsuite-build --prefix "%PREFIX%"
+cmake --install scipoptsuite-build --prefix "%LIBRARY_PREFIX%"
 if errorlevel 1 exit 1
