@@ -31,12 +31,12 @@ requirements:
     - tbb-devel
     - libblas
     - zlib
-    - gmp # [not win]
+    - gmp # [unix]
     - ipopt
     - cppad
-    - cliquer
-    - bison
-    - flex
+    - cliquer # [unix]
+    - bison # [unix]
+    - flex # [unix]
 
 outputs:
 
@@ -54,7 +54,7 @@ outputs:
         - tbb-devel
         - libblas
         - zlib
-        - gmp
+        - gmp # [unix]
         - ipopt
         - cppad
     files:
@@ -88,7 +88,7 @@ outputs:
         - {{ compiler('cxx') }}
       host:
         - zlib
-        - gmp
+        - gmp # [unix]
         - boost-cpp
       run:
         # libboost_program_options.so needed by bin/soplex.
@@ -119,13 +119,13 @@ outputs:
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
       host:
-        - gmp
-        - cliquer
+        - gmp # [unix]
+        - cliquer # [unix]
         - {{ pin_subpackage('scip', exact=True) }}
       run:
         - {{ pin_subpackage('scip') }}
         # run_exports not set for cliquer
-        - cliquer
+        - cliquer # [unix]
     files:
       - "lib/libgcg*"
       - "lib/cmake/gcg"
@@ -144,9 +144,9 @@ outputs:
         - {{ compiler('c') }}
       host:
         - zlib
-        - gmp
-        - bison
-        - flex
+        - gmp # [unix]
+        - bison # [unix]
+        - flex # [unix]
     files:
       - "lib/libzimpl*"
       - "lib/cmake/zimpl/"
