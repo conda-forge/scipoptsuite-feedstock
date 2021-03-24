@@ -25,7 +25,7 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - cmake >=3.15
-    - make
+    - make  # [unix]
   host:
     - boost-cpp
     - tbb-devel
@@ -79,7 +79,7 @@ outputs:
       requires:
         - {{ compiler('cxx') }}
         - cmake >=3.15
-        - make
+        - make  # [unix]
 
   - name: soplex
     version: {{ soplex_version }}
@@ -107,7 +107,7 @@ outputs:
       requires:
         - {{ compiler('cxx') }}
         - cmake >=3.15
-        - make
+        - make  # [unix]
 
   - name: gcg
     version:  {{ gcg_version }}
