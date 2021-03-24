@@ -17,8 +17,7 @@ source:
     folder: bliss
 
 build:
-  number: 4
-  skip: True  # [win]
+  number: 5
 
 requirements:
   build:
@@ -32,7 +31,7 @@ requirements:
     - tbb-devel
     - libblas
     - zlib
-    - gmp
+    - gmp # [not win]
     - ipopt
     - cppad
     - cliquer
