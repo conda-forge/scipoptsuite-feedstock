@@ -12,15 +12,11 @@ fortran_compiler:
 - flang
 fortran_compiler_version:
 - '5'
-gmp:
-- '6'
 libblas:
 - 3.8 *netlib
 pin_run_as_build:
   boost-cpp:
     max_pin: x.x.x
-  gmp:
-    max_pin: x
   zlib:
     max_pin: x.x
 target_platform:
