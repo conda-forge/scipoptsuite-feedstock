@@ -161,8 +161,11 @@ outputs:
     test:
       commands:
         - zimpl -V
-        - test -d "${PREFIX}/lib/cmake/zimpl"
-        - test -d "${PREFIX}/include/zimpl"
+        - test -d "${PREFIX}/lib/cmake/zimpl"                               # [unix]
+        - test -d "${PREFIX}/include/zimpl"                                 # [unix]
+        - if exist %LIBRARY_PREFIX%\lib\cmake\zimpl (exit 0) else (exit 1)  # [win]
+        - if exist %LIBRARY_PREFIX%\include\zimpl (exit 0) else (exit 1)    # [win]
+
 
 about:
   home: https://scipopt.org/
