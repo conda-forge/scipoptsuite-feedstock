@@ -27,7 +27,8 @@ requirements:
     - cmake >=3.15
     - make  # [unix]
   host:
-    - boost-cpp
+    - boost-cpp       # [not win]
+    - boost-cpp 1.72  # [win]
     - tbb-devel
     - libblas
     - zlib
@@ -90,7 +91,8 @@ outputs:
       host:
         - zlib
         - gmp  # [unix]
-        - boost-cpp
+        - boost-cpp       # [not win]
+        - boost-cpp 1.72  # [win]
       run:
         # libboost_program_options.so needed by bin/soplex.
         # boost does not set run_exports so it is needed in run requirements.
