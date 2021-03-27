@@ -25,19 +25,19 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - cmake >=3.15
-    - make  # [unix]
+    - make            # [unix]
   host:
-    - boost-cpp       # [not win]
-    - boost-cpp 1.72  # [win]
     - tbb-devel
     - libblas
     - zlib
-    - gmp  # [unix]
     - ipopt
     - cppad
-    - cliquer  # [unix]
-    - bison  # [unix]
-    - flex  # [unix]
+    - boost-cpp 1.72  # [win]
+    - boost-cpp       # [unix]
+    - gmp             # [unix]
+    - cliquer         # [unix]
+    - bison           # [unix]
+    - flex            # [unix]
 
 outputs:
 
@@ -55,9 +55,9 @@ outputs:
         - tbb-devel
         - libblas
         - zlib
-        - gmp  # [unix]
         - ipopt
         - cppad
+        - gmp  # [unix]
     files:
       - "lib/libscip*"
       - "lib/cmake/scip/"
@@ -74,14 +74,14 @@ outputs:
       - "include/xml/"
       - "bin/scip"
     test:
-      script: run_scip_test.sh  # [unix]
+      script: run_scip_test.sh   # [unix]
       script: run_scip_test.bat  # [win]
       source_files:
         - scipoptsuite/scip/examples/Queens
       requires:
         - {{ compiler('cxx') }}
         - cmake >=3.15
-        - make  # [unix]
+        - make                   # [unix]
 
   - name: soplex
     version: {{ soplex_version }}
@@ -90,8 +90,8 @@ outputs:
         - {{ compiler('cxx') }}
       host:
         - zlib
-        - gmp  # [unix]
-        - boost-cpp       # [not win]
+        - gmp             # [unix]
+        - boost-cpp       # [unix]
         - boost-cpp 1.72  # [win]
       run:
         # libboost_program_options.so needed by bin/soplex.
@@ -104,15 +104,16 @@ outputs:
       - "include/soplex/"
       - "bin/soplex"
     test:
-      script: run_soplex_test.sh  # [unix]
+      script: run_soplex_test.sh   # [unix]
       script: run_soplex_test.bat  # [win]
       source_files:
         - scipoptsuite/soplex/src/example.cpp
       requires:
         - {{ compiler('cxx') }}
         - cmake >=3.15
-        - make  # [unix]
+        - make                     # [unix]
 
+  {% if false %}  # [win]
   - name: gcg
     version:  {{ gcg_version }}
     build:
@@ -123,13 +124,13 @@ outputs:
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
       host:
-        - gmp  # [unix]
-        - cliquer  # [unix]
+        - gmp
+        - cliquer 
         - {{ pin_subpackage('scip', exact=True) }}
       run:
         - {{ pin_subpackage('scip') }}
         # run_exports not set for cliquer
-        - cliquer  # [unix]
+        - cliquer
     files:
       - "lib/libgcg*"
       - "lib/cmake/gcg"
@@ -138,10 +139,9 @@ outputs:
     test:
       commands:
         - gcg --version
-        - test -d "${PREFIX}/lib/cmake/gcg"  # [unix]
-        - test -d "${PREFIX}/include/gcg"  # [unix]
-        - if exist %LIBRARY_PREFIX%\lib\cmake\gcg (exit 0) else (exit 1)  # [win]
-        - if exist %LIBRARY_PREFIX%\include\gcg (exit 0) else (exit 1)  # [win]
+        - test -d "${PREFIX}/lib/cmake/gcg"
+        - test -d "${PREFIX}/include/gcg" 
+  {% endif %}
 
   - name: zimpl
     version: {{ zimpl_version }}
@@ -150,9 +150,9 @@ outputs:
         - {{ compiler('c') }}
       host:
         - zlib
-        - gmp  # [unix]
+        - gmp    # [unix]
         - bison  # [unix]
-        - flex  # [unix]
+        - flex   # [unix]
     files:
       - "lib/libzimpl*"
       - "lib/cmake/zimpl/"
