@@ -125,7 +125,7 @@ outputs:
         - {{ compiler('cxx') }}
       host:
         - gmp
-        - cliquer 
+        - cliquer
         - {{ pin_subpackage('scip', exact=True) }}
       run:
         - {{ pin_subpackage('scip') }}
@@ -140,7 +140,7 @@ outputs:
       commands:
         - gcg --version
         - test -d "${PREFIX}/lib/cmake/gcg"
-        - test -d "${PREFIX}/include/gcg" 
+        - test -d "${PREFIX}/include/gcg"
   {% endif %}  # [win]
 
   - name: zimpl
