@@ -11,7 +11,7 @@ cmake -G"NMake Makefiles" ^
       -D PARASCIP=ON ^
       -D PAPILO=ON ^
       -D SOPLEX=ON ^
-      -D GCG=ON ^
+      -D GCG=OFF ^
       -D ZIMPL=ON ^
       -D BOOST=ON ^
       -D IPOPT=ON ^
