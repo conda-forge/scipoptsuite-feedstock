@@ -141,7 +141,7 @@ outputs:
         - gcg --version
         - test -d "${PREFIX}/lib/cmake/gcg"
         - test -d "${PREFIX}/include/gcg" 
-  {% endif %}
+  {% endif %}  # [win]
 
   - name: zimpl
     version: {{ zimpl_version }}
