@@ -113,10 +113,10 @@ outputs:
         - cmake >=3.15
         - make                     # [unix]
 
-  {% if false %}  # [win]
   - name: gcg
     version:  {{ gcg_version }}
     build:
+      skip: True  # [win]
       run_exports:
         - {{ pin_subpackage('gcg') }}
     requirements:
@@ -141,7 +141,6 @@ outputs:
         - gcg --version
         - test -d "${PREFIX}/lib/cmake/gcg"
         - test -d "${PREFIX}/include/gcg"
-  {% endif %}  # [win]
 
   - name: zimpl
     version: {{ zimpl_version }}
