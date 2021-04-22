@@ -6,12 +6,13 @@ echo target_link_libraries(example PUBLIC libsoplex) >> CMakeLists.txt
 if errorlevel 1 exit 1
 
 
-cmake -G"NMake Makefiles" -B build
+cmake -G"NMake Makefiles" -B build -D CMAKE_BUILD_TYPE=Release
 if errorlevel 1 exit 1
 cmake --build build --parallel
 if errorlevel 1 exit 1
 .\build\example
 if errorlevel 1 exit 1
 
-soplex --version
-if errorlevel 1 exit 1
+rem Commented because soplex.exe not installed on Windows
+rem soplex --version
+rem if errorlevel 1 exit 1
