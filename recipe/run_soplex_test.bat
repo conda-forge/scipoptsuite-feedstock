@@ -9,7 +9,7 @@ if errorlevel 1 exit 1
 
 cmake -G"NMake Makefiles" -B build
 if errorlevel 1 exit 1
-cmake --build build --parallel ${CPU_COUNT}
+cmake --build build --parallel
 if errorlevel 1 exit 1
 .\build\example
 if errorlevel 1 exit 1

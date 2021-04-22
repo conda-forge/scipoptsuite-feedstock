@@ -59,20 +59,36 @@ outputs:
         - cppad
         - gmp  # [unix]
     files:
-      - "lib/libscip*"
-      - "lib/cmake/scip/"
-      - "include/blockmemshell/"
-      - "include/dijkstra/"
-      - "include/lpi/"
-      - "include/nlpi/"
-      - "include/objscip/"
-      - "include/scip/"
-      - "include/symmetry/"
-      - "include/tclique/"
-      - "include/tinycthread/"
-      - "include/tpi/"
-      - "include/xml/"
-      - "bin/scip"
+      - "lib/libscip*"  # [unix]
+      - "lib/cmake/scip/"  # [unix]
+      - "include/blockmemshell/"  # [unix]
+      - "include/dijkstra/"  # [unix]
+      - "include/lpi/"  # [unix]
+      - "include/nlpi/"  # [unix]
+      - "include/objscip/"  # [unix]
+      - "include/scip/"  # [unix]
+      - "include/symmetry/"  # [unix]
+      - "include/tclique/"  # [unix]
+      - "include/tinycthread/"  # [unix]
+      - "include/tpi/"  # [unix]
+      - "include/xml/"  # [unix]
+      - "bin/scip"  # [unix]
+      - "Library/lib/libscip.lib"  # [win]
+      - "Library/bin/libscip.dll"  # [win]
+      - "Library/lib/cmake/scip/"  # [win]
+      - "Library/include/blockmemshell/"  # [win]
+      - "Library/include/dijkstra/"  # [win]
+      - "Library/include/lpi/"  # [win]
+      - "Library/include/nlpi/"  # [win]
+      - "Library/include/objscip/"  # [win]
+      - "Library/include/scip/"  # [win]
+      - "Library/include/symmetry/"  # [win]
+      - "Library/include/tclique/"  # [win]
+      - "Library/include/tinycthread/"  # [win]
+      - "Library/include/tpi/"  # [win]
+      - "Library/include/xml/"  # [win]
+      - "Library/bin/scip.exe"  # [win]
+
     test:
       script: run_scip_test.sh   # [unix]
       script: run_scip_test.bat  # [win]
@@ -98,11 +114,15 @@ outputs:
         # boost does not set run_exports so it is needed in run requirements.
         - boost-cpp
     files:
-      - "lib/libsoplex*"
-      - "lib/cmake/soplex/"
-      - "include/soplex*"
-      - "include/soplex/"
-      - "bin/soplex"
+      - "lib/libsoplex*"  # [unix]
+      - "lib/cmake/soplex/"  # [unix]
+      - "include/soplex*"  # [unix]
+      - "include/soplex/"  # [unix]
+      - "bin/soplex"  # [unix]
+      - "Library/lib/soplex.lib"  # [win]
+      - "Library/lib/cmake/soplex/"  # [win]
+      - "Library/include/soplex*"  # [win]
+      - "Library/include/soplex/"  # [win]
     test:
       script: run_soplex_test.sh   # [unix]
       script: run_soplex_test.bat  # [win]
@@ -153,17 +173,21 @@ outputs:
         - bison  # [unix]
         - flex   # [unix]
     files:
-      - "lib/libzimpl*"
-      - "lib/cmake/zimpl/"
-      - "include/zimpl"
-      - "bin/zimpl"
+      - "lib/libzimpl*"  # [unix]
+      - "lib/cmake/zimpl/"  # [unix]
+      - "include/zimpl"  # [unix]
+      - "bin/zimpl"  # [unix]
+      - "Library/lib/libzimpl*"  # [win]
+      - "Library/lib/cmake/zimpl/"  # [win]
+      - "Library/include/zimpl"  # [win]
+      - "Library/bin/zimpl.exe"  # [win]
     test:
       commands:
         - zimpl -V
         - test -d "${PREFIX}/lib/cmake/zimpl"                               # [unix]
         - test -d "${PREFIX}/include/zimpl"                                 # [unix]
-        - if exist %LIBRARY_PREFIX%\lib\cmake\zimpl (exit 0) else (exit 1)  # [win]
-        - if exist %LIBRARY_PREFIX%\include\zimpl (exit 0) else (exit 1)    # [win]
+        - if exist %PREFIX%\\Library\\lib\\cmake\\zimpl (exit 0) else (exit 1)  # [win]
+        - if exist %PREFIX%\\Library\\include\\zimpl (exit 0) else (exit 1)    # [win]
 
 
 about:

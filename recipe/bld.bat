@@ -4,7 +4,7 @@ cmake -G"NMake Makefiles"  ^
       -D CMAKE_BUILD_TYPE=Release ^
       -D BUILD_SHARED_LIBS=OFF
 if errorlevel 1 exit 1
-cmake --build bliss-build --parallel %CPU_COUNT%
+cmake --build bliss-build --parallel
 if errorlevel 1 exit 1
 cmake --install bliss-build --prefix "bliss-install"
 if errorlevel 1 exit 1
@@ -25,7 +25,7 @@ cmake -G"NMake Makefiles" ^
       -D BLISS_DIR="bliss-install" ^
       -D EXPRINT=cppad
 if errorlevel 1 exit 1
-cmake --build scipoptsuite-build --parallel %CPU_COUNT%
+cmake --build scipoptsuite-build --parallel
 if errorlevel 1 exit 1
 cmake --install scipoptsuite-build --prefix "%LIBRARY_PREFIX%"
 if errorlevel 1 exit 1
