@@ -120,6 +120,7 @@ outputs:
       - "include/soplex/"  # [unix]
       - "bin/soplex"  # [unix]
       - "Library/lib/soplex.lib"  # [win]
+      - "Library/lib/soplex-pic.lib"  # [win]
       - "Library/lib/cmake/soplex/"  # [win]
       - "Library/include/soplex*"  # [win]
       - "Library/include/soplex/"  # [win]
