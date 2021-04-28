@@ -165,6 +165,8 @@ outputs:
 
   - name: zimpl
     version: {{ zimpl_version }}
+    build:
+      skip: True  # [win]
     requirements:
       build:
         - {{ compiler('c') }}
