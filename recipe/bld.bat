@@ -25,7 +25,7 @@ cmake -G"NMake Makefiles" ^
       -D BLISS_DIR="bliss-install" ^
       -D EXPRINT=cppad
 if errorlevel 1 exit 1
-cmake --build scipoptsuite-build --parallel
+cmake --build scipoptsuite-build --parallel "%CPU_COUNT%"
 if errorlevel 1 exit 1
 cmake --install scipoptsuite-build --prefix "%LIBRARY_PREFIX%"
 if errorlevel 1 exit 1
