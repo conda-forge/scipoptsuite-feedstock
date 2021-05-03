@@ -26,6 +26,7 @@ cmake -B scipoptsuite-build -S "${SRC_DIR}/scipoptsuite" \
       -D GMP=ON \
       -D QUADMATH=ON \
       -D IPOPT=ON \
+      -D IPOPT_DIR="${PREFIX}" \
       -D ZLIB=ON \
       -D READLINE=OFF \
       -D SYM=bliss \
