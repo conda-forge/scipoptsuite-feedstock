@@ -20,7 +20,7 @@ cmake -G"NMake Makefiles" ^
       -D ZIMPL=ON ^
       -D BOOST=ON ^
       -D IPOPT=ON ^
-      -D IPOPT_DIR="%LIBRARY_PREFIX%" \
+      -D IPOPT_DIR="%LIBRARY_PREFIX%" ^
       -D ZLIB=ON ^
       -D SYM=bliss ^
       -D BLISS_DIR="bliss-install" ^
