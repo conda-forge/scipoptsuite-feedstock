@@ -22,6 +22,6 @@ pin_run_as_build:
 target_platform:
 - win-64
 tbb_devel:
-- '2020'
+- '2021'
 zlib:
 - '1.2'
