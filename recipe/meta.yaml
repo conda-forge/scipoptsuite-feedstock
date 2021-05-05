@@ -2,7 +2,7 @@
 {% set soplex_version = "5.0.2" %}
 {% set gcg_version = "3.0.4" %}
 {% set zimpl_version = "3.4.0" %}
-{% set bliss_version = "0.73.1" %}
+{% set bliss_version = "0.73.3" %}
 
 package:
   name: scipoptsuite
@@ -13,12 +13,11 @@ source:
     sha256: f81b5a2c1c0eb949cf06bd50f42826e55284fa1269a6f28a92ac1a06d9c93a03
     folder: scipoptsuite
   - url: https://github.com/ds4dm/Bliss/archive/v{{ bliss_version }}.tar.gz
-    sha256: 59425cf35d8da7db61e73674edb97bded0767485a24aa33836a1f3c08a017695
+    sha256: 4f51d9f76f7e8cb941688a032d208c79858f68a95f8eb69ebef64c62932c3eb7
     folder: bliss
 
 build:
-  number: 4
-  skip: True  # [win]
+  number: 5
 
 requirements:
   build:
@@ -26,18 +25,19 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - cmake >=3.15
-    - make
+    - make            # [unix]
   host:
-    - boost-cpp
     - tbb-devel
     - libblas
     - zlib
-    - gmp
     - ipopt
     - cppad
-    - cliquer
-    - bison
-    - flex
+    - boost-cpp 1.72  # [win]
+    - boost-cpp       # [unix]
+    - gmp             # [unix]
+    - cliquer         # [unix]
+    - bison           # [unix]
+    - flex            # [unix]
 
 outputs:
 
@@ -55,32 +55,49 @@ outputs:
         - tbb-devel
         - libblas
         - zlib
-        - gmp
         - ipopt
         - cppad
+        - gmp  # [unix]
     files:
-      - "lib/libscip*"
-      - "lib/cmake/scip/"
-      - "include/blockmemshell/"
-      - "include/dijkstra/"
-      - "include/lpi/"
-      - "include/nlpi/"
-      - "include/objscip/"
-      - "include/scip/"
-      - "include/symmetry/"
-      - "include/tclique/"
-      - "include/tinycthread/"
-      - "include/tpi/"
-      - "include/xml/"
-      - "bin/scip"
+      - "lib/libscip*"                    # [unix]
+      - "lib/cmake/scip/"                 # [unix]
+      - "include/blockmemshell/"          # [unix]
+      - "include/dijkstra/"               # [unix]
+      - "include/lpi/"                    # [unix]
+      - "include/nlpi/"                   # [unix]
+      - "include/objscip/"                # [unix]
+      - "include/scip/"                   # [unix]
+      - "include/symmetry/"               # [unix]
+      - "include/tclique/"                # [unix]
+      - "include/tinycthread/"            # [unix]
+      - "include/tpi/"                    # [unix]
+      - "include/xml/"                    # [unix]
+      - "bin/scip"                        # [unix]
+      - "Library/lib/libscip.lib"         # [win]
+      - "Library/bin/libscip.dll"         # [win]
+      - "Library/lib/cmake/scip/"         # [win]
+      - "Library/include/blockmemshell/"  # [win]
+      - "Library/include/dijkstra/"       # [win]
+      - "Library/include/lpi/"            # [win]
+      - "Library/include/nlpi/"           # [win]
+      - "Library/include/objscip/"        # [win]
+      - "Library/include/scip/"           # [win]
+      - "Library/include/symmetry/"       # [win]
+      - "Library/include/tclique/"        # [win]
+      - "Library/include/tinycthread/"    # [win]
+      - "Library/include/tpi/"            # [win]
+      - "Library/include/xml/"            # [win]
+      - "Library/bin/scip.exe"            # [win]
+
     test:
-      script: run_scip_test.sh
+      script: run_scip_test.sh   # [unix]
+      script: run_scip_test.bat  # [win]
       source_files:
         - scipoptsuite/scip/examples/Queens
       requires:
         - {{ compiler('cxx') }}
         - cmake >=3.15
-        - make
+        - make                   # [unix]
 
   - name: soplex
     version: {{ soplex_version }}
@@ -89,30 +106,38 @@ outputs:
         - {{ compiler('cxx') }}
       host:
         - zlib
-        - gmp
-        - boost-cpp
+        - gmp             # [unix]
+        - boost-cpp       # [unix]
+        - boost-cpp 1.72  # [win]
       run:
         # libboost_program_options.so needed by bin/soplex.
         # boost does not set run_exports so it is needed in run requirements.
         - boost-cpp
     files:
-      - "lib/libsoplex*"
-      - "lib/cmake/soplex/"
-      - "include/soplex*"
-      - "include/soplex/"
-      - "bin/soplex"
+      - "lib/libsoplex*"              # [unix]
+      - "lib/cmake/soplex/"           # [unix]
+      - "include/soplex*"             # [unix]
+      - "include/soplex/"             # [unix]
+      - "bin/soplex"                  # [unix]
+      - "Library/lib/soplex.lib"      # [win]
+      - "Library/lib/soplex-pic.lib"  # [win]
+      - "Library/lib/cmake/soplex/"   # [win]
+      - "Library/include/soplex*"     # [win]
+      - "Library/include/soplex/"     # [win]
     test:
-      script: run_soplex_test.sh
+      script: run_soplex_test.sh   # [unix]
+      script: run_soplex_test.bat  # [win]
       source_files:
         - scipoptsuite/soplex/src/example.cpp
       requires:
         - {{ compiler('cxx') }}
         - cmake >=3.15
-        - make
+        - make                     # [unix]
 
   - name: gcg
     version:  {{ gcg_version }}
     build:
+      skip: True  # [win]
       run_exports:
         - {{ pin_subpackage('gcg') }}
     requirements:
@@ -140,24 +165,36 @@ outputs:
 
   - name: zimpl
     version: {{ zimpl_version }}
+    build:
+      # zimpl is not built in Windows since gmp is not available on 
+      # conda-forge so this test is skipped. Details were left for 
+      # the path to zimpl if we find a solution in the future.  
+      skip: True  # [win]
     requirements:
       build:
         - {{ compiler('c') }}
       host:
         - zlib
-        - gmp
-        - bison
-        - flex
+        - gmp    # [unix]
+        - bison  # [unix]
+        - flex   # [unix]
     files:
-      - "lib/libzimpl*"
-      - "lib/cmake/zimpl/"
-      - "include/zimpl"
-      - "bin/zimpl"
+      - "lib/libzimpl*"             # [unix]
+      - "lib/cmake/zimpl/"          # [unix]
+      - "include/zimpl"             # [unix]
+      - "bin/zimpl"                 # [unix]
+      - "Library/lib/libzimpl*"     # [win]
+      - "Library/lib/cmake/zimpl/"  # [win]
+      - "Library/include/zimpl"     # [win]
+      - "Library/bin/zimpl.exe"     # [win]
     test:
       commands:
         - zimpl -V
-        - test -d "${PREFIX}/lib/cmake/zimpl"
-        - test -d "${PREFIX}/include/zimpl"
+        - test -d "${PREFIX}/lib/cmake/zimpl"                                   # [unix]
+        - test -d "${PREFIX}/include/zimpl"                                     # [unix]
+        - if exist %PREFIX%\\Library\\lib\\cmake\\zimpl (exit 0) else (exit 1)  # [win]
+        - if exist %PREFIX%\\Library\\include\\zimpl (exit 0) else (exit 1)     # [win]
+
 
 about:
   home: https://scipopt.org/
