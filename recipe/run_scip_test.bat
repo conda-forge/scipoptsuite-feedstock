@@ -8,3 +8,5 @@ if errorlevel 1 exit 1
 if errorlevel 1 exit 1
 scip --version
 if errorlevel 1 exit 1
+scip --version | Select-String -Pattern 'Ipopt\s+[0-9]+\.[0-9]+\.[0-9]+' -CaseSensitive
+if errorlevel 1 exit 1
