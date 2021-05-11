@@ -9,7 +9,7 @@ package:
   version: {{ scip_version }}
 
 source:
-  - url: https://scip.zib.de/download/release/scipoptsuite-{{ scip_version }}.tgz
+  - url: https://www.scipopt.org/download/release/scipoptsuite-{{ scip_version }}.tgz
     sha256: f81b5a2c1c0eb949cf06bd50f42826e55284fa1269a6f28a92ac1a06d9c93a03
     folder: scipoptsuite
   - url: https://github.com/ds4dm/Bliss/archive/v{{ bliss_version }}.tar.gz
