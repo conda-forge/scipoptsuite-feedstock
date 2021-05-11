@@ -9,6 +9,7 @@ if errorlevel 1 exit 1
 cmake --install bliss-build --prefix "bliss-install"
 if errorlevel 1 exit 1
 
+set IPOPT_DIR="%LIBRARY_PREFIX%"  REM Only read from environment variable on Windows
 cmake -G"NMake Makefiles" ^
       -B scipoptsuite-build ^
       -S "%SRC_DIR%\scipoptsuite" ^
@@ -20,7 +21,6 @@ cmake -G"NMake Makefiles" ^
       -D ZIMPL=ON ^
       -D BOOST=ON ^
       -D IPOPT=ON ^
-      -D IPOPT_DIR="%LIBRARY_PREFIX%" ^
       -D ZLIB=ON ^
       -D SYM=bliss ^
       -D BLISS_DIR="bliss-install" ^
