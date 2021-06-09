@@ -18,6 +18,7 @@ cmake -G"NMake Makefiles" ^
       -D SOPLEX=ON ^
       -D GCG=OFF ^
       -D ZIMPL=ON ^
+      -D GMP=OFF ^
       -D BOOST=ON ^
       -D IPOPT=ON ^
       -D IPOPT_DIR="%LIBRARY_PREFIX%" ^
