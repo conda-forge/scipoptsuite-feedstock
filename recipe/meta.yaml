@@ -1,6 +1,6 @@
 {% set scip_version = "7.0.3" %}
 {% set soplex_version = "5.0.2" %}
-{% set gcg_version = "3.0.4" %}
+{% set gcg_version = "3.0.5" %}
 {% set zimpl_version = "3.4.0" %}
 {% set bliss_version = "0.73.3" %}
 
