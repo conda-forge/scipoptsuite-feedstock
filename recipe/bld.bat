@@ -22,6 +22,7 @@ cmake -G"NMake Makefiles" ^
       -D IPOPT=ON ^
       -D IPOPT_DIR="%LIBRARY_PREFIX%" ^
       -D ZLIB=ON ^
+      -D READLINE=OFF ^
       -D SYM=bliss ^
       -D BLISS_DIR="bliss-install" ^
       -D EXPRINT=cppad
