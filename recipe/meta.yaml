@@ -1,6 +1,6 @@
-{% set scip_version = "7.0.2" %}
+{% set scip_version = "7.0.3" %}
 {% set soplex_version = "5.0.2" %}
-{% set gcg_version = "3.0.4" %}
+{% set gcg_version = "3.0.5" %}
 {% set zimpl_version = "3.4.0" %}
 {% set bliss_version = "0.73.3" %}
 
@@ -9,15 +9,15 @@ package:
   version: {{ scip_version }}
 
 source:
-  - url: https://scip.zib.de/download/release/scipoptsuite-{{ scip_version }}.tgz
-    sha256: f81b5a2c1c0eb949cf06bd50f42826e55284fa1269a6f28a92ac1a06d9c93a03
+  - url: https://scipopt.org/download/release/scipoptsuite-{{ scip_version }}.tgz
+    sha256: 5af5185a6e60cc62d1a89e3ac4fe22d32351a5158c2c04a95e180e76eb98cc07
     folder: scipoptsuite
   - url: https://github.com/ds4dm/Bliss/archive/v{{ bliss_version }}.tar.gz
     sha256: 4f51d9f76f7e8cb941688a032d208c79858f68a95f8eb69ebef64c62932c3eb7
     folder: bliss
 
 build:
-  number: 5
+  number: 0
 
 requirements:
   build:
@@ -200,7 +200,11 @@ about:
   home: https://scipopt.org/
   license: ZIB-Academic AND LGPL-3.0-or-later
   license_file:
-    - scipoptsuite/COPYING
+    - scipoptsuite/papilo/COPYING
+    - scipoptsuite/soplex/COPYING
+    - scipoptsuite/scip/COPYING
+    - scipoptsuite/gcg/LICENSE
+    - scipoptsuite/zimpl/LICENSE
     - bliss/COPYING.LESSER
     - bliss/include/bliss/utils.hh
   summary: Mixed Integer Programming (MIP) solver and Branch-and-Cut-and-Price Framework

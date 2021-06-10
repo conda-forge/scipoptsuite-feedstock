@@ -17,14 +17,17 @@ cmake -G"NMake Makefiles" ^
       -D PAPILO=ON ^
       -D SOPLEX=ON ^
       -D GCG=OFF ^
-      -D ZIMPL=ON ^
+      -D ZIMPL=OFF ^
+      -D GMP=OFF ^
       -D BOOST=ON ^
-      -D IPOPT=ON ^
+      -D IPOPT=OFF ^
       -D IPOPT_DIR="%LIBRARY_PREFIX%" ^
       -D ZLIB=ON ^
-      -D SYM=bliss ^
-      -D BLISS_DIR="bliss-install" ^
+      -D READLINE=OFF ^
       -D EXPRINT=cppad
+      REM  Bliss not found properly on Windows, see #10
+      REM  -D SYM=bliss ^
+      REM  -D BLISS_DIR="bliss-install" ^
 if errorlevel 1 exit 1
 cmake --build scipoptsuite-build --parallel "%CPU_COUNT%"
 if errorlevel 1 exit 1
