@@ -22,6 +22,8 @@ fortran_compiler_version:
 - '9'
 gmp:
 - '6'
+ipopt:
+- '3.14'
 libblas:
 - 3.8 *netlib
 pin_run_as_build:
