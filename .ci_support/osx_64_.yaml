@@ -36,7 +36,7 @@ pin_run_as_build:
 target_platform:
 - osx-64
 tbb_devel:
-- '2020'
+- '2021'
 zip_keys:
 - - c_compiler_version
   - cxx_compiler_version
