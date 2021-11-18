@@ -3,9 +3,9 @@ boost_cpp:
 c_compiler:
 - vs2017
 channel_sources:
-- conda-forge,defaults
+- conda-forge
 channel_targets:
-- conda-forge main
+- conda-forge scipoptsuite_rc
 cxx_compiler:
 - vs2017
 fortran_compiler:
