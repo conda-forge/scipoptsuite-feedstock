@@ -1,7 +1,8 @@
-{% set scip_version = "7.0.3" %}
-{% set soplex_version = "5.0.2" %}
-{% set gcg_version = "3.0.5" %}
-{% set zimpl_version = "3.4.0" %}
+# TODO check these versions have not changed
+{% set scip_version = "8.0.0rc14" %}
+{% set soplex_version = "6.0.0" %}
+{% set gcg_version = "3.5.0" %}
+{% set zimpl_version = "3.5.0" %}
 {% set bliss_version = "0.73.3" %}
 
 package:
@@ -9,8 +10,9 @@ package:
   version: {{ scip_version }}
 
 source:
-  - url: https://scipopt.org/download/release/scipoptsuite-{{ scip_version }}.tgz
-    sha256: 5af5185a6e60cc62d1a89e3ac4fe22d32351a5158c2c04a95e180e76eb98cc07
+  # FIXME the url is hard-coded
+  - url: https://scipopt.org/download/release/scipoptsuite-v800-rc14.tgz
+    sha256: 760c8d40408b2d6571d09bd64f91d21433dbc0cb28c852039570e1513150902d
     folder: scipoptsuite
   - url: https://github.com/ds4dm/Bliss/archive/v{{ bliss_version }}.tar.gz
     sha256: 4f51d9f76f7e8cb941688a032d208c79858f68a95f8eb69ebef64c62932c3eb7
