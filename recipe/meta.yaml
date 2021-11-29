@@ -4,6 +4,10 @@
 {% set gcg_version = "3.5.0" %}
 {% set zimpl_version = "3.5.0" %}
 {% set bliss_version = "0.73.3" %}
+# For dispatching between Unix and Windows
+{% set install_prefix = "." %}        # [unix]
+{% set install_prefix = "Library" %}  # [win]
+
 
 package:
   name: scipoptsuite
@@ -61,35 +65,20 @@ outputs:
         - cppad
         - gmp  # [unix]
     files:
-      - "lib/libscip*"                    # [unix]
-      - "lib/cmake/scip/"                 # [unix]
-      - "include/blockmemshell/"          # [unix]
-      - "include/dijkstra/"               # [unix]
-      - "include/lpi/"                    # [unix]
-      - "include/nlpi/"                   # [unix]
-      - "include/objscip/"                # [unix]
-      - "include/scip/"                   # [unix]
-      - "include/symmetry/"               # [unix]
-      - "include/tclique/"                # [unix]
-      - "include/tinycthread/"            # [unix]
-      - "include/tpi/"                    # [unix]
-      - "include/xml/"                    # [unix]
-      - "bin/scip"                        # [unix]
-      - "Library/lib/libscip.lib"         # [win]
-      - "Library/bin/libscip.dll"         # [win]
-      - "Library/lib/cmake/scip/"         # [win]
-      - "Library/include/blockmemshell/"  # [win]
-      - "Library/include/dijkstra/"       # [win]
-      - "Library/include/lpi/"            # [win]
-      - "Library/include/nlpi/"           # [win]
-      - "Library/include/objscip/"        # [win]
-      - "Library/include/scip/"           # [win]
-      - "Library/include/symmetry/"       # [win]
-      - "Library/include/tclique/"        # [win]
-      - "Library/include/tinycthread/"    # [win]
-      - "Library/include/tpi/"            # [win]
-      - "Library/include/xml/"            # [win]
-      - "Library/bin/scip.exe"            # [win]
+      - "{{install_prefix}}/lib/libscip*"
+      - "{{install_prefix}}/lib/cmake/scip/"
+      - "{{install_prefix}}/bin/scip*"
+      - "{{install_prefix}}/include/blockmemshell/"
+      - "{{install_prefix}}/include/dijkstra/"
+      - "{{install_prefix}}/include/lpi/"
+      - "{{install_prefix}}/include/nlpi/"
+      - "{{install_prefix}}/include/objscip/"
+      - "{{install_prefix}}/include/scip/"
+      - "{{install_prefix}}/include/symmetry/"
+      - "{{install_prefix}}/include/tclique/"
+      - "{{install_prefix}}/include/tinycthread/"
+      - "{{install_prefix}}/include/tpi/"
+      - "{{install_prefix}}/include/xml/"
 
     test:
       script: run_scip_test.sh   # [unix]
@@ -116,16 +105,11 @@ outputs:
         # boost does not set run_exports so it is needed in run requirements.
         - boost-cpp
     files:
-      - "lib/libsoplex*"              # [unix]
-      - "lib/cmake/soplex/"           # [unix]
-      - "include/soplex*"             # [unix]
-      - "include/soplex/"             # [unix]
-      - "bin/soplex"                  # [unix]
-      - "Library/lib/soplex.lib"      # [win]
-      - "Library/lib/soplex-pic.lib"  # [win]
-      - "Library/lib/cmake/soplex/"   # [win]
-      - "Library/include/soplex*"     # [win]
-      - "Library/include/soplex/"     # [win]
+      - "{{install_prefix}}/lib/libsoplex*"
+      - "{{install_prefix}}/lib/cmake/soplex/"
+      - "{{install_prefix}}/bin/soplex*"
+      - "{{install_prefix}}/include/soplex*"
+      - "{{install_prefix}}/include/soplex/"
     test:
       script: run_soplex_test.sh   # [unix]
       script: run_soplex_test.bat  # [win]
@@ -157,8 +141,8 @@ outputs:
     files:
       - "lib/libgcg*"
       - "lib/cmake/gcg"
-      - "include/gcg"
       - "bin/gcg"
+      - "include/gcg"
     test:
       commands:
         - gcg --version
@@ -181,14 +165,10 @@ outputs:
         - bison  # [unix]
         - flex   # [unix]
     files:
-      - "lib/libzimpl*"             # [unix]
-      - "lib/cmake/zimpl/"          # [unix]
-      - "include/zimpl"             # [unix]
-      - "bin/zimpl"                 # [unix]
-      - "Library/lib/libzimpl*"     # [win]
-      - "Library/lib/cmake/zimpl/"  # [win]
-      - "Library/include/zimpl"     # [win]
-      - "Library/bin/zimpl.exe"     # [win]
+      - "{{install_prefix}}/lib/libzimpl*"
+      - "{{install_prefix}}/lib/cmake/zimpl/"
+      - "{{install_prefix}}/bin/zimpl*"
+      - "{{install_prefix}}/include/zimpl"
     test:
       commands:
         - zimpl -V
