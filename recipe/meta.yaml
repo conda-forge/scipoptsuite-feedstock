@@ -1,5 +1,6 @@
 # TODO check these versions have not changed
 {% set scip_version = "8.0.0rc16" %}
+{% set papilo_version = "2.0.0" %}
 {% set soplex_version = "6.0.0" %}
 {% set gcg_version = "3.5.0" %}
 {% set zimpl_version = "3.5.0" %}
@@ -46,6 +47,30 @@ requirements:
     - flex            # [unix]
 
 outputs:
+
+  - name: papilo
+    version: {{ papilo_version }}
+    requirements:
+      build:
+        - {{ compiler('fortran') }}
+        - {{ compiler('c') }}
+        - {{ compiler('cxx') }}
+      host:
+        - zlib
+        - gmp             # [unix]
+        - boost-cpp       # [unix]
+        - boost-cpp 1.72  # [win]
+        - libblas
+      run:
+        - tbb-devel
+    files:
+      - "{{install_prefix}}/lib/cmake/papilo/"
+      # Executable is not installed by Papilo's CMake
+      # - "{{install_prefix}}/bin/papilo*"
+      # Vendored libraries
+      - "{{install_prefix}}/lib/libclusol*"
+      - "{{install_prefix}}/include/papilo/"
+      - "{{install_prefix}}/include/papilo-external/"
 
   - name: scip
     version: {{ scip_version }}
