@@ -203,11 +203,14 @@ about:
   license: ZIB-Academic AND LGPL-3.0-or-later
   license_file:
     - scipoptsuite/papilo/COPYING
+    - scipoptsuite/papilo/external/lusol/LICENSE.md
+    - scipoptsuite/papilo/external/pdqsort/license.txt
+    - scipoptsuite/papilo/external/ska/LICENSE.txt
     - scipoptsuite/soplex/COPYING
     - scipoptsuite/scip/COPYING
     - scipoptsuite/gcg/LICENSE
     - scipoptsuite/zimpl/LICENSE
-    - bliss/COPYING.LESSER
+    - bliss/COPYING
     - bliss/include/bliss/utils.hh
   summary: Mixed Integer Programming (MIP) solver and Branch-and-Cut-and-Price Framework
 
