@@ -79,16 +79,19 @@ outputs:
         - {{ pin_subpackage('scip') }}
     requirements:
       build:
-        - {{ compiler('fortran') }}
         - {{ compiler('c') }}
+        # Soplex statically linked
         - {{ compiler('cxx') }}
+        # Papilo statically linked
+        - {{ compiler('fortran') }}
       host:
-        - tbb-devel
-        - libblas
         - zlib
         - ipopt
         - cppad
         - gmp  # [unix]
+        # Papilo statically linked
+        - tbb-devel
+        - libblas
     files:
       - "{{install_prefix}}/lib/libscip*"
       - "{{install_prefix}}/lib/cmake/scip/"
