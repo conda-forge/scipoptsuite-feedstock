@@ -82,7 +82,7 @@ outputs:
         - {{ compiler('c') }}
         # Soplex statically linked
         - {{ compiler('cxx') }}
-        # Papilo statically linked
+        # Papilo statically linked but needs direct dependency from used shared libs.
         - {{ compiler('fortran') }}
       host:
         - zlib
@@ -90,6 +90,7 @@ outputs:
         - cppad
         - gmp  # [unix]
         # Papilo statically linked
+        # Papilo statically linked but needs direct dependency from used shared libs.
         - tbb-devel
         - libblas
     files:
@@ -123,11 +124,16 @@ outputs:
     requirements:
       build:
         - {{ compiler('cxx') }}
+        # Papilo statically linked but needs direct dependency from used shared libs.
+        - {{ compiler('fortran') }}
       host:
         - zlib
         - gmp             # [unix]
         - boost-cpp       # [unix]
         - boost-cpp 1.72  # [win]
+        # Papilo statically linked but needs direct dependency from used shared libs.
+        - tbb-devel
+        - libblas
       run:
         # libboost_program_options.so needed by bin/soplex.
         # boost does not set run_exports so it is needed in run requirements.
@@ -148,6 +154,8 @@ outputs:
         - {{ compiler('cxx') }}
         - cmake >=3.15
         - make                     # [unix]
+        # Papilo statically linked
+        - {{ compiler('fortran') }}
 
   - name: gcg
     version:  {{ gcg_version }}
