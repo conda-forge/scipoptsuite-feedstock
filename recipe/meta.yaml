@@ -16,7 +16,7 @@ package:
 
 source:
   - url: https://scipopt.org/download/release/scipoptsuite-{{ scip_version }}.tgz
-    sha256: 0fc025f260e9e77e26e5d218707c04d03492e792c793d34221ada09fbb275b99
+    sha256: 9b85283db0ac939b2d8eb3475067c8e1164b239e0c78e68f55dcc55859b78b2d
     folder: scipoptsuite
   - url: https://github.com/ds4dm/Bliss/archive/v{{ bliss_version }}.tar.gz
     sha256: 4f51d9f76f7e8cb941688a032d208c79858f68a95f8eb69ebef64c62932c3eb7
