@@ -1,5 +1,5 @@
 # TODO check these versions have not changed
-{% set scip_version = "8.0.0rc16" %}
+{% set scip_version = "8.0.0" %}
 {% set papilo_version = "2.0.0" %}
 {% set soplex_version = "6.0.0" %}
 {% set gcg_version = "3.5.0" %}
@@ -15,8 +15,7 @@ package:
   version: {{ scip_version }}
 
 source:
-  # FIXME the url is hard-coded
-  - url: https://scipopt.org/download/release/scipoptsuite-v800-rc16.tgz
+  - url: https://scipopt.org/download/release/scipoptsuite-{{ scip_version }}.tgz
     sha256: 0fc025f260e9e77e26e5d218707c04d03492e792c793d34221ada09fbb275b99
     folder: scipoptsuite
   - url: https://github.com/ds4dm/Bliss/archive/v{{ bliss_version }}.tar.gz
