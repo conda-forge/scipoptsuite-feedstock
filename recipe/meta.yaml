@@ -64,13 +64,13 @@ outputs:
       run:
         - tbb-devel
     files:
-      - "{{install_prefix}}/lib/cmake/papilo/"
+      - "{{ install_prefix }}/lib/cmake/papilo/"
       # Executable is not installed by Papilo's CMake
-      # - "{{install_prefix}}/bin/papilo*"
+      # - "{{ install_prefix }}/bin/papilo*"
       # Vendored libraries
-      - "{{install_prefix}}/lib/libclusol*"
-      - "{{install_prefix}}/include/papilo/"
-      - "{{install_prefix}}/include/papilo-external/"
+      - "{{ install_prefix }}/lib/libclusol*"
+      - "{{ install_prefix }}/include/papilo/"
+      - "{{ install_prefix }}/include/papilo-external/"
 
   - name: scip
     version: {{ scip_version }}
@@ -94,20 +94,20 @@ outputs:
         - tbb-devel
         - libblas
     files:
-      - "{{install_prefix}}/lib/libscip*"
-      - "{{install_prefix}}/lib/cmake/scip/"
-      - "{{install_prefix}}/bin/scip*"
-      - "{{install_prefix}}/include/blockmemshell/"
-      - "{{install_prefix}}/include/dijkstra/"
-      - "{{install_prefix}}/include/lpi/"
-      - "{{install_prefix}}/include/nlpi/"
-      - "{{install_prefix}}/include/objscip/"
-      - "{{install_prefix}}/include/scip/"
-      - "{{install_prefix}}/include/symmetry/"
-      - "{{install_prefix}}/include/tclique/"
-      - "{{install_prefix}}/include/tinycthread/"
-      - "{{install_prefix}}/include/tpi/"
-      - "{{install_prefix}}/include/xml/"
+      - "{{ install_prefix }}/lib/libscip*"
+      - "{{ install_prefix }}/lib/cmake/scip/"
+      - "{{ install_prefix }}/bin/scip*"
+      - "{{ install_prefix }}/include/blockmemshell/"
+      - "{{ install_prefix }}/include/dijkstra/"
+      - "{{ install_prefix }}/include/lpi/"
+      - "{{ install_prefix }}/include/nlpi/"
+      - "{{ install_prefix }}/include/objscip/"
+      - "{{ install_prefix }}/include/scip/"
+      - "{{ install_prefix }}/include/symmetry/"
+      - "{{ install_prefix }}/include/tclique/"
+      - "{{ install_prefix }}/include/tinycthread/"
+      - "{{ install_prefix }}/include/tpi/"
+      - "{{ install_prefix }}/include/xml/"
 
     test:
       script: run_scip_test.sh   # [unix]
@@ -140,11 +140,11 @@ outputs:
         - boost-cpp
         - {{ pin_subpackage('papilo', exact=True) }}
     files:
-      - "{{install_prefix}}/lib/libsoplex*"
-      - "{{install_prefix}}/lib/cmake/soplex/"
-      - "{{install_prefix}}/bin/soplex*"
-      - "{{install_prefix}}/include/soplex*"
-      - "{{install_prefix}}/include/soplex/"
+      - "{{ install_prefix }}/lib/libsoplex*"
+      - "{{ install_prefix }}/lib/cmake/soplex/"
+      - "{{ install_prefix }}/bin/soplex*"
+      - "{{ install_prefix }}/include/soplex*"
+      - "{{ install_prefix }}/include/soplex/"
     test:
       script: run_soplex_test.sh   # [unix]
       script: run_soplex_test.bat  # [win]
@@ -202,10 +202,10 @@ outputs:
         - bison  # [unix]
         - flex   # [unix]
     files:
-      - "{{install_prefix}}/lib/libzimpl*"
-      - "{{install_prefix}}/lib/cmake/zimpl/"
-      - "{{install_prefix}}/bin/zimpl*"
-      - "{{install_prefix}}/include/zimpl"
+      - "{{ install_prefix }}/lib/libzimpl*"
+      - "{{ install_prefix }}/lib/cmake/zimpl/"
+      - "{{ install_prefix }}/bin/zimpl*"
+      - "{{ install_prefix }}/include/zimpl"
     test:
       commands:
         - zimpl -V
