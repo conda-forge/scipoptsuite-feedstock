@@ -98,6 +98,7 @@ outputs:
       - "{{ install_prefix }}/lib/libscip*"
       - "{{ install_prefix }}/lib/cmake/scip/"
       - "{{ install_prefix }}/bin/scip*"
+      - "{{ install_prefix }}/bin/libscip*"  # [win]
       - "{{ install_prefix }}/include/blockmemshell/"
       - "{{ install_prefix }}/include/dijkstra/"
       - "{{ install_prefix }}/include/lpi/"
@@ -144,6 +145,7 @@ outputs:
       - "{{ install_prefix }}/lib/libsoplex*"
       - "{{ install_prefix }}/lib/cmake/soplex/"
       - "{{ install_prefix }}/bin/soplex*"
+      - "{{ install_prefix }}/bin/libsoplex*"  # [win]
       - "{{ install_prefix }}/include/soplex*"
       - "{{ install_prefix }}/include/soplex/"
     test:
@@ -206,6 +208,7 @@ outputs:
       - "{{ install_prefix }}/lib/libzimpl*"
       - "{{ install_prefix }}/lib/cmake/zimpl/"
       - "{{ install_prefix }}/bin/zimpl*"
+      - "{{ install_prefix }}/bin/libzimpl*"  # [win]
       - "{{ install_prefix }}/include/zimpl"
     test:
       commands:
