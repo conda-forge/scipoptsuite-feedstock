@@ -16,7 +16,7 @@ package:
 
 source:
   - url: https://scipopt.org/download/release/scipoptsuite-{{ scip_version }}.tgz
-    sha256: 9b85283db0ac939b2d8eb3475067c8e1164b239e0c78e68f55dcc55859b78b2d
+    sha256: 74762fd3c0e800a39defaa814a091c563955e36541ddd145bcc1fc86c00ffe11
     patches:
       - 0001-Remove-TBB-installs.patch
     folder: scipoptsuite
