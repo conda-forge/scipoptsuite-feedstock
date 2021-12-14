@@ -61,6 +61,7 @@ Current release info
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-gcg-green.svg)](https://anaconda.org/conda-forge/gcg) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/gcg.svg)](https://anaconda.org/conda-forge/gcg) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/gcg.svg)](https://anaconda.org/conda-forge/gcg) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/gcg.svg)](https://anaconda.org/conda-forge/gcg) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-papilo-green.svg)](https://anaconda.org/conda-forge/papilo) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/papilo.svg)](https://anaconda.org/conda-forge/papilo) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/papilo.svg)](https://anaconda.org/conda-forge/papilo) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/papilo.svg)](https://anaconda.org/conda-forge/papilo) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-scip-green.svg)](https://anaconda.org/conda-forge/scip) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/scip.svg)](https://anaconda.org/conda-forge/scip) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/scip.svg)](https://anaconda.org/conda-forge/scip) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/scip.svg)](https://anaconda.org/conda-forge/scip) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-soplex-green.svg)](https://anaconda.org/conda-forge/soplex) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/soplex.svg)](https://anaconda.org/conda-forge/soplex) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/soplex.svg)](https://anaconda.org/conda-forge/soplex) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/soplex.svg)](https://anaconda.org/conda-forge/soplex) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-zimpl-green.svg)](https://anaconda.org/conda-forge/zimpl) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/zimpl.svg)](https://anaconda.org/conda-forge/zimpl) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/zimpl.svg)](https://anaconda.org/conda-forge/zimpl) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/zimpl.svg)](https://anaconda.org/conda-forge/zimpl) |
@@ -75,10 +76,10 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `gcg, scip, soplex, zimpl` can be installed with:
+Once the `conda-forge` channel has been enabled, `gcg, papilo, scip, soplex, zimpl` can be installed with:
 
 ```
-conda install gcg scip soplex zimpl
+conda install gcg papilo scip soplex zimpl
 ```
 
 It is possible to list all of the versions of `gcg` available on your platform with:
@@ -91,7 +92,8 @@ conda search gcg --channel conda-forge
 About conda-forge
 =================
 
-[![Powered by NumFOCUS](https://img.shields.io/badge/powered%20by-NumFOCUS-orange.svg?style=flat&colorA=E1523D&colorB=007D8A)](http://numfocus.org)
+[![Powered by
+NumFOCUS](https://img.shields.io/badge/powered%20by-NumFOCUS-orange.svg?style=flat&colorA=E1523D&colorB=007D8A)](https://numfocus.org)
 
 conda-forge is a community-led conda channel of installable packages.
 In order to provide high-quality builds, the process has been automated into the
