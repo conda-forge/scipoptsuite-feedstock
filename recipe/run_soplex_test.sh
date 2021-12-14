@@ -6,7 +6,6 @@ set -o nounset
 
 cat > CMakeLists.txt << 'EOF'
 cmake_minimum_required(VERSION 3.0)
-
 project(SoplexExample)
 find_package(SOPLEX REQUIRED)
 # Soplex needs papilo but does not add it
