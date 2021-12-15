@@ -20,7 +20,7 @@ cmake -G"NMake Makefiles" ^
       -D ZIMPL=OFF ^
       -D GMP=OFF ^
       -D BOOST=ON ^
-      -D IPOPT=OFF ^
+      -D IPOPT=ON ^
       -D IPOPT_DIR="%LIBRARY_PREFIX%" ^
       -D ZLIB=ON ^
       -D READLINE=OFF ^
