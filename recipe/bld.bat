@@ -1,3 +1,5 @@
+SET LDFLAGS="%LDFLAGS% %LIBRARY_PREFIX%\lib\mpir.lib"
+
 cmake -G"NMake Makefiles"  ^
       -B bliss-build ^
       -S "%SRC_DIR%\bliss" ^
@@ -18,7 +20,7 @@ cmake -G"NMake Makefiles" ^
       -D SOPLEX=ON ^
       -D GCG=OFF ^
       -D ZIMPL=OFF ^
-      -D GMP=OFF ^
+      -D GMP=ON ^
       -D BOOST=ON ^
       -D IPOPT=ON ^
       -D IPOPT_DIR="%LIBRARY_PREFIX%" ^

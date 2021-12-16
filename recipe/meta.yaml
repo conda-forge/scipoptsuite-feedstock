@@ -25,7 +25,7 @@ source:
     folder: bliss
 
 build:
-  number: 2
+  number: 3
 
 requirements:
   build:
@@ -43,6 +43,7 @@ requirements:
     - boost-cpp 1.72  # [win]
     - boost-cpp       # [unix]
     - gmp             # [unix]
+    - mpir            # [win]
     - cliquer         # [unix]
     - bison           # [unix]
     - flex            # [unix]
@@ -59,6 +60,7 @@ outputs:
       host:
         - zlib
         - gmp             # [unix]
+        - mpir            # [win]
         - boost-cpp       # [unix]
         - boost-cpp 1.72  # [win]
         - libblas
@@ -89,7 +91,8 @@ outputs:
         - zlib
         - ipopt
         - cppad
-        - gmp  # [unix]
+        - gmp   # [unix]
+        - mpir  # [win]
         # Papilo statically linked
         # Papilo statically linked but needs direct dependency from used shared libs.
         - tbb-devel
@@ -131,6 +134,7 @@ outputs:
       host:
         - zlib
         - gmp             # [unix]
+        - mpir            # [win]
         - boost-cpp       # [unix]
         - boost-cpp 1.72  # [win]
         # Papilo statically linked but needs direct dependency from used shared libs.
@@ -202,6 +206,7 @@ outputs:
       host:
         - zlib
         - gmp    # [unix]
+        - mpir   # [win]
         - bison  # [unix]
         - flex   # [unix]
     files:
