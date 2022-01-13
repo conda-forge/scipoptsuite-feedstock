@@ -147,6 +147,7 @@ outputs:
       host:
         - gmp
         - cliquer
+        - gnuplot
         - {{ pin_subpackage('scip', exact=True) }}
       run:
         - {{ pin_subpackage('scip') }}
