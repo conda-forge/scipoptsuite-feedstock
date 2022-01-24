@@ -16,7 +16,7 @@ package:
 
 source:
   - url: https://scipopt.org/download/release/scipoptsuite-{{ scip_version }}.tgz
-    sha256: b6ada57f14a728198cc9bc5d22bc6e61dc18cb750a17846df9d853ff6380fbd1
+    sha256: 74c2bb3be6b9b99e75b03b3161ebcfbfb1d211e7becdd9929328a6e92ffce5a7
     folder: scipoptsuite
     patches:
       - 0001-Change-FindIPOPT.cmake.patch
@@ -25,7 +25,7 @@ source:
     folder: bliss
 
 build:
-  number: 2
+  number: 3
 
 requirements:
   build:
@@ -140,6 +140,7 @@ outputs:
         # libboost_program_options.so needed by bin/soplex.
         # boost does not set run_exports so it is needed in run requirements.
         - boost-cpp
+        - zlib
         - {{ pin_subpackage('papilo', exact=True) }}
     files:
       - "{{ install_prefix }}/lib/libsoplex*"
@@ -173,6 +174,7 @@ outputs:
       host:
         - gmp
         - cliquer
+        - gnuplot
         - {{ pin_subpackage('scip', exact=True) }}
       run:
         - {{ pin_subpackage('scip') }}
