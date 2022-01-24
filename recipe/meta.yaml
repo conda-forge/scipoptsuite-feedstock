@@ -140,6 +140,7 @@ outputs:
         # libboost_program_options.so needed by bin/soplex.
         # boost does not set run_exports so it is needed in run requirements.
         - boost-cpp
+        - zlib
         - {{ pin_subpackage('papilo', exact=True) }}
     files:
       - "{{ install_prefix }}/lib/libsoplex*"
