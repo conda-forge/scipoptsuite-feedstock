@@ -3,7 +3,7 @@ boost_cpp:
 c_compiler:
 - vs2017
 channel_sources:
-- conda-forge,defaults
+- conda-forge
 channel_targets:
 - conda-forge main
 cxx_compiler:
@@ -24,6 +24,6 @@ pin_run_as_build:
 target_platform:
 - win-64
 tbb_devel:
-- '2020'
+- '2021'
 zlib:
 - '1.2'

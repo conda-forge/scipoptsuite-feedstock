@@ -1,8 +1,14 @@
-{% set scip_version = "7.0.3" %}
-{% set soplex_version = "5.0.2" %}
-{% set gcg_version = "3.0.5" %}
-{% set zimpl_version = "3.4.0" %}
+# TODO check these versions have not changed
+{% set scip_version = "8.0.0" %}
+{% set papilo_version = "2.0.0" %}
+{% set soplex_version = "6.0.0" %}
+{% set gcg_version = "3.5.0" %}
+{% set zimpl_version = "3.5.1" %}
 {% set bliss_version = "0.73.3" %}
+# For dispatching between Unix and Windows
+{% set install_prefix = "." %}        # [unix]
+{% set install_prefix = "Library" %}  # [win]
+
 
 package:
   name: scipoptsuite
@@ -10,14 +16,16 @@ package:
 
 source:
   - url: https://scipopt.org/download/release/scipoptsuite-{{ scip_version }}.tgz
-    sha256: 5af5185a6e60cc62d1a89e3ac4fe22d32351a5158c2c04a95e180e76eb98cc07
+    sha256: 74c2bb3be6b9b99e75b03b3161ebcfbfb1d211e7becdd9929328a6e92ffce5a7
     folder: scipoptsuite
+    patches:
+      - 0001-Change-FindIPOPT.cmake.patch
   - url: https://github.com/ds4dm/Bliss/archive/v{{ bliss_version }}.tar.gz
     sha256: 4f51d9f76f7e8cb941688a032d208c79858f68a95f8eb69ebef64c62932c3eb7
     folder: bliss
 
 build:
-  number: 1
+  number: 0
 
 requirements:
   build:
@@ -41,6 +49,30 @@ requirements:
 
 outputs:
 
+  - name: papilo
+    version: {{ papilo_version }}
+    requirements:
+      build:
+        - {{ compiler('fortran') }}
+        - {{ compiler('c') }}
+        - {{ compiler('cxx') }}
+      host:
+        - zlib
+        - gmp             # [unix]
+        - boost-cpp       # [unix]
+        - boost-cpp 1.72  # [win]
+        - libblas
+      run:
+        - tbb-devel
+    files:
+      - "{{ install_prefix }}/lib/cmake/papilo/"
+      # Executable is not installed by Papilo's CMake
+      # - "{{ install_prefix }}/bin/papilo*"
+      # Vendored libraries
+      - "{{ install_prefix }}/lib/libclusol*"
+      - "{{ install_prefix }}/include/papilo/"
+      - "{{ install_prefix }}/include/papilo-external/"
+
   - name: scip
     version: {{ scip_version }}
     build:
@@ -48,46 +80,36 @@ outputs:
         - {{ pin_subpackage('scip') }}
     requirements:
       build:
-        - {{ compiler('fortran') }}
         - {{ compiler('c') }}
+        # Soplex statically linked
         - {{ compiler('cxx') }}
+        # Papilo statically linked but needs direct dependency from used shared libs.
+        - {{ compiler('fortran') }}
       host:
-        - tbb-devel
-        - libblas
         - zlib
         - ipopt
         - cppad
         - gmp  # [unix]
+        # Papilo statically linked
+        # Papilo statically linked but needs direct dependency from used shared libs.
+        - tbb-devel
+        - libblas
     files:
-      - "lib/libscip*"                    # [unix]
-      - "lib/cmake/scip/"                 # [unix]
-      - "include/blockmemshell/"          # [unix]
-      - "include/dijkstra/"               # [unix]
-      - "include/lpi/"                    # [unix]
-      - "include/nlpi/"                   # [unix]
-      - "include/objscip/"                # [unix]
-      - "include/scip/"                   # [unix]
-      - "include/symmetry/"               # [unix]
-      - "include/tclique/"                # [unix]
-      - "include/tinycthread/"            # [unix]
-      - "include/tpi/"                    # [unix]
-      - "include/xml/"                    # [unix]
-      - "bin/scip"                        # [unix]
-      - "Library/lib/libscip.lib"         # [win]
-      - "Library/bin/libscip.dll"         # [win]
-      - "Library/lib/cmake/scip/"         # [win]
-      - "Library/include/blockmemshell/"  # [win]
-      - "Library/include/dijkstra/"       # [win]
-      - "Library/include/lpi/"            # [win]
-      - "Library/include/nlpi/"           # [win]
-      - "Library/include/objscip/"        # [win]
-      - "Library/include/scip/"           # [win]
-      - "Library/include/symmetry/"       # [win]
-      - "Library/include/tclique/"        # [win]
-      - "Library/include/tinycthread/"    # [win]
-      - "Library/include/tpi/"            # [win]
-      - "Library/include/xml/"            # [win]
-      - "Library/bin/scip.exe"            # [win]
+      - "{{ install_prefix }}/lib/libscip*"
+      - "{{ install_prefix }}/lib/cmake/scip/"
+      - "{{ install_prefix }}/bin/scip*"
+      - "{{ install_prefix }}/bin/libscip*"  # [win]
+      - "{{ install_prefix }}/include/blockmemshell/"
+      - "{{ install_prefix }}/include/dijkstra/"
+      - "{{ install_prefix }}/include/lpi/"
+      - "{{ install_prefix }}/include/nlpi/"
+      - "{{ install_prefix }}/include/objscip/"
+      - "{{ install_prefix }}/include/scip/"
+      - "{{ install_prefix }}/include/symmetry/"
+      - "{{ install_prefix }}/include/tclique/"
+      - "{{ install_prefix }}/include/tinycthread/"
+      - "{{ install_prefix }}/include/tpi/"
+      - "{{ install_prefix }}/include/xml/"
 
     test:
       script: run_scip_test.sh   # [unix]
@@ -104,26 +126,29 @@ outputs:
     requirements:
       build:
         - {{ compiler('cxx') }}
+        # Papilo statically linked but needs direct dependency from used shared libs.
+        - {{ compiler('fortran') }}
       host:
         - zlib
         - gmp             # [unix]
         - boost-cpp       # [unix]
         - boost-cpp 1.72  # [win]
+        # Papilo statically linked but needs direct dependency from used shared libs.
+        - tbb-devel
+        - libblas
       run:
         # libboost_program_options.so needed by bin/soplex.
         # boost does not set run_exports so it is needed in run requirements.
         - boost-cpp
+        - zlib
+        - {{ pin_subpackage('papilo', exact=True) }}
     files:
-      - "lib/libsoplex*"              # [unix]
-      - "lib/cmake/soplex/"           # [unix]
-      - "include/soplex*"             # [unix]
-      - "include/soplex/"             # [unix]
-      - "bin/soplex"                  # [unix]
-      - "Library/lib/soplex.lib"      # [win]
-      - "Library/lib/soplex-pic.lib"  # [win]
-      - "Library/lib/cmake/soplex/"   # [win]
-      - "Library/include/soplex*"     # [win]
-      - "Library/include/soplex/"     # [win]
+      - "{{ install_prefix }}/lib/libsoplex*"
+      - "{{ install_prefix }}/lib/cmake/soplex/"
+      - "{{ install_prefix }}/bin/soplex*"
+      - "{{ install_prefix }}/bin/libsoplex*"  # [win]
+      - "{{ install_prefix }}/include/soplex*"
+      - "{{ install_prefix }}/include/soplex/"
     test:
       script: run_soplex_test.sh   # [unix]
       script: run_soplex_test.bat  # [win]
@@ -133,6 +158,8 @@ outputs:
         - {{ compiler('cxx') }}
         - cmake >=3.15
         - make                     # [unix]
+        # Papilo statically linked
+        - {{ compiler('fortran') }}
 
   - name: gcg
     version:  {{ gcg_version }}
@@ -147,6 +174,7 @@ outputs:
       host:
         - gmp
         - cliquer
+        - gnuplot
         - {{ pin_subpackage('scip', exact=True) }}
       run:
         - {{ pin_subpackage('scip') }}
@@ -155,8 +183,8 @@ outputs:
     files:
       - "lib/libgcg*"
       - "lib/cmake/gcg"
-      - "include/gcg"
       - "bin/gcg"
+      - "include/gcg"
     test:
       commands:
         - gcg --version
@@ -179,14 +207,11 @@ outputs:
         - bison  # [unix]
         - flex   # [unix]
     files:
-      - "lib/libzimpl*"             # [unix]
-      - "lib/cmake/zimpl/"          # [unix]
-      - "include/zimpl"             # [unix]
-      - "bin/zimpl"                 # [unix]
-      - "Library/lib/libzimpl*"     # [win]
-      - "Library/lib/cmake/zimpl/"  # [win]
-      - "Library/include/zimpl"     # [win]
-      - "Library/bin/zimpl.exe"     # [win]
+      - "{{ install_prefix }}/lib/libzimpl*"
+      - "{{ install_prefix }}/lib/cmake/zimpl/"
+      - "{{ install_prefix }}/bin/zimpl*"
+      - "{{ install_prefix }}/bin/libzimpl*"  # [win]
+      - "{{ install_prefix }}/include/zimpl"
     test:
       commands:
         - zimpl -V
@@ -201,11 +226,14 @@ about:
   license: ZIB-Academic AND LGPL-3.0-or-later
   license_file:
     - scipoptsuite/papilo/COPYING
+    - scipoptsuite/papilo/external/lusol/LICENSE.md
+    - scipoptsuite/papilo/external/pdqsort/license.txt
+    - scipoptsuite/papilo/external/ska/LICENSE.txt
     - scipoptsuite/soplex/COPYING
     - scipoptsuite/scip/COPYING
     - scipoptsuite/gcg/LICENSE
     - scipoptsuite/zimpl/LICENSE
-    - bliss/COPYING.LESSER
+    - bliss/COPYING
     - bliss/include/bliss/utils.hh
   summary: Mixed Integer Programming (MIP) solver and Branch-and-Cut-and-Price Framework
 
