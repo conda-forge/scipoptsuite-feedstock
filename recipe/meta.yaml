@@ -46,6 +46,7 @@ requirements:
     - cliquer         # [unix]
     - bison           # [unix]
     - flex            # [unix]
+    - gnuplot         # [not arm64]
 
 outputs:
 
@@ -174,6 +175,7 @@ outputs:
       host:
         - gmp
         - cliquer
+        - gnuplot  # [not arm64]
         - {{ pin_subpackage('scip', exact=True) }}
       run:
         - {{ pin_subpackage('scip') }}
