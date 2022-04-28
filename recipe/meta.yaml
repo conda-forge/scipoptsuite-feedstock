@@ -197,7 +197,7 @@ outputs:
       # zimpl is not built in Windows since gmp is not available on 
       # conda-forge so this test is skipped. Details were left for 
       # the path to zimpl if we find a solution in the future.  
-      skip: True  # [win and arm64]
+      skip: True  # [win or arm64]
     requirements:
       build:
         - {{ compiler('c') }}
