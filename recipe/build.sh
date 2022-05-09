@@ -14,6 +14,12 @@ if [[ "${target_platform}" == linux-* ]] ; then
     export LDFLAGS="-lrt ${LDFLAGS}"
 fi
 
+if [[ $target_platform == "osx-arm64" ]]; then
+    ZIMPL_SET=OFF
+else
+    ZIMPL_SET=ON
+fi
+
 # BLISS_DIR is looked up in scip/cmake/Modules.FindBliss.cmake
 cmake -B scipoptsuite-build -S "${SRC_DIR}/scipoptsuite" \
       -D CMAKE_BUILD_TYPE=Release \
@@ -21,7 +27,7 @@ cmake -B scipoptsuite-build -S "${SRC_DIR}/scipoptsuite" \
       -D PAPILO=ON \
       -D SOPLEX=ON \
       -D GCG=ON \
-      -D ZIMPL=ON \
+      -D ZIMPL=$ZIMPL_SET \
       -D BOOST=ON \
       -D GMP=ON \
       -D QUADMATH=ON \
