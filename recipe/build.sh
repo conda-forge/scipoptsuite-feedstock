@@ -5,7 +5,7 @@ set -o pipefail
 set -o nounset
 
 # Bliss with SCIP patch being privately vendored
-cmake -B bliss-build -S "${SRC_DIR}/bliss" -D CMAKE_BUILD_TYPE=Release -D BUILD_SHARED_LIBS=OFF
+cmake ${CMAKE_ARGS} -B bliss-build -S "${SRC_DIR}/bliss" -D CMAKE_BUILD_TYPE=Release -D BUILD_SHARED_LIBS=OFF
 cmake --build bliss-build --parallel ${CPU_COUNT}
 cmake --install bliss-build --prefix "${PWD}/bliss-install"
 
