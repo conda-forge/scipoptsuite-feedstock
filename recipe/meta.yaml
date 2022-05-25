@@ -16,7 +16,7 @@ package:
 
 source:
   - url: https://scipopt.org/download/release/scipoptsuite-{{ scip_version }}.tgz
-    sha256: 74c2bb3be6b9b99e75b03b3161ebcfbfb1d211e7becdd9929328a6e92ffce5a7
+    sha256: e1ec361330ceeb4c1da56940f8cea642d8cd8d3cebcc861e0f1e892d6830d9f0
     folder: scipoptsuite
     patches:
       - 0001-Change-FindIPOPT.cmake.patch
