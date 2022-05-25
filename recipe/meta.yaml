@@ -18,8 +18,6 @@ source:
   - url: https://scipopt.org/download/release/scipoptsuite-{{ scip_version }}.tgz
     sha256: e1ec361330ceeb4c1da56940f8cea642d8cd8d3cebcc861e0f1e892d6830d9f0
     folder: scipoptsuite
-    patches:
-      - 0001-Change-FindIPOPT.cmake.patch
   - url: https://github.com/ds4dm/Bliss/archive/v{{ bliss_version }}.tar.gz
     sha256: 4f51d9f76f7e8cb941688a032d208c79858f68a95f8eb69ebef64c62932c3eb7
     folder: bliss
