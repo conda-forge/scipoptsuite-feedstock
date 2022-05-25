@@ -1,10 +1,10 @@
 # TODO check these versions have not changed
-{% set scip_version = "8.0.0" %}
-{% set papilo_version = "2.0.0" %}
-{% set soplex_version = "6.0.0" %}
-{% set gcg_version = "3.5.0" %}
-{% set zimpl_version = "3.5.1" %}
-{% set bliss_version = "0.73.3" %}
+{% set scip_version = "8.0.1" %}
+{% set papilo_version = "2.1.0" %}
+{% set soplex_version = "6.0.1" %}
+{% set gcg_version = "3.5.1" %}
+{% set zimpl_version = "3.5.2" %}
+{% set bliss_version = "0.77" %}
 # For dispatching between Unix and Windows
 {% set install_prefix = "." %}        # [unix]
 {% set install_prefix = "Library" %}  # [win]
@@ -25,7 +25,7 @@ source:
     folder: bliss
 
 build:
-  number: 1
+  number: 0
 
 requirements:
   build:
@@ -194,9 +194,9 @@ outputs:
   - name: zimpl
     version: {{ zimpl_version }}
     build:
-      # zimpl is not built in Windows since gmp is not available on 
-      # conda-forge so this test is skipped. Details were left for 
-      # the path to zimpl if we find a solution in the future.  
+      # zimpl is not built in Windows since gmp is not available on
+      # conda-forge so this test is skipped. Details were left for
+      # the path to zimpl if we find a solution in the future.
       skip: True  # [win or arm64]
     requirements:
       build:
