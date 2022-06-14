@@ -14,5 +14,5 @@ scip --version
 scip --version | grep -iE 'CppAD\s+[0-9]+'
 scip --version | grep -iE 'ZLIB\s+[0-9]+\.[0-9]+\.[0-9]+'
 scip --version | grep -iE 'GMP\s+[0-9]+\.[0-9]+\.[0-9]+'
-scip --version | grep -iE 'bliss\s+[0-9]+\.[0-9]+\.[0-9]+'
+scip --version | grep -iE 'bliss\s+[0-9]+\.[0-9]+'
 scip --version | grep -iE 'Ipopt\s+[0-9]+\.[0-9]+\.[0-9]+'
