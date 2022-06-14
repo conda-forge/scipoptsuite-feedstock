@@ -67,7 +67,6 @@ outputs:
       # Vendored libraries
       - "{{ install_prefix }}/lib/libclusol*"
       - "{{ install_prefix }}/include/papilo/"
-      - "{{ install_prefix }}/include/papilo-external/"
 
   - name: scip
     version: {{ scip_version }}
@@ -221,9 +220,9 @@ about:
   license: ZIB-Academic AND LGPL-3.0-or-later
   license_file:
     - scipoptsuite/papilo/COPYING
-    - scipoptsuite/papilo/external/lusol/LICENSE.md
-    - scipoptsuite/papilo/external/pdqsort/license.txt
-    - scipoptsuite/papilo/external/ska/LICENSE.txt
+    - scipoptsuite/papilo/src/papilo/external/lusol/LICENSE.md
+    - scipoptsuite/papilo/src/papilo/external/pdqsort/license.txt
+    - scipoptsuite/papilo/src/papilo/external/ska/LICENSE.txt
     - scipoptsuite/soplex/COPYING
     - scipoptsuite/scip/COPYING
     - scipoptsuite/gcg/LICENSE
