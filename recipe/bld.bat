@@ -20,14 +20,13 @@ cmake -G"NMake Makefiles" ^
       -D ZIMPL=OFF ^
       -D GMP=OFF ^
       -D BOOST=ON ^
+      -D Boost_LIB_DIAGNOSTIC_DEFINITIONS ^
       -D IPOPT=ON ^
       -D IPOPT_DIR="%LIBRARY_PREFIX%" ^
       -D ZLIB=ON ^
       -D READLINE=OFF ^
-      -D EXPRINT=cppad
-      REM  Bliss not found properly on Windows, see #10
-      REM  -D SYM=bliss ^
-      REM  -D BLISS_DIR="bliss-install" ^
+      -D EXPRINT=cppad ^
+      -D SYM=bliss
 if errorlevel 1 exit 1
 cmake --build scipoptsuite-build --parallel "%CPU_COUNT%"
 if errorlevel 1 exit 1
