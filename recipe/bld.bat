@@ -19,8 +19,9 @@ cmake -G"NMake Makefiles" ^
       -D GCG=OFF ^
       -D ZIMPL=OFF ^
       -D GMP=OFF ^
+      -D CMAKE_CXX_FLAGS="/Zc:wchar_t" ^
       -D BOOST=ON ^
-      -D Boost_LIB_DIAGNOSTIC_DEFINITIONS ^
+      -D Boost_LIB_DIAGNOSTIC_DEFINITIONS=ON ^
       -D IPOPT=ON ^
       -D IPOPT_DIR="%LIBRARY_PREFIX%" ^
       -D ZLIB=ON ^
