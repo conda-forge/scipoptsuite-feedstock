@@ -38,7 +38,8 @@ requirements:
     - zlib
     - ipopt
     - cppad
-    - boost-cpp
+    - boost-cpp ==1.72.0-h5b4e17d_7 # [win]
+    - boost-cpp       # [unix]
     - gmp             # [unix]
     - cliquer         # [unix]
     - bison           # [unix]
@@ -56,7 +57,8 @@ outputs:
       host:
         - zlib
         - gmp             # [unix]
-        - boost-cpp
+        - boost-cpp ==1.72.0-h5b4e17d_7 # [win]
+        - boost-cpp       # [unix]
         - libblas
       run:
         - tbb-devel
@@ -127,14 +129,16 @@ outputs:
       host:
         - zlib
         - gmp             # [unix]
-        - boost-cpp
+        - boost-cpp ==1.72.0-h5b4e17d_7 # [win]
+        - boost-cpp       # [unix]
         # Papilo statically linked but needs direct dependency from used shared libs.
         - tbb-devel
         - libblas
       run:
         # libboost_program_options.so needed by bin/soplex.
         # boost does not set run_exports so it is needed in run requirements.
-        - boost-cpp
+        - boost-cpp ==1.72.0-h5b4e17d_7 # [win]
+        - boost-cpp       # [unix]
         - zlib
         - {{ pin_subpackage('papilo', exact=True) }}
     files:
