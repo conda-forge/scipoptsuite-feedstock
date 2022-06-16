@@ -21,6 +21,7 @@ cmake -G"NMake Makefiles" ^
       -D GMP=OFF ^
       -D BOOST=ON ^
       -D Boost_LIB_DIAGNOSTIC_DEFINITIONS=ON ^
+      -D Boost_USE_STATIC_LIBS=OFF ^
       -D IPOPT=ON ^
       -D IPOPT_DIR="%LIBRARY_PREFIX%" ^
       -D ZLIB=ON ^
