@@ -1,10 +1,9 @@
 # TODO check these versions have not changed
-{% set scip_version = "8.0.0" %}
-{% set papilo_version = "2.0.0" %}
-{% set soplex_version = "6.0.0" %}
-{% set gcg_version = "3.5.0" %}
-{% set zimpl_version = "3.5.1" %}
-{% set bliss_version = "0.73.3" %}
+{% set scip_version = "8.0.1" %}
+{% set papilo_version = "2.1.0" %}
+{% set soplex_version = "6.0.1" %}
+{% set gcg_version = "3.5.1" %}
+{% set zimpl_version = "3.5.2" %}
 # For dispatching between Unix and Windows
 {% set install_prefix = "." %}        # [unix]
 {% set install_prefix = "Library" %}  # [win]
@@ -16,16 +15,11 @@ package:
 
 source:
   - url: https://scipopt.org/download/release/scipoptsuite-{{ scip_version }}.tgz
-    sha256: 74c2bb3be6b9b99e75b03b3161ebcfbfb1d211e7becdd9929328a6e92ffce5a7
+    sha256: c5b4cd239f3412dfedd0d9e60e61ff4fd50ac34f26381a795cab2c3eb074142a
     folder: scipoptsuite
-    patches:
-      - 0001-Change-FindIPOPT.cmake.patch
-  - url: https://github.com/ds4dm/Bliss/archive/v{{ bliss_version }}.tar.gz
-    sha256: 4f51d9f76f7e8cb941688a032d208c79858f68a95f8eb69ebef64c62932c3eb7
-    folder: bliss
 
 build:
-  number: 1
+  number: 0
 
 requirements:
   build:
@@ -40,7 +34,7 @@ requirements:
     - zlib
     - ipopt
     - cppad
-    - boost-cpp 1.72  # [win]
+    - boost-cpp ==1.72.0  # [win]
     - boost-cpp       # [unix]
     - gmp             # [unix]
     - cliquer         # [unix]
@@ -59,8 +53,8 @@ outputs:
       host:
         - zlib
         - gmp             # [unix]
+        - boost-cpp ==1.72.0  # [win]
         - boost-cpp       # [unix]
-        - boost-cpp 1.72  # [win]
         - libblas
       run:
         - tbb-devel
@@ -70,8 +64,8 @@ outputs:
       # - "{{ install_prefix }}/bin/papilo*"
       # Vendored libraries
       - "{{ install_prefix }}/lib/libclusol*"
+      - "{{ install_prefix }}/lib/libpapilo-core*"
       - "{{ install_prefix }}/include/papilo/"
-      - "{{ install_prefix }}/include/papilo-external/"
 
   - name: scip
     version: {{ scip_version }}
@@ -131,15 +125,16 @@ outputs:
       host:
         - zlib
         - gmp             # [unix]
+        - boost-cpp ==1.72.0  # [win]
         - boost-cpp       # [unix]
-        - boost-cpp 1.72  # [win]
         # Papilo statically linked but needs direct dependency from used shared libs.
         - tbb-devel
         - libblas
       run:
         # libboost_program_options.so needed by bin/soplex.
         # boost does not set run_exports so it is needed in run requirements.
-        - boost-cpp
+        - boost-cpp ==1.72.0  # [win]
+        - boost-cpp       # [unix]
         - zlib
         - {{ pin_subpackage('papilo', exact=True) }}
     files:
@@ -174,7 +169,7 @@ outputs:
       host:
         - gmp
         - cliquer
-        - gnuplot  # [not arm64]
+        - gnuplot
         - {{ pin_subpackage('scip', exact=True) }}
       run:
         - {{ pin_subpackage('scip') }}
@@ -194,9 +189,9 @@ outputs:
   - name: zimpl
     version: {{ zimpl_version }}
     build:
-      # zimpl is not built in Windows since gmp is not available on 
-      # conda-forge so this test is skipped. Details were left for 
-      # the path to zimpl if we find a solution in the future.  
+      # zimpl is not built in Windows since gmp is not available on
+      # conda-forge so this test is skipped. Details were left for
+      # the path to zimpl if we find a solution in the future.
       skip: True  # [win or arm64]
     requirements:
       build:
@@ -226,15 +221,13 @@ about:
   license: ZIB-Academic AND LGPL-3.0-or-later
   license_file:
     - scipoptsuite/papilo/COPYING
-    - scipoptsuite/papilo/external/lusol/LICENSE.md
-    - scipoptsuite/papilo/external/pdqsort/license.txt
-    - scipoptsuite/papilo/external/ska/LICENSE.txt
+    - scipoptsuite/papilo/src/papilo/external/lusol/LICENSE.md
+    - scipoptsuite/papilo/src/papilo/external/pdqsort/license.txt
+    - scipoptsuite/papilo/src/papilo/external/ska/LICENSE.txt
     - scipoptsuite/soplex/COPYING
     - scipoptsuite/scip/COPYING
     - scipoptsuite/gcg/LICENSE
     - scipoptsuite/zimpl/LICENSE
-    - bliss/COPYING
-    - bliss/include/bliss/utils.hh
   summary: Mixed Integer Programming (MIP) solver and Branch-and-Cut-and-Price Framework
 
 extra:

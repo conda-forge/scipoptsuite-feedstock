@@ -4,11 +4,6 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
-# Bliss with SCIP patch being privately vendored
-cmake ${CMAKE_ARGS} -B bliss-build -S "${SRC_DIR}/bliss" -D CMAKE_BUILD_TYPE=Release -D BUILD_SHARED_LIBS=OFF
-cmake --build bliss-build --parallel ${CPU_COUNT}
-cmake --install bliss-build --prefix "${PWD}/bliss-install"
-
 # we need librt
 if [[ "${target_platform}" == linux-* ]] ; then
     export LDFLAGS="-lrt ${LDFLAGS}"
@@ -20,7 +15,6 @@ else
     ZIMPL_SET=ON
 fi
 
-# BLISS_DIR is looked up in scip/cmake/Modules.FindBliss.cmake
 cmake -B scipoptsuite-build -S "${SRC_DIR}/scipoptsuite" \
       -D CMAKE_BUILD_TYPE=Release \
       -D PARASCIP=ON \
@@ -36,7 +30,6 @@ cmake -B scipoptsuite-build -S "${SRC_DIR}/scipoptsuite" \
       -D ZLIB=ON \
       -D READLINE=OFF \
       -D SYM=bliss \
-      -D BLISS_DIR="${PWD}/bliss-install" \
       -D EXPRINT=cppad \
       -D CLIQUER=ON
 cmake --build scipoptsuite-build --parallel ${CPU_COUNT}
