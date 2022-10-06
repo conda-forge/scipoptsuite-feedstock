@@ -11,7 +11,7 @@ fortran_compiler:
 fortran_compiler_version:
 - '5'
 ipopt:
-- 3.14.9
+- 3.14.8
 libblas:
 - 3.9 *netlib
 pin_run_as_build:
