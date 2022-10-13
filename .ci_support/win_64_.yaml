@@ -11,12 +11,9 @@ fortran_compiler:
 fortran_compiler_version:
 - '5'
 ipopt:
-- 3.14.8
+- 3.14.10
 libblas:
 - 3.9 *netlib
-pin_run_as_build:
-  zlib:
-    max_pin: x.x
 target_platform:
 - win-64
 tbb_devel:

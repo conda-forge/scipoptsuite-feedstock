@@ -21,7 +21,7 @@ fortran_compiler_version:
 gmp:
 - '6'
 ipopt:
-- 3.14.8
+- 3.14.10
 libblas:
 - 3.9 *netlib
 macos_machine:
@@ -29,10 +29,6 @@ macos_machine:
 pin_run_as_build:
   boost-cpp:
     max_pin: x.x.x
-  gmp:
-    max_pin: x
-  zlib:
-    max_pin: x.x
 target_platform:
 - osx-64
 tbb_devel:
