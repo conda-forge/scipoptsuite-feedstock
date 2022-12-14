@@ -1,8 +1,8 @@
 # TODO check these versions have not changed
-{% set scip_version = "8.0.2" %}
-{% set papilo_version = "2.1.1" %}
-{% set soplex_version = "6.0.2" %}
-{% set gcg_version = "3.5.2" %}
+{% set scip_version = "8.0.3" %}
+{% set papilo_version = "2.1.2" %}
+{% set soplex_version = "6.0.3" %}
+{% set gcg_version = "3.5.3" %}
 {% set zimpl_version = "3.5.3" %}
 # For dispatching between Unix and Windows
 {% set install_prefix = "." %}        # [unix]
@@ -15,11 +15,11 @@ package:
 
 source:
   - url: https://scipopt.org/download/release/scipoptsuite-{{ scip_version }}.tgz
-    sha256: 1cfc8d31b4ef9c12fae535f5c911616491439bb79cdfa39a30e4d035f4919d96
+    sha256: 5ad50eb42254c825d96f5747d8f3568dcbff0284dfbd1a727910c5a7c2899091
     folder: scipoptsuite
 
 build:
-  number: 1
+  number: 0
 
 requirements:
   build:
@@ -218,14 +218,14 @@ outputs:
 
 about:
   home: https://scipopt.org/
-  license: ZIB-Academic AND LGPL-3.0-or-later
+  license: Apache 2.0 AND ZIB-Academic AND LGPL-3.0-or-later
   license_file:
     - scipoptsuite/papilo/COPYING
     - scipoptsuite/papilo/src/papilo/external/lusol/LICENSE.md
     - scipoptsuite/papilo/src/papilo/external/pdqsort/license.txt
     - scipoptsuite/papilo/src/papilo/external/ska/LICENSE.txt
-    - scipoptsuite/soplex/COPYING
-    - scipoptsuite/scip/COPYING
+    - scipoptsuite/soplex/LICENSE
+    - scipoptsuite/scip/LICENSE
     - scipoptsuite/gcg/LICENSE
     - scipoptsuite/zimpl/LICENSE
   summary: Mixed Integer Programming (MIP) solver and Branch-and-Cut-and-Price Framework
