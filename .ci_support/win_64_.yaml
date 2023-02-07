@@ -11,7 +11,7 @@ fortran_compiler:
 fortran_compiler_version:
 - '5'
 ipopt:
-- 3.14.10
+- 3.14.11
 libblas:
 - 3.9 *netlib
 target_platform:
