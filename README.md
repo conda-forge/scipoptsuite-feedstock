@@ -1,11 +1,11 @@
-About scipoptsuite
-==================
+About scipoptsuite-feedstock
+============================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/scipoptsuite-feedstock/blob/main/LICENSE.txt)
 
 Home: https://scipopt.org/
 
 Package license: Apache 2.0 AND ZIB-Academic AND LGPL-3.0-or-later
-
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/scipoptsuite-feedstock/blob/main/LICENSE.txt)
 
 Summary: Mixed Integer Programming (MIP) solver and Branch-and-Cut-and-Price Framework
 
@@ -31,6 +31,20 @@ Current build status
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11841&branchName=main">
                   <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/scipoptsuite-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_aarch64</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11841&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/scipoptsuite-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_ppc64le</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11841&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/scipoptsuite-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_" alt="variant">
                 </a>
               </td>
             </tr><tr>
