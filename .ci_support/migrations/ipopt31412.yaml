@@ -3,5 +3,5 @@ __migrator:
   kind: version
   migration_number: 1
 ipopt:
-- 3.14.11
-migrator_ts: 1675764009.9617918
+- 3.14.12
+migrator_ts: 1680773627.90517
