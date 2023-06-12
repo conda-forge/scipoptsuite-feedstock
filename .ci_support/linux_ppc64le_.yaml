@@ -1,27 +1,41 @@
 boost_cpp:
 - 1.78.0
 c_compiler:
-- vs2019
+- gcc
+c_compiler_version:
+- '12'
+cdt_name:
+- cos7
 channel_sources:
 - conda-forge
 channel_targets:
 - conda-forge main
 cxx_compiler:
-- vs2019
+- gxx
+cxx_compiler_version:
+- '12'
+docker_image:
+- quay.io/condaforge/linux-anvil-cos7-x86_64
 fortran_compiler:
-- flang
+- gfortran
 fortran_compiler_version:
-- '5'
+- '12'
+gmp:
+- '6'
 ipopt:
-- 3.14.12
+- 3.14.11
 libblas:
 - 3.9 *netlib
 pin_run_as_build:
   boost-cpp:
     max_pin: x.x.x
 target_platform:
-- win-64
+- linux-ppc64le
 tbb_devel:
 - '2021'
+zip_keys:
+- - c_compiler_version
+  - cxx_compiler_version
+  - fortran_compiler_version
 zlib:
 - '1.2'
