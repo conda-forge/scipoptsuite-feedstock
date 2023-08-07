@@ -4,7 +4,7 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
-cmake -B build -S scipoptsuite/scip/examples/Queens -D CMAKE_BUILD_TYPE=Release
+cmake -B build -S scipoptsuite/scip/examples/Queens ${CMAKE_ARGS}
 cmake --build build --parallel ${CPU_COUNT}
 ./build/queens 5
 
