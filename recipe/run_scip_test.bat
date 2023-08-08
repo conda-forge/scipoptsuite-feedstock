@@ -1,4 +1,4 @@
-cmake -G"NMake Makefiles" -B build -S scipoptsuite/scip/examples/Queens -D CMAKE_BUILD_TYPE=Release
+cmake -G"NMake Makefiles" -B build -S scipoptsuite/scip/examples/Queens %CMAKE_ARGS%
 if errorlevel 1 exit 1
 
 cmake --build build --parallel "%CPU_COUNT%"

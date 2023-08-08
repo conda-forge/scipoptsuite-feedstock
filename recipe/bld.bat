@@ -16,7 +16,8 @@ cmake -G"NMake Makefiles" ^
       -D ZLIB=ON ^
       -D READLINE=OFF ^
       -D EXPRINT=cppad ^
-      -D SYM=bliss
+      -D SYM=bliss ^
+      %CMAKE_ARGS%
 if errorlevel 1 exit 1
 cmake --build scipoptsuite-build --parallel "%CPU_COUNT%"
 if errorlevel 1 exit 1

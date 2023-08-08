@@ -31,6 +31,7 @@ cmake -B scipoptsuite-build -S "${SRC_DIR}/scipoptsuite" \
       -D READLINE=OFF \
       -D SYM=bliss \
       -D EXPRINT=cppad \
-      -D CLIQUER=ON
+      -D CLIQUER=ON \
+      ${CMAKE_ARGS}
 cmake --build scipoptsuite-build --parallel ${CPU_COUNT}
 cmake --install scipoptsuite-build --prefix "${PREFIX}"
