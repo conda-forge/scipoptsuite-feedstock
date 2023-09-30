@@ -19,7 +19,7 @@ source:
     folder: scipoptsuite
 
 build:
-  number: 0
+  number: 1
 
 requirements:
   build:
@@ -34,8 +34,7 @@ requirements:
     - zlib
     - ipopt
     - cppad
-    - boost-cpp ==1.72.0  # [win]
-    - boost-cpp       # [unix]
+    - libboost-devel
     - gmp             # [unix]
     - cliquer         # [unix]
     - bison           # [unix]
@@ -53,8 +52,8 @@ outputs:
       host:
         - zlib
         - gmp             # [unix]
-        - boost-cpp ==1.72.0  # [win]
-        - boost-cpp       # [unix]
+        - libboost-headers  # [win]
+        - libboost-headers       # [unix]
         - libblas
       run:
         - tbb-devel
@@ -125,16 +124,13 @@ outputs:
       host:
         - zlib
         - gmp             # [unix]
-        - boost-cpp ==1.72.0  # [win]
-        - boost-cpp       # [unix]
+        - libboost-devel
         # Papilo statically linked but needs direct dependency from used shared libs.
         - tbb-devel
         - libblas
       run:
         # libboost_program_options.so needed by bin/soplex.
         # boost does not set run_exports so it is needed in run requirements.
-        - boost-cpp ==1.72.0  # [win]
-        - boost-cpp       # [unix]
         - zlib
         - {{ pin_subpackage('papilo', exact=True) }}
     files:
