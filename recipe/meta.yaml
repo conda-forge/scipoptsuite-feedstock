@@ -15,7 +15,7 @@ package:
 
 source:
   - url: https://scipopt.org/download/release/scipoptsuite-{{ scip_version }}.tgz
-    sha256: 820b1f446809e42ddd8beed197facfb01255ba38157b3c55790edb628b16a07b
+    sha256: be4f978be7f8f97371ddcdac7a60af69a4fea5f975090fe35f1ae4308db692d3
     folder: scipoptsuite
 
 build:
@@ -52,8 +52,7 @@ outputs:
       host:
         - zlib
         - gmp             # [unix]
-        - libboost-headers  # [win]
-        - libboost-headers       # [unix]
+        - libboost-headers
         - libblas
       run:
         - tbb-devel
@@ -130,7 +129,6 @@ outputs:
         - libblas
       run:
         # libboost_program_options.so needed by bin/soplex.
-        # boost does not set run_exports so it is needed in run requirements.
         - zlib
         - {{ pin_subpackage('papilo', exact=True) }}
     files:
