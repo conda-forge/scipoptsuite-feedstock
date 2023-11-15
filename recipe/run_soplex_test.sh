@@ -4,9 +4,9 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
-if [[ "${HOST}" == *darwin* ]]; then
-    export CXXFLAGS="${CXXFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY"
-fi
+export CXXFLAGS="${CXXFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY"
+
+echo "====FLAGS ARE $CXXFLAGS"
 
 cat > CMakeLists.txt << 'EOF'
 cmake_minimum_required(VERSION 3.0)
@@ -19,6 +19,9 @@ target_link_libraries(example PUBLIC libsoplex papilo)
 EOF
 
 cmake -B build -D CMAKE_BUILD_TYPE=Release ${CMAKE_ARGS}
+
+echo "====CMAKECACHE is"
+cat build/CMakeCache.txt
 cmake --build build --parallel ${CPU_COUNT}
 ./build/example
 
