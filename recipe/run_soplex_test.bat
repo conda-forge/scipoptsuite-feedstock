@@ -8,7 +8,7 @@ echo target_link_libraries(example PUBLIC libsoplex papilo) >> CMakeLists.txt
 echo target_link_libraries(example PUBLIC libsoplex) >> CMakeLists.txt
 if errorlevel 1 exit 1
 
-cmake -G"NMake Makefiles" -B build -D CMAKE_BUILD_TYPE=Release
+cmake -G"NMake Makefiles" -B build -D CMAKE_BUILD_TYPE=Release %CMAKE_ARGS%
 if errorlevel 1 exit 1
 cmake --build build --parallel "%CPU_COUNT%"
 if errorlevel 1 exit 1
