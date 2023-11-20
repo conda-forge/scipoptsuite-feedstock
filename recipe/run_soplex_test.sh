@@ -22,7 +22,7 @@ cmake -B build -D CMAKE_BUILD_TYPE=Release ${CMAKE_ARGS}
 
 echo "====CMAKECACHE is"
 cat build/CMakeCache.txt
-cmake --build build --parallel ${CPU_COUNT}
+cmake --build build --parallel ${CPU_COUNT} --verbose
 ./build/example
 
 soplex --version
