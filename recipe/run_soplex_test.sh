@@ -5,8 +5,7 @@ set -o pipefail
 set -o nounset
 
 export CXXFLAGS="${CXXFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY"
-
-echo "====FLAGS ARE $CXXFLAGS"
+export MACOSX_DEPLOYMENT_TARGET="10.13"
 
 cat > CMakeLists.txt << 'EOF'
 cmake_minimum_required(VERSION 3.0)
