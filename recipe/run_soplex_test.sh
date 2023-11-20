@@ -4,8 +4,6 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
-export CXXFLAGS="${CXXFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY"
-
 cat > CMakeLists.txt << 'EOF'
 cmake_minimum_required(VERSION 3.0)
 project(SoplexExample)
@@ -18,8 +16,6 @@ EOF
 
 cmake -B build -D CMAKE_BUILD_TYPE=Release ${CMAKE_ARGS}
 
-echo "====CMAKECACHE is"
-cat build/CMakeCache.txt
 cmake --build build --parallel ${CPU_COUNT} --verbose
 ./build/example
 
