@@ -1,8 +1,8 @@
 # TODO check these versions have not changed
-{% set scip_version = "8.0.4" %}
-{% set papilo_version = "2.1.3" %}
+{% set scip_version = "8.1.0" %}
+{% set papilo_version = "2.1.4" %}
 {% set soplex_version = "6.0.4" %}
-{% set gcg_version = "3.5.3" %}
+{% set gcg_version = "3.5.5" %}
 {% set zimpl_version = "3.5.3" %}
 # For dispatching between Unix and Windows
 {% set install_prefix = "." %}        # [unix]
@@ -15,7 +15,7 @@ package:
 
 source:
   - url: https://scipopt.org/download/release/scipoptsuite-{{ scip_version }}.tgz
-    sha256: 820b1f446809e42ddd8beed197facfb01255ba38157b3c55790edb628b16a07b
+    sha256: 75435a033650475c8132dd842d34ba32a013acc8269a5bbc17aad0dfbe8d1119
     folder: scipoptsuite
 
 build:
@@ -58,6 +58,7 @@ outputs:
         - libblas
       run:
         - tbb-devel
+        - __osx >={{ MACOSX_DEPLOYMENT_TARGET | default("10.9") }}  # [osx and x86_64]
     files:
       - "{{ install_prefix }}/lib/cmake/papilo/"
       # Executable is not installed by Papilo's CMake

@@ -14,8 +14,9 @@ add_executable(example scipoptsuite/soplex/src/example.cpp)
 target_link_libraries(example PUBLIC libsoplex papilo)
 EOF
 
-cmake -B build
-cmake --build build --parallel ${CPU_COUNT}
+cmake -B build -D CMAKE_BUILD_TYPE=Release ${CMAKE_ARGS}
+
+cmake --build build --parallel ${CPU_COUNT} --verbose
 ./build/example
 
 soplex --version
