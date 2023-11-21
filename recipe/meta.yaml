@@ -28,6 +28,8 @@ requirements:
     - {{ compiler('cxx') }}
     - cmake >=3.15
     - make            # [unix]
+    - bison           # [unix]
+    - flex            # [unix]
   host:
     - tbb-devel
     - libblas
@@ -38,8 +40,6 @@ requirements:
     - boost-cpp       # [unix]
     - gmp             # [unix]
     - cliquer         # [unix]
-    - bison           # [unix]
-    - flex            # [unix]
 
 outputs:
 
