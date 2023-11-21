@@ -1,6 +1,7 @@
 bot:
   automerge: true
 build_platform:
+  linux_ppc64le: linux_64
   osx_arm64: osx_64
 conda_build:
   pkg_format: '2'
@@ -9,3 +10,5 @@ github:
   branch_name: main
   tooling_branch_name: main
 test_on_native_only: true
+provider:
+  linux_ppc64le: default
