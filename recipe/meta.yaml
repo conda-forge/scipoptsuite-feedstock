@@ -15,11 +15,11 @@ package:
 
 source:
   - url: https://scipopt.org/download/release/scipoptsuite-{{ scip_version }}.tgz
-    sha256: 75435a033650475c8132dd842d34ba32a013acc8269a5bbc17aad0dfbe8d1119
+    sha256: a3c1b45220252865d4cedf41d6327b6023608feb360d463f2e68ec4ac41cda06
     folder: scipoptsuite
 
 build:
-  number: 2
+  number: 3
 
 requirements:
   build:
