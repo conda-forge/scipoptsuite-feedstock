@@ -21,7 +21,7 @@ source:
       - 0002-Require-PCRE-on-WIN32.patch
 
 build:
-  number: 5
+  number: 6
 
 requirements:
   build:
@@ -39,8 +39,7 @@ requirements:
     - zlib
     - ipopt
     - cppad
-    - boost-cpp ==1.72.0  # [win]
-    - boost-cpp       # [unix]
+    - libboost-devel
     - gmp             # [unix]
     - mpir            # [win]
     - cliquer         # [unix]
@@ -59,8 +58,8 @@ outputs:
         - zlib
         - gmp             # [unix]
         - mpir            # [win]
-        - boost-cpp ==1.72.0  # [win]
-        - boost-cpp       # [unix]
+        - libboost-headers  # [win]
+        - libboost-headers       # [unix]
         - libblas
       run:
         - tbb-devel
@@ -136,16 +135,13 @@ outputs:
         - zlib
         - gmp             # [unix]
         - mpir            # [win]
-        - boost-cpp ==1.72.0  # [win]
-        - boost-cpp       # [unix]
+        - libboost-devel
         # Papilo statically linked but needs direct dependency from used shared libs.
         - tbb-devel
         - libblas
       run:
         # libboost_program_options.so needed by bin/soplex.
         # boost does not set run_exports so it is needed in run requirements.
-        - boost-cpp ==1.72.0  # [win]
-        - boost-cpp       # [unix]
         - zlib
         - {{ pin_subpackage('papilo', exact=True) }}
     files:
