@@ -19,7 +19,7 @@ source:
     folder: scipoptsuite
 
 build:
-  number: 3
+  number: 4
 
 requirements:
   build:
@@ -193,15 +193,15 @@ outputs:
       # zimpl is not built in Windows since gmp is not available on
       # conda-forge so this test is skipped. Details were left for
       # the path to zimpl if we find a solution in the future.
-      skip: True  # [win or arm64]
+      skip: True  # [win]
     requirements:
       build:
         - {{ compiler('c') }}
+        - bison  # [unix]
+        - flex   # [unix]
       host:
         - zlib
         - gmp    # [unix]
-        - bison  # [unix]
-        - flex   # [unix]
     files:
       - "{{ install_prefix }}/lib/libzimpl*"
       - "{{ install_prefix }}/lib/cmake/zimpl/"
