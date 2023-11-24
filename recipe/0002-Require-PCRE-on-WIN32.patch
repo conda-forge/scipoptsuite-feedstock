@@ -1,0 +1,29 @@
+From 8b453cfb28e097695c4bedf11b1192ae80851a1c Mon Sep 17 00:00:00 2001
+From: Kai Pastor <dg0yt@darc.de>
+Date: Sat, 25 Nov 2023 06:39:31 +0100
+Subject: [PATCH 2/2] Require PCRE on WIN32
+
+---
+ zimpl/CMakeLists.txt | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/zimpl/CMakeLists.txt b/zimpl/CMakeLists.txt
+index 7cf9d85..28c25ef 100644
+--- a/zimpl/CMakeLists.txt
++++ b/zimpl/CMakeLists.txt
+@@ -128,9 +128,10 @@ if(ZLIB_FOUND)
+     include_directories(${ZLIB_INCLUDE_DIRS})
+ else()
+     add_definitions(-DWITHOUT_ZLIB)
++endif()
+ 
+-    # look for pcre if ZLIB could not be found
+-    find_package(PCRE)
++if(WIN32)
++    find_package(PCRE REQUIRED)
+     if(PCRE_FOUND)
+         add_definitions(-DWITH_PCRE)
+         add_definitions(-DPCRE2_STATIC)
+-- 
+2.41.0
+

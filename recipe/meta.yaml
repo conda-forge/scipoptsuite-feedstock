@@ -17,6 +17,8 @@ source:
   - url: https://scipopt.org/download/release/scipoptsuite-{{ scip_version }}.tgz
     sha256: a3c1b45220252865d4cedf41d6327b6023608feb360d463f2e68ec4ac41cda06
     folder: scipoptsuite
+    patches:
+      - 0002-Require-PCRE-on-WIN32.patch
 
 build:
   number: 3
@@ -42,6 +44,7 @@ requirements:
     - gmp             # [unix]
     - mpir            # [win]
     - cliquer         # [unix]
+    - pcre2           # [win]
 
 outputs:
 
@@ -204,6 +207,7 @@ outputs:
         - zlib
         - gmp    # [unix]
         - mpir   # [win]
+        - pcre2  # [win]
     files:
       - "{{ install_prefix }}/lib/libzimpl*"
       - "{{ install_prefix }}/lib/cmake/zimpl/"
