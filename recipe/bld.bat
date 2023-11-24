@@ -2,6 +2,7 @@ cmake -G"NMake Makefiles" ^
       -B scipoptsuite-build ^
       -S "%SRC_DIR%\scipoptsuite" ^
       -D CMAKE_BUILD_TYPE=Release ^
+      -D "CMAKE_PROJECT_TOP_LEVEL_INCLUDES=%RECIPE_DIR%\cmake-project-include.cmake" ^
       -D PARASCIP=ON ^
       -D PAPILO=ON ^
       -D SOPLEX=ON ^
