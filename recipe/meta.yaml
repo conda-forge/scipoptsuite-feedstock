@@ -30,6 +30,7 @@ requirements:
     - make            # [unix]
     - bison           # [unix]
     - flex            # [unix]
+    - winflexbison    # [win]
   host:
     - tbb-devel
     - libblas
@@ -201,12 +202,13 @@ outputs:
     requirements:
       build:
         - {{ compiler('c') }}
+        - bison  # [unix]
+        - flex   # [unix]
+        - winflexbison  # [win]
       host:
         - zlib
         - gmp    # [unix]
         - mpir   # [win]
-        - bison  # [unix]
-        - flex   # [unix]
     files:
       - "{{ install_prefix }}/lib/libzimpl*"
       - "{{ install_prefix }}/lib/cmake/zimpl/"
