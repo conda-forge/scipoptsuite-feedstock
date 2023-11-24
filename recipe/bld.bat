@@ -7,7 +7,7 @@ cmake -G"NMake Makefiles" ^
       -D PAPILO=ON ^
       -D SOPLEX=ON ^
       -D GCG=OFF ^
-      -D ZIMPL=OFF ^
+      -D ZIMPL=ON ^
       -D GMP=ON ^
       -D BOOST=ON ^
       -D Boost_LIB_DIAGNOSTIC_DEFINITIONS=ON ^
