@@ -10,6 +10,7 @@ if [[ "${target_platform}" == linux-* ]] ; then
 fi
 
 cmake -B scipoptsuite-build -S "${SRC_DIR}/scipoptsuite" \
+      -G Ninja \
       -D CMAKE_BUILD_TYPE=Release \
       -D PARASCIP=ON \
       -D PAPILO=ON \

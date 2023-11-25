@@ -1,4 +1,4 @@
-cmake -G"NMake Makefiles" ^
+cmake -G Ninja ^
       -B scipoptsuite-build ^
       -S "%SRC_DIR%\scipoptsuite" ^
       -D CMAKE_BUILD_TYPE=Release ^

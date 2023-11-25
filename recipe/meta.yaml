@@ -28,6 +28,7 @@ requirements:
     - {{ compiler('cxx') }}
     - cmake >=3.15
     - make            # [unix]
+    - ninja
     - bison           # [unix]
     - flex            # [unix]
   host:
