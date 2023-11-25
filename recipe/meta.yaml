@@ -58,8 +58,7 @@ outputs:
         - zlib
         - gmp             # [unix]
         - mpir            # [win]
-        - libboost-headers  # [win]
-        - libboost-headers       # [unix]
+        - libboost-headers
         - libblas
       run:
         - tbb-devel
@@ -140,8 +139,6 @@ outputs:
         - tbb-devel
         - libblas
       run:
-        # libboost_program_options.so needed by bin/soplex.
-        # boost does not set run_exports so it is needed in run requirements.
         - zlib
         - {{ pin_subpackage('papilo', exact=True) }}
     files:
@@ -162,6 +159,8 @@ outputs:
         - ninja
         # Papilo statically linked
         - {{ compiler('fortran') }}
+        # compiling the example needs to find boost metadata
+        - libboost-devel
 
   - name: gcg
     version:  {{ gcg_version }}
