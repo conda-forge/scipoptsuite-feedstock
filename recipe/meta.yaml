@@ -96,6 +96,8 @@ outputs:
         # Papilo statically linked but needs direct dependency from used shared libs.
         - tbb-devel
         - libblas
+        # zimpl statically linked, transitive usage requirements
+        - pcre2  # [win]
     files:
       - "{{ install_prefix }}/lib/libscip*"
       - "{{ install_prefix }}/lib/cmake/scip/"
@@ -209,10 +211,10 @@ outputs:
         - mpir   # [win]
         - pcre2  # [win]
     files:
-      - "{{ install_prefix }}/lib/libzimpl*"
+      - "{{ install_prefix }}/lib/libzimpl*"  # [unix]
+      - "{{ install_prefix }}/lib/zimpl*"     # [win]
       - "{{ install_prefix }}/lib/cmake/zimpl/"
       - "{{ install_prefix }}/bin/zimpl*"
-      - "{{ install_prefix }}/bin/libzimpl*"  # [win]
       - "{{ install_prefix }}/include/zimpl"
     test:
       commands:
