@@ -39,7 +39,9 @@ requirements:
     - zlib
     - ipopt
     - cppad
-    - libboost-devel
+    # upstream code not compatible with newer boost, apparently
+    - boost-cpp 1.72  # [win]
+    - libboost-devel  # [unix]
     - gmp             # [unix]
     - mpir            # [win]
     - cliquer         # [unix]
@@ -134,11 +136,14 @@ outputs:
         - zlib
         - gmp             # [unix]
         - mpir            # [win]
-        - libboost-devel
+        - boost-cpp 1.72  # [win]
+        - libboost-devel  # [unix]
         # Papilo statically linked but needs direct dependency from used shared libs.
         - tbb-devel
         - libblas
       run:
+        # old boost-cpp does not set run_exports, need to set it manually
+        - boost-cpp 1.72  # [win]
         - zlib
         - {{ pin_subpackage('papilo', exact=True) }}
     files:
@@ -160,7 +165,7 @@ outputs:
         # Papilo statically linked
         - {{ compiler('fortran') }}
         # compiling the example needs to find boost metadata
-        - libboost-devel
+        - libboost-devel  # [unix]
 
   - name: gcg
     version:  {{ gcg_version }}
