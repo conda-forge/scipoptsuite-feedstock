@@ -2,8 +2,6 @@ MACOSX_DEPLOYMENT_TARGET:
 - '10.13'
 MACOSX_SDK_VERSION:
 - '10.13'
-boost_cpp:
-- 1.78.0
 c_compiler:
 - clang
 c_compiler_version:
@@ -26,11 +24,10 @@ ipopt:
 - 3.14.13
 libblas:
 - 3.9 *netlib
+libboost_devel:
+- '1.82'
 macos_machine:
 - x86_64-apple-darwin13.4.0
-pin_run_as_build:
-  boost-cpp:
-    max_pin: x.x.x
 target_platform:
 - osx-64
 tbb_devel:
