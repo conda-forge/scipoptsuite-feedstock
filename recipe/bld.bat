@@ -2,12 +2,13 @@ cmake -G Ninja ^
       -B scipoptsuite-build ^
       -S "%SRC_DIR%\scipoptsuite" ^
       -D CMAKE_BUILD_TYPE=Release ^
+      -D "CMAKE_PROJECT_TOP_LEVEL_INCLUDES=%RECIPE_DIR%\cmake-project-include.cmake" ^
       -D PARASCIP=ON ^
       -D PAPILO=ON ^
       -D SOPLEX=ON ^
       -D GCG=OFF ^
-      -D ZIMPL=OFF ^
-      -D GMP=OFF ^
+      -D ZIMPL=ON ^
+      -D GMP=ON ^
       -D BOOST=ON ^
       -D Boost_LIB_DIAGNOSTIC_DEFINITIONS=ON ^
       -D Boost_USE_STATIC_LIBS=OFF ^
