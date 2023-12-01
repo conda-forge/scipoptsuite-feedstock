@@ -15,7 +15,7 @@ ipopt:
 libblas:
 - 3.9 *netlib
 pcre2:
-- '10.40'
+- '10.42'
 target_platform:
 - win-64
 tbb_devel:
