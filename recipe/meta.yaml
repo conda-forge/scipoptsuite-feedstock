@@ -21,7 +21,7 @@ source:
       - 0002-Require-PCRE-on-WIN32.patch
 
 build:
-  number: 5
+  number: 6
 
 requirements:
   build:
@@ -39,8 +39,9 @@ requirements:
     - zlib
     - ipopt
     - cppad
-    - boost-cpp ==1.72.0  # [win]
-    - boost-cpp       # [unix]
+    # upstream code not compatible with newer boost, apparently
+    - boost-cpp 1.72  # [win]
+    - libboost-devel  # [unix]
     - gmp             # [unix]
     - mpir            # [win]
     - cliquer         # [unix]
@@ -59,8 +60,7 @@ outputs:
         - zlib
         - gmp             # [unix]
         - mpir            # [win]
-        - boost-cpp ==1.72.0  # [win]
-        - boost-cpp       # [unix]
+        - libboost-headers
         - libblas
       run:
         - tbb-devel
@@ -136,16 +136,14 @@ outputs:
         - zlib
         - gmp             # [unix]
         - mpir            # [win]
-        - boost-cpp ==1.72.0  # [win]
-        - boost-cpp       # [unix]
+        - boost-cpp 1.72  # [win]
+        - libboost-devel  # [unix]
         # Papilo statically linked but needs direct dependency from used shared libs.
         - tbb-devel
         - libblas
       run:
-        # libboost_program_options.so needed by bin/soplex.
-        # boost does not set run_exports so it is needed in run requirements.
-        - boost-cpp ==1.72.0  # [win]
-        - boost-cpp       # [unix]
+        # old boost-cpp does not set run_exports, need to set it manually
+        - boost-cpp 1.72  # [win]
         - zlib
         - {{ pin_subpackage('papilo', exact=True) }}
     files:
@@ -166,6 +164,8 @@ outputs:
         - ninja
         # Papilo statically linked
         - {{ compiler('fortran') }}
+        # compiling the example needs to find boost metadata
+        - libboost-devel  # [unix]
 
   - name: gcg
     version:  {{ gcg_version }}

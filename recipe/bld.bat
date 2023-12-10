@@ -1,3 +1,5 @@
+@echo on
+
 cmake -G Ninja ^
       -B scipoptsuite-build ^
       -S "%SRC_DIR%\scipoptsuite" ^
@@ -19,8 +21,10 @@ cmake -G Ninja ^
       -D EXPRINT=cppad ^
       -D SYM=bliss ^
       %CMAKE_ARGS%
-if errorlevel 1 exit 1
+if %ERRORLEVEL% neq 0 exit 1
+
 cmake --build scipoptsuite-build --parallel "%CPU_COUNT%"
-if errorlevel 1 exit 1
+if %ERRORLEVEL% neq 0 exit 1
+
 cmake --install scipoptsuite-build --prefix "%LIBRARY_PREFIX%"
-if errorlevel 1 exit 1
+if %ERRORLEVEL% neq 0 exit 1
