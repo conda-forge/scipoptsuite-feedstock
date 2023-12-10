@@ -40,7 +40,7 @@ requirements:
     - ipopt
     - cppad
     # upstream code not compatible with newer boost, apparently
-    - libboost-devel 1.72  # [win]
+    - libboost-devel  # [win]
     - libboost-devel       # [unix]
     - gmp             # [unix]
     - mpir            # [win]
@@ -136,7 +136,7 @@ outputs:
         - zlib
         - gmp             # [unix]
         - mpir            # [win]
-        - libboost-devel 1.72  # [win]
+        - libboost-devel  # [win]
         - libboost-devel       # [unix]
         # Papilo statically linked but needs direct dependency from used shared libs.
         - tbb-devel
@@ -163,7 +163,7 @@ outputs:
         # Papilo statically linked
         - {{ compiler('fortran') }}
         # compiling the example needs to find boost metadata
-        - libboost-devel 1.72  # [win]
+        - libboost-devel  # [win]
         - libboost-devel       # [unix]
 
   - name: gcg
