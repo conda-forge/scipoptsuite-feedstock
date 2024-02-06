@@ -42,6 +42,7 @@ requirements:
     # upstream code not compatible with newer boost, apparently
     - boost-cpp 1.72  # [win]
     - libboost-devel  # [unix]
+    - mpfr
     - gmp             # [unix]
     - mpir            # [win]
     - cliquer         # [unix]
