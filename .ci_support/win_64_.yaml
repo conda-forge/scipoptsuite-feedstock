@@ -14,6 +14,8 @@ ipopt:
 - 3.14.14
 libblas:
 - 3.9 *netlib
+mpfr:
+- '4'
 pcre2:
 - '10.42'
 target_platform:
