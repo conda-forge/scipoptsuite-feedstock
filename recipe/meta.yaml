@@ -21,7 +21,7 @@ source:
       - 0002-Require-PCRE-on-WIN32.patch
 
 build:
-  number: 0
+  number: 3
 
 requirements:
   build:
@@ -44,7 +44,6 @@ requirements:
     - libboost-devel  # [unix]
     - mpfr
     - gmp             # [unix]
-    - mpir            # [win]
     - cliquer         # [unix]
     - pcre2           # [win]
 
@@ -60,7 +59,7 @@ outputs:
       host:
         - zlib
         - gmp             # [unix]
-        - mpir            # [win]
+        - mpfr
         - libboost-headers
         - libblas
       run:
@@ -92,7 +91,7 @@ outputs:
         - ipopt
         - cppad
         - gmp   # [unix]
-        - mpir  # [win]
+        - mpfr
         # Papilo statically linked
         # Papilo statically linked but needs direct dependency from used shared libs.
         - tbb-devel
@@ -136,7 +135,7 @@ outputs:
       host:
         - zlib
         - gmp             # [unix]
-        - mpir            # [win]
+        - mpfr
         - boost-cpp 1.72  # [win]
         - libboost-devel  # [unix]
         # Papilo statically linked but needs direct dependency from used shared libs.
@@ -209,7 +208,7 @@ outputs:
       host:
         - zlib
         - gmp    # [unix]
-        - mpir   # [win]
+        - mpfr
         - pcre2  # [win]
     files:
       - "{{ install_prefix }}/lib/libzimpl*"  # [unix]
