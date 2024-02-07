@@ -15,13 +15,13 @@ package:
 
 source:
   - url: https://scipopt.org/download/release/scipoptsuite-{{ scip_version }}.tgz
-    sha256: 1c866f455df452bdec9f5ab9a777d6c3a1986535593e11cee8b175978d896360
+    sha256: aa9c5456810d7425d2ad409364b3a069ed3a492331cc7256aae9b64f2591b66c
     folder: scipoptsuite
     patches:
       - 0002-Require-PCRE-on-WIN32.patch
 
 build:
-  number: 3
+  number: 4
 
 requirements:
   build:
