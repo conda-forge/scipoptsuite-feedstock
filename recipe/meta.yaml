@@ -1,9 +1,9 @@
 # TODO check these versions have not changed
-{% set scip_version = "8.1.0" %}
-{% set papilo_version = "2.1.4" %}
-{% set soplex_version = "6.0.4" %}
-{% set gcg_version = "3.5.5" %}
-{% set zimpl_version = "3.5.3" %}
+{% set scip_version = "9.0.0" %}
+{% set papilo_version = "2.2.0" %}
+{% set soplex_version = "8.0.0" %}
+{% set gcg_version = "3.6.0" %}
+{% set zimpl_version = "3.5.4" %}
 # For dispatching between Unix and Windows
 {% set install_prefix = "." %}        # [unix]
 {% set install_prefix = "Library" %}  # [win]
@@ -15,13 +15,13 @@ package:
 
 source:
   - url: https://scipopt.org/download/release/scipoptsuite-{{ scip_version }}.tgz
-    sha256: a3c1b45220252865d4cedf41d6327b6023608feb360d463f2e68ec4ac41cda06
+    sha256: c49a0575003322fcbfe2d3765de7e3e60ff7c08d1e8b17d35409be40476cb98a
     folder: scipoptsuite
     patches:
       - 0002-Require-PCRE-on-WIN32.patch
 
 build:
-  number: 7
+  number: 0
 
 requirements:
   build:
@@ -42,8 +42,8 @@ requirements:
     # upstream code not compatible with newer boost, apparently
     - boost-cpp 1.72  # [win]
     - libboost-devel  # [unix]
+    - mpfr
     - gmp             # [unix]
-    - mpir            # [win]
     - cliquer         # [unix]
     - pcre2           # [win]
 
@@ -59,7 +59,7 @@ outputs:
       host:
         - zlib
         - gmp             # [unix]
-        - mpir            # [win]
+        - mpfr
         - libboost-headers
         - libblas
       run:
@@ -91,7 +91,7 @@ outputs:
         - ipopt
         - cppad
         - gmp   # [unix]
-        - mpir  # [win]
+        - mpfr
         # Papilo statically linked
         # Papilo statically linked but needs direct dependency from used shared libs.
         - tbb-devel
@@ -135,7 +135,7 @@ outputs:
       host:
         - zlib
         - gmp             # [unix]
-        - mpir            # [win]
+        - mpfr
         - boost-cpp 1.72  # [win]
         - libboost-devel  # [unix]
         # Papilo statically linked but needs direct dependency from used shared libs.
@@ -208,7 +208,7 @@ outputs:
       host:
         - zlib
         - gmp    # [unix]
-        - mpir   # [win]
+        - mpfr
         - pcre2  # [win]
     files:
       - "{{ install_prefix }}/lib/libzimpl*"  # [unix]
