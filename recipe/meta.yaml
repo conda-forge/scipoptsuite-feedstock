@@ -186,10 +186,11 @@ outputs:
         # run_exports not set for cliquer
         - cliquer   # [unix]
     files:
-      - "lib/libgcg*"
-      - "lib/cmake/gcg"
-      - "bin/gcg"
-      - "include/gcg"
+      - "{{ install_prefix }}/lib/libgcg*"
+      - "{{ install_prefix }}/lib/cmake/gcg"
+      - "{{ install_prefix }}/bin/gcg"
+      - "{{ install_prefix }}/bin/libgcg*"  # [win]
+      - "{{ install_prefix }}/include/gcg"
     test:
       commands:
         - gcg --version
