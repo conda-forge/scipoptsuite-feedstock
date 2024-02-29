@@ -177,14 +177,14 @@ outputs:
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
       host:
-        - gmp
-        - cliquer
-        - gnuplot
+        - gmp       # [unix]
+        - cliquer   # [unix]
+        - gnuplot   # [unix]
         - {{ pin_subpackage('scip', exact=True) }}
       run:
         - {{ pin_subpackage('scip') }}
         # run_exports not set for cliquer
-        - cliquer
+        - cliquer   # [unix]
     files:
       - "lib/libgcg*"
       - "lib/cmake/gcg"
