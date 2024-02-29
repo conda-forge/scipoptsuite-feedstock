@@ -170,7 +170,6 @@ outputs:
   - name: gcg
     version:  {{ gcg_version }}
     build:
-      skip: True  # [win]
       run_exports:
         - {{ pin_subpackage('gcg') }}
     requirements:
