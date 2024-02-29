@@ -194,8 +194,8 @@ outputs:
     test:
       commands:
         - gcg --version
-        - test -d "${PREFIX}/lib/cmake/gcg" # [unix]
-        - test -d "${PREFIX}/include/gcg"   # [unix]
+        - test -d "${PREFIX}/lib/cmake/gcg"  # [unix]
+        - test -d "${PREFIX}/include/gcg"    # [unix]
         - if exist %PREFIX%\\Library\\lib\\cmake\\gcg (exit 0) else (exit 1)  # [win]
         - if exist %PREFIX%\\Library\\include\\gcg (exit 0) else (exit 1)     # [win]
 
