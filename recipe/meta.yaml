@@ -70,7 +70,7 @@ outputs:
       # Executable is not installed by Papilo's CMake
       # - "{{ install_prefix }}/bin/papilo*"
       # Vendored libraries
-      # - "{{ install_prefix }}/lib/libclusol*"
+      - "{{ install_prefix }}/lib/libclusol*"
       - "{{ install_prefix }}/lib/libpapilo-core*"
       - "{{ install_prefix }}/include/papilo/"
 
