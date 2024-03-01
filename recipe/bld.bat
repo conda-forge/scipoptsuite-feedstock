@@ -8,7 +8,7 @@ cmake -G Ninja ^
       -D PARASCIP=ON ^
       -D PAPILO=ON ^
       -D SOPLEX=ON ^
-      -D GCG=OFF ^
+      -D GCG=ON ^
       -D ZIMPL=ON ^
       -D GMP=ON ^
       -D BOOST=ON ^

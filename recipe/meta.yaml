@@ -21,7 +21,7 @@ source:
       - 0002-Require-PCRE-on-WIN32.patch
 
 build:
-  number: 0
+  number: 1
 
 requirements:
   build:
@@ -106,7 +106,6 @@ outputs:
       - "{{ install_prefix }}/include/blockmemshell/"
       - "{{ install_prefix }}/include/dijkstra/"
       - "{{ install_prefix }}/include/lpi/"
-      - "{{ install_prefix }}/include/nlpi/"
       - "{{ install_prefix }}/include/objscip/"
       - "{{ install_prefix }}/include/scip/"
       - "{{ install_prefix }}/include/symmetry/"
@@ -170,7 +169,6 @@ outputs:
   - name: gcg
     version:  {{ gcg_version }}
     build:
-      skip: True  # [win]
       run_exports:
         - {{ pin_subpackage('gcg') }}
     requirements:
@@ -178,24 +176,30 @@ outputs:
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
       host:
-        - gmp
-        - cliquer
-        - gnuplot
+        - gmp       # [unix]
+        - cliquer   # [unix]
+        - gnuplot   # [unix]
         - {{ pin_subpackage('scip', exact=True) }}
       run:
         - {{ pin_subpackage('scip') }}
         # run_exports not set for cliquer
-        - cliquer
+        - cliquer   # [unix]
     files:
-      - "lib/libgcg*"
-      - "lib/cmake/gcg"
-      - "bin/gcg"
-      - "include/gcg"
+      - "{{ install_prefix }}/lib/libgcg*"
+      - "{{ install_prefix }}/lib/cmake/gcg"
+      - "{{ install_prefix }}/bin/gcg*"
+      - "{{ install_prefix }}/bin/libgcg*"  # [win]
+      - "{{ install_prefix }}/include/gcg"
+      - "{{ install_prefix }}/include/graph"
     test:
       commands:
         - gcg --version
-        - test -d "${PREFIX}/lib/cmake/gcg"
-        - test -d "${PREFIX}/include/gcg"
+        - test -d "${PREFIX}/lib/cmake/gcg"  # [unix]
+        - test -d "${PREFIX}/include/gcg"    # [unix]
+        - test -d "${PREFIX}/include/graph"  # [unix]
+        - if exist %PREFIX%\\Library\\lib\\cmake\\gcg (exit 0) else (exit 1)  # [win]
+        - if exist %PREFIX%\\Library\\include\\gcg (exit 0) else (exit 1)     # [win]
+        - if exist %PREFIX%\\Library\\include\\graph (exit 0) else (exit 1)   # [win]
 
   - name: zimpl
     version: {{ zimpl_version }}
