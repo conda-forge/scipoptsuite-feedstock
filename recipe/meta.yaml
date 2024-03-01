@@ -70,7 +70,7 @@ outputs:
       # Executable is not installed by Papilo's CMake
       # - "{{ install_prefix }}/bin/papilo*"
       # Vendored libraries
-      - "{{ install_prefix }}/lib/libclusol*"
+      # - "{{ install_prefix }}/lib/libclusol*"
       - "{{ install_prefix }}/lib/libpapilo-core*"
       - "{{ install_prefix }}/include/papilo/"
 
@@ -106,7 +106,6 @@ outputs:
       - "{{ install_prefix }}/include/blockmemshell/"
       - "{{ install_prefix }}/include/dijkstra/"
       - "{{ install_prefix }}/include/lpi/"
-      - "{{ install_prefix }}/include/nlpi/"
       - "{{ install_prefix }}/include/objscip/"
       - "{{ install_prefix }}/include/scip/"
       - "{{ install_prefix }}/include/symmetry/"
@@ -188,16 +187,19 @@ outputs:
     files:
       - "{{ install_prefix }}/lib/libgcg*"
       - "{{ install_prefix }}/lib/cmake/gcg"
-      - "{{ install_prefix }}/bin/gcg"
+      - "{{ install_prefix }}/bin/gcg*"
       - "{{ install_prefix }}/bin/libgcg*"  # [win]
       - "{{ install_prefix }}/include/gcg"
+      - "{{ install_prefix }}/include/graph"
     test:
       commands:
         - gcg --version
         - test -d "${PREFIX}/lib/cmake/gcg"  # [unix]
         - test -d "${PREFIX}/include/gcg"    # [unix]
+        - test -d "${PREFIX}/include/graph"  # [unix]
         - if exist %PREFIX%\\Library\\lib\\cmake\\gcg (exit 0) else (exit 1)  # [win]
         - if exist %PREFIX%\\Library\\include\\gcg (exit 0) else (exit 1)     # [win]
+        - if exist %PREFIX%\\Library\\include\\graph (exit 0) else (exit 1)   # [win]
 
   - name: zimpl
     version: {{ zimpl_version }}
