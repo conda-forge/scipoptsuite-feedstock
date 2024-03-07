@@ -17,7 +17,7 @@ libblas:
 mpfr:
 - '4'
 pcre2:
-- '10.42'
+- '10.43'
 target_platform:
 - win-64
 tbb_devel:
