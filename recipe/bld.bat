@@ -23,7 +23,7 @@ cmake -G Ninja ^
       %CMAKE_ARGS%
 if %ERRORLEVEL% neq 0 exit 1
 
-cmake --build scipoptsuite-build --parallel "%CPU_COUNT%"
+cmake --build scipoptsuite-build
 if %ERRORLEVEL% neq 0 exit 1
 
 cmake --install scipoptsuite-build --prefix "%LIBRARY_PREFIX%"
