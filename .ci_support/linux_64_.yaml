@@ -29,7 +29,7 @@ ipopt:
 libblas:
 - 3.9 *netlib
 libboost_devel:
-- '1.82'
+- '1.84'
 mpfr:
 - '4'
 target_platform:
@@ -43,4 +43,4 @@ zip_keys:
 - - c_stdlib_version
   - cdt_name
 zlib:
-- '1.2'
+- '1'
