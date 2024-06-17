@@ -19,10 +19,10 @@ libblas:
 mpfr:
 - '4'
 pcre2:
-- '10.43'
+- '10.44'
 target_platform:
 - win-64
 tbb_devel:
 - '2021'
 zlib:
-- '1.2'
+- '1'
