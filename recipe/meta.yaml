@@ -1,9 +1,9 @@
 # TODO check these versions have not changed
-{% set scip_version = "9.0.1" %}
-{% set papilo_version = "2.2.1" %}
-{% set soplex_version = "7.0.1" %}
-{% set gcg_version = "3.6.1" %}
-{% set zimpl_version = "3.6.0" %}
+{% set scip_version = "9.1.0" %}
+{% set papilo_version = "2.3.0" %}
+{% set soplex_version = "7.1.0" %}
+{% set gcg_version = "3.6.2" %}
+{% set zimpl_version = "3.6.1" %}
 # For dispatching between Unix and Windows
 {% set install_prefix = "." %}        # [unix]
 {% set install_prefix = "Library" %}  # [win]
@@ -15,13 +15,13 @@ package:
 
 source:
   - url: https://scipopt.org/download/release/scipoptsuite-{{ scip_version }}.tgz
-    sha256: 1efd3063bb8abe80bb1baab9b94156e85029e9792738f3a0a4be97936f095473
+    sha256: 770fc138fc40c016414b8a1e55461e920f5e2f5f4ae1a773a3ed6c81cd1fe93f
     folder: scipoptsuite
     patches:
       - 0002-Require-PCRE-on-WIN32.patch
 
 build:
-  number: 1
+  number: 0
 
 requirements:
   build:
