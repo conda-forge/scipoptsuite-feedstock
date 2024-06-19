@@ -19,7 +19,7 @@ cmake -G Ninja ^
       -D ZLIB=ON ^
       -D READLINE=OFF ^
       -D EXPRINT=cppad ^
-      -D SYM=bliss ^
+      -D SYM=snauty ^
       %CMAKE_ARGS%
 if %ERRORLEVEL% neq 0 exit 1
 
