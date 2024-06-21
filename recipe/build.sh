@@ -24,7 +24,7 @@ cmake -B scipoptsuite-build -S "${SRC_DIR}/scipoptsuite" \
       -D IPOPT_DIR="${PREFIX}" \
       -D ZLIB=ON \
       -D READLINE=OFF \
-      -D SYM=bliss \
+      -D SYM=snauty \
       -D EXPRINT=cppad \
       -D CLIQUER=ON \
       ${CMAKE_ARGS}
