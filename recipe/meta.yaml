@@ -40,9 +40,7 @@ requirements:
     - zlib
     - ipopt
     - cppad
-    # upstream code not compatible with newer boost, apparently
-    - boost-cpp 1.72  # [win]
-    - libboost-devel  # [unix]
+    - libboost-devel
     - mpfr
     - gmp             # [unix]
     - cliquer         # [unix]
@@ -138,14 +136,11 @@ outputs:
         - zlib
         - gmp             # [unix]
         - mpfr
-        - boost-cpp 1.72  # [win]
-        - libboost-devel  # [unix]
+        - libboost-devel
         # Papilo statically linked but needs direct dependency from used shared libs.
         - tbb-devel
         - libblas
       run:
-        # old boost-cpp does not set run_exports, need to set it manually
-        - boost-cpp 1.72  # [win]
         - zlib
         - {{ pin_subpackage('papilo', exact=True) }}
     files:
