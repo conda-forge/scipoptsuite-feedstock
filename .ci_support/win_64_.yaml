@@ -3,7 +3,7 @@ c_compiler:
 c_stdlib:
 - vs
 channel_sources:
-- conda-forge
+- conda-forge/label/llvm_rc,conda-forge
 channel_targets:
 - conda-forge main
 cxx_compiler:
@@ -11,11 +11,13 @@ cxx_compiler:
 fortran_compiler:
 - flang
 fortran_compiler_version:
-- '5'
+- '19'
 ipopt:
 - 3.14.16
 libblas:
 - 3.9 *netlib
+libboost_devel:
+- '1.86'
 mpfr:
 - '4'
 pcre2:

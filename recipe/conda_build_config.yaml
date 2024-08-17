@@ -1,5 +1,5 @@
-# Please consult conda-forge/core before doing this
-c_stdlib_version:          # [osx and x86_64]
-  - "10.13"                # [osx and x86_64]
-MACOSX_SDK_VERSION:        # [osx and x86_64]
-  - "10.13"                # [osx and x86_64]
+fortran_compiler_version:   # [win]
+  - 19                      # [win]
+
+channel_sources:                            # [win]
+  - conda-forge/label/llvm_rc,conda-forge   # [win]

@@ -29,7 +29,7 @@ ipopt:
 libblas:
 - 3.9 *netlib
 libboost_devel:
-- '1.84'
+- '1.86'
 macos_machine:
 - arm64-apple-darwin20.0.0
 mpfr:

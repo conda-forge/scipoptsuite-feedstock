@@ -5,9 +5,9 @@ c_compiler_version:
 c_stdlib:
 - sysroot
 c_stdlib_version:
-- '2.12'
+- '2.17'
 cdt_name:
-- cos6
+- cos7
 channel_sources:
 - conda-forge
 channel_targets:
@@ -29,7 +29,7 @@ ipopt:
 libblas:
 - 3.9 *netlib
 libboost_devel:
-- '1.84'
+- '1.86'
 mpfr:
 - '4'
 target_platform:
