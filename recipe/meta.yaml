@@ -250,7 +250,5 @@ about:
 
 extra:
   recipe-maintainers:
-    - ju-manns
     - AntoinePrv
-    - pokutta
-    - fschloesser
+    - scip-ci
