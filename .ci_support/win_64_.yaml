@@ -16,6 +16,8 @@ ipopt:
 - 3.14.16
 libblas:
 - 3.9 *netlib
+libboost_headers:
+- '1.84'
 mpfr:
 - '4'
 pcre2:

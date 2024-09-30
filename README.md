@@ -188,3 +188,5 @@ Feedstock Maintainers
 =====================
 
 * [@AntoinePrv](https://github.com/AntoinePrv/)
+* [@scip-ci](https://github.com/scip-ci/)
+

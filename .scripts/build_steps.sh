@@ -43,6 +43,8 @@ setup_conda_rc "${FEEDSTOCK_ROOT}" "${RECIPE_ROOT}" "${CONFIG_FILE}"
 
 source run_conda_forge_build_setup
 
+
+
 # make the build number clobber
 make_build_number "${FEEDSTOCK_ROOT}" "${RECIPE_ROOT}" "${CONFIG_FILE}"
 
@@ -72,7 +74,6 @@ else
         --suppress-variables ${EXTRA_CB_OPTIONS:-} \
         --clobber-file "${CI_SUPPORT}/clobber_${CONFIG}.yaml" \
         --extra-meta flow_run_id="${flow_run_id:-}" remote_url="${remote_url:-}" sha="${sha:-}"
-
     ( startgroup "Inspecting artifacts" ) 2> /dev/null
 
     # inspect_artifacts was only added in conda-forge-ci-setup 4.6.0
