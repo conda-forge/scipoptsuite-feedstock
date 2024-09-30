@@ -1,8 +1,8 @@
 # TODO check these versions have not changed
-{% set scip_version = "9.1.0" %}
-{% set papilo_version = "2.3.0" %}
-{% set soplex_version = "7.1.0" %}
-{% set gcg_version = "3.6.2" %}
+{% set scip_version = "9.1.1" %}
+{% set papilo_version = "2.3.1" %}
+{% set soplex_version = "7.1.1" %}
+{% set gcg_version = "3.6.3" %}
 {% set zimpl_version = "3.6.1" %}
 # For dispatching between Unix and Windows
 {% set install_prefix = "." %}        # [unix]
@@ -15,10 +15,8 @@ package:
 
 source:
   - url: https://scipopt.org/download/release/scipoptsuite-{{ scip_version }}.tgz
-    sha256: 770fc138fc40c016414b8a1e55461e920f5e2f5f4ae1a773a3ed6c81cd1fe93f
+    sha256: 331d9f30367add81518d95d353085dd051f3caf80f167548f8dd62d2ed959a6c
     folder: scipoptsuite
-    patches:
-      - 0002-Require-PCRE-on-WIN32.patch
 
 build:
   number: 0
@@ -197,7 +195,7 @@ outputs:
       - "{{ install_prefix }}/include/graph"
     test:
       commands:
-        - gcg --version
+        - gcg --version   # [unix]
         - test -d "${PREFIX}/lib/cmake/gcg"  # [unix]
         - test -d "${PREFIX}/include/gcg"    # [unix]
         - test -d "${PREFIX}/include/graph"  # [unix]
@@ -250,7 +248,5 @@ about:
 
 extra:
   recipe-maintainers:
-    - ju-manns
     - AntoinePrv
-    - pokutta
-    - fschloesser
+    - scip-ci
