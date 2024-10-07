@@ -12,6 +12,8 @@ fortran_compiler:
 - flang
 fortran_compiler_version:
 - '5'
+gmp:
+- '6'
 ipopt:
 - 3.14.16
 libblas:
