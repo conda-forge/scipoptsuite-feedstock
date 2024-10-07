@@ -195,7 +195,7 @@ outputs:
       - "{{ install_prefix }}/include/graph"
     test:
       commands:
-        - gcg --version   # [unix]
+        - gcg --version
         - test -d "${PREFIX}/lib/cmake/gcg"  # [unix]
         - test -d "${PREFIX}/include/gcg"    # [unix]
         - test -d "${PREFIX}/include/graph"  # [unix]
