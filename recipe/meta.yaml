@@ -42,7 +42,7 @@ requirements:
     - boost-cpp 1.72  # [win]
     - libboost-devel  # [unix]
     - mpfr
-    - gmp             # [unix]
+    - gmp
     - cliquer         # [unix]
     - pcre2           # [win]
 
@@ -58,7 +58,7 @@ outputs:
         - {{ compiler('cxx') }}
       host:
         - zlib
-        - gmp             # [unix]
+        - gmp
         - mpfr
         - libboost-headers
         - libblas
@@ -90,7 +90,7 @@ outputs:
         - zlib
         - ipopt
         - cppad
-        - gmp   # [unix]
+        - gmp
         - mpfr
         # Papilo statically linked
         # Papilo statically linked but needs direct dependency from used shared libs.
@@ -134,7 +134,7 @@ outputs:
         - {{ stdlib("c") }}
       host:
         - zlib
-        - gmp             # [unix]
+        - gmp
         - mpfr
         - boost-cpp 1.72  # [win]
         - libboost-devel  # [unix]
@@ -178,7 +178,7 @@ outputs:
         - {{ stdlib("c") }}
         - {{ compiler('cxx') }}
       host:
-        - gmp       # [unix]
+        - gmp
         - cliquer   # [unix]
         - gnuplot   # [unix]
         - {{ pin_subpackage('scip', exact=True) }}
@@ -214,7 +214,7 @@ outputs:
         - winflexbison  # [win]
       host:
         - zlib
-        - gmp    # [unix]
+        - gmp
         - mpfr
         - pcre2  # [win]
     files:
