@@ -1,9 +1,9 @@
 # TODO check these versions have not changed
-{% set scip_version = "9.1.1" %}
-{% set papilo_version = "2.3.1" %}
-{% set soplex_version = "7.1.1" %}
-{% set gcg_version = "3.6.3" %}
-{% set zimpl_version = "3.6.1" %}
+{% set scip_version = "9.2.0" %}
+{% set papilo_version = "2.4.0" %}
+{% set soplex_version = "7.1.2" %}
+{% set gcg_version = "3.7.0" %}
+{% set zimpl_version = "3.6.2" %}
 # For dispatching between Unix and Windows
 {% set install_prefix = "." %}        # [unix]
 {% set install_prefix = "Library" %}  # [win]
@@ -15,11 +15,11 @@ package:
 
 source:
   - url: https://scipopt.org/download/release/scipoptsuite-{{ scip_version }}.tgz
-    sha256: 331d9f30367add81518d95d353085dd051f3caf80f167548f8dd62d2ed959a6c
+    sha256: 0ada137deafc04a87527e0e5a318debefe98cc64b79549af6338a8523e49d62c
     folder: scipoptsuite
 
 build:
-  number: 1
+  number: 0
 
 requirements:
   build:
