@@ -22,7 +22,7 @@ source:
       - 0001-disable-boost-no-lib.patch  # [win]
 
 build:
-  number: 1
+  number: 2
 
 requirements:
   build:
@@ -41,9 +41,7 @@ requirements:
     - zlib
     - ipopt
     - cppad
-    # upstream code not compatible with newer boost, apparently
-    - boost-cpp 1.72  # [win]
-    - libboost-devel  # [unix]
+    - libboost-devel
     - mpfr
     - gmp
     - cliquer         # [unix]
@@ -63,7 +61,8 @@ outputs:
         - zlib
         - gmp
         - mpfr
-        - libboost-headers
+        - libboost-headers  # [unix]
+        - libboost-devel    # [win]
         - libblas
       run:
         - tbb-devel
@@ -101,6 +100,7 @@ outputs:
         - libblas
         # zimpl statically linked, transitive usage requirements
         - pcre2  # [win]
+        - libboost-devel  # [win]
     files:
       - "{{ install_prefix }}/lib/libscip*"
       - "{{ install_prefix }}/lib/cmake/scip/"
@@ -139,14 +139,12 @@ outputs:
         - zlib
         - gmp
         - mpfr
-        - boost-cpp 1.72  # [win]
-        - libboost-devel  # [unix]
+        - libboost-headers  # [unix]
+        - libboost-devel    # [win]
         # Papilo statically linked but needs direct dependency from used shared libs.
         - tbb-devel
         - libblas
       run:
-        # old boost-cpp does not set run_exports, need to set it manually
-        - boost-cpp 1.72  # [win]
         - zlib
         - {{ pin_subpackage('papilo', exact=True) }}
     files:
@@ -167,8 +165,8 @@ outputs:
         - ninja
         # Papilo statically linked
         - {{ compiler('fortran') }}
-        # compiling the example needs to find boost metadata
-        - libboost-devel  # [unix]
+        # compiling the example needs to find boost
+        - libboost-devel
 
   - name: gcg
     version:  {{ gcg_version }}
@@ -185,6 +183,7 @@ outputs:
         - cliquer   # [unix]
         - gnuplot   # [unix]
         - {{ pin_subpackage('scip', exact=True) }}
+        - libboost-devel  # [win]
       run:
         - {{ pin_subpackage('scip') }}
         # run_exports not set for cliquer
