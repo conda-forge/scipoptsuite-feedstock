@@ -234,7 +234,7 @@ outputs:
 
 about:
   home: https://scipopt.org/
-  license: Apache 2.0 AND ZIB-Academic AND LGPL-3.0-or-later
+  license: Apache 2.0 AND LGPL-3.0-or-later
   license_file:
     - scipoptsuite/papilo/COPYING
     - scipoptsuite/papilo/src/papilo/external/lusol/LICENSE.md
