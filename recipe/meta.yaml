@@ -14,8 +14,8 @@ package:
   version: {{ scip_version }}
 
 source:
-  - url: https://scipopt.org/download/release/scipoptsuite-{{ scip_version }}.tgz
-    sha256: a174cc58592d245c74c9c95c1d4819750d7ba2d467b4baae616a5aa336aac8d0
+  - url: http://matthiaswalter.org/scipoptsuite-9.2.0.tgz
+    sha256: d4e24f542f5f090971bed6dfd8b9960d51324e7d2e6f0f6970d56ec0fe61d3d8
     folder: scipoptsuite
 
 build:
