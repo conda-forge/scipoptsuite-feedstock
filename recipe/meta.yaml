@@ -17,9 +17,12 @@ source:
   - url: https://scipopt.org/download/release/scipoptsuite-{{ scip_version }}.tgz
     sha256: 331d9f30367add81518d95d353085dd051f3caf80f167548f8dd62d2ed959a6c
     folder: scipoptsuite
+    patches:
+      # header-only does not work with current boost due to https://github.com/boostorg/serialization/issues/232
+      - 0001-disable-boost-no-lib.patch  # [win]
 
 build:
-  number: 1
+  number: 2
 
 requirements:
   build:
@@ -38,9 +41,7 @@ requirements:
     - zlib
     - ipopt
     - cppad
-    # upstream code not compatible with newer boost, apparently
-    - boost-cpp 1.72  # [win]
-    - libboost-devel  # [unix]
+    - libboost-devel
     - mpfr
     - gmp
     - cliquer         # [unix]
@@ -50,6 +51,9 @@ outputs:
 
   - name: papilo
     version: {{ papilo_version }}
+    build:
+      run_exports:
+        - libboost  # [win]
     requirements:
       build:
         - {{ compiler('fortran') }}
@@ -60,7 +64,8 @@ outputs:
         - zlib
         - gmp
         - mpfr
-        - libboost-headers
+        - libboost-headers  # [unix]
+        - libboost-devel    # [win]
         - libblas
       run:
         - tbb-devel
@@ -78,6 +83,7 @@ outputs:
     build:
       run_exports:
         - {{ pin_subpackage('scip') }}
+        - libboost  # [win]
     requirements:
       build:
         - {{ compiler('c') }}
@@ -98,6 +104,7 @@ outputs:
         - libblas
         # zimpl statically linked, transitive usage requirements
         - pcre2  # [win]
+        - libboost  # [win]
     files:
       - "{{ install_prefix }}/lib/libscip*"
       - "{{ install_prefix }}/lib/cmake/scip/"
@@ -123,9 +130,13 @@ outputs:
         - {{ compiler('cxx') }}
         - cmake >=3.15
         - ninja
+        - libboost  # [win]
 
   - name: soplex
     version: {{ soplex_version }}
+    build:
+      run_exports:
+        - libboost  # [win]
     requirements:
       build:
         - {{ compiler('cxx') }}
@@ -136,14 +147,12 @@ outputs:
         - zlib
         - gmp
         - mpfr
-        - boost-cpp 1.72  # [win]
-        - libboost-devel  # [unix]
+        - libboost-headers  # [unix]
+        - libboost-devel    # [win]
         # Papilo statically linked but needs direct dependency from used shared libs.
         - tbb-devel
         - libblas
       run:
-        # old boost-cpp does not set run_exports, need to set it manually
-        - boost-cpp 1.72  # [win]
         - zlib
         - {{ pin_subpackage('papilo', exact=True) }}
     files:
@@ -164,14 +173,15 @@ outputs:
         - ninja
         # Papilo statically linked
         - {{ compiler('fortran') }}
-        # compiling the example needs to find boost metadata
-        - libboost-devel  # [unix]
+        # compiling the example needs to find boost
+        - libboost-devel
 
   - name: gcg
     version:  {{ gcg_version }}
     build:
       run_exports:
         - {{ pin_subpackage('gcg') }}
+        - libboost  # [win]
     requirements:
       build:
         - {{ compiler('c') }}
@@ -202,6 +212,8 @@ outputs:
         - if exist %PREFIX%\\Library\\lib\\cmake\\gcg (exit 0) else (exit 1)  # [win]
         - if exist %PREFIX%\\Library\\include\\gcg (exit 0) else (exit 1)     # [win]
         - if exist %PREFIX%\\Library\\include\\graph (exit 0) else (exit 1)   # [win]
+      requires:
+        - libboost  # [win]
 
   - name: zimpl
     version: {{ zimpl_version }}
