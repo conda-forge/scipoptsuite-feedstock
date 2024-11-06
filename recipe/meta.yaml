@@ -51,6 +51,9 @@ outputs:
 
   - name: papilo
     version: {{ papilo_version }}
+    build:
+      run_exports:
+        - libboost  # [win]
     requirements:
       build:
         - {{ compiler('fortran') }}
@@ -80,6 +83,7 @@ outputs:
     build:
       run_exports:
         - {{ pin_subpackage('scip') }}
+        - libboost  # [win]
     requirements:
       build:
         - {{ compiler('c') }}
@@ -129,6 +133,9 @@ outputs:
 
   - name: soplex
     version: {{ soplex_version }}
+    build:
+      run_exports:
+        - libboost  # [win]
     requirements:
       build:
         - {{ compiler('cxx') }}
@@ -173,6 +180,7 @@ outputs:
     build:
       run_exports:
         - {{ pin_subpackage('gcg') }}
+        - libboost  # [win]
     requirements:
       build:
         - {{ compiler('c') }}
