@@ -130,6 +130,7 @@ outputs:
         - {{ compiler('cxx') }}
         - cmake >=3.15
         - ninja
+        - libboost  # [win]
 
   - name: soplex
     version: {{ soplex_version }}
@@ -211,6 +212,8 @@ outputs:
         - if exist %PREFIX%\\Library\\lib\\cmake\\gcg (exit 0) else (exit 1)  # [win]
         - if exist %PREFIX%\\Library\\include\\gcg (exit 0) else (exit 1)     # [win]
         - if exist %PREFIX%\\Library\\include\\graph (exit 0) else (exit 1)   # [win]
+      requires:
+        - libboost  # [win]
 
   - name: zimpl
     version: {{ zimpl_version }}
