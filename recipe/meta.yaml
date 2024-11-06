@@ -15,7 +15,7 @@ package:
 
 source:
   - url: http://matthiaswalter.org/scipoptsuite-9.2.0.tgz
-    sha256: 67f2e1df367ae4b904dd3b05d1b300871bc25b7f2e3ca68d27d65c8047984bbb
+    sha256: b2f88aa01f7197d27305ba3ecb797d5920d7ac51a577a54feae26daa8ab28e97
     folder: scipoptsuite
 
 build:
