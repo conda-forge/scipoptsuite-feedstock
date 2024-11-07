@@ -20,6 +20,7 @@ source:
     patches:
       # header-only does not work with current boost due to https://github.com/boostorg/serialization/issues/232
       - 0001-disable-boost-no-lib.patch  # [win]
+      - 0002-papilo-copy-findgmp.patch
 
 build:
   number: 0
