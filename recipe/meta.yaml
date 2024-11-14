@@ -72,10 +72,17 @@ outputs:
     files:
       - "{{ install_prefix }}/lib/cmake/papilo/"
       - "{{ install_prefix }}/bin/papilo*"
+      - "{{ install_prefix }}/include/papilo/"
       # Vendored libraries
       - "{{ install_prefix }}/lib/libclusol*"
       - "{{ install_prefix }}/lib/libpapilo-core*"
-      - "{{ install_prefix }}/include/papilo/"
+    test:
+      commands:
+        - papilo
+        - test -d "${PREFIX}/lib/cmake/papilo"  # [unix]
+        - test -d "${PREFIX}/include/papilo"    # [unix]
+        - if exist %PREFIX%\\Library\\lib\\cmake\\papilo (exit 0) else (exit 1)  # [win]
+        - if exist %PREFIX%\\Library\\include\\papilo (exit 0) else (exit 1)     # [win]
 
   - name: scip
     version: {{ scip_version }}
