@@ -62,15 +62,16 @@ outputs:
         - zlib
         - gmp
         - mpfr
-        - libboost-headers  # [unix]
-        - libboost-devel    # [win]
+        # to run the papilo exe, boost libs are needed on unix as well
+        - libboost-devel
         - libblas
       run:
         - tbb-devel
+        # papilo executable depends on scip library
+        - {{ pin_subpackage('scip') }}
     files:
       - "{{ install_prefix }}/lib/cmake/papilo/"
-      # Executable is not installed by Papilo's CMake
-      # - "{{ install_prefix }}/bin/papilo*"
+      - "{{ install_prefix }}/bin/papilo*"
       # Vendored libraries
       - "{{ install_prefix }}/lib/libclusol*"
       - "{{ install_prefix }}/lib/libpapilo-core*"
