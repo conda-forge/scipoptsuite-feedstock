@@ -10,6 +10,7 @@ project(SoplexExample)
 find_package(SOPLEX REQUIRED)
 # Soplex needs papilo but does not add it
 find_package(papilo REQUIRED)
+set(CMAKE_CXX_STANDARD 14)
 add_executable(example scipoptsuite/soplex/src/example.cpp)
 target_link_libraries(example PUBLIC libsoplex papilo)
 EOF

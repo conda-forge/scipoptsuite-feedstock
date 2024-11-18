@@ -1,9 +1,9 @@
 # TODO check these versions have not changed
-{% set scip_version = "9.1.1" %}
-{% set papilo_version = "2.3.1" %}
-{% set soplex_version = "7.1.1" %}
-{% set gcg_version = "3.6.3" %}
-{% set zimpl_version = "3.6.1" %}
+{% set scip_version = "9.2.0" %}
+{% set papilo_version = "2.4.0" %}
+{% set soplex_version = "7.1.2" %}
+{% set gcg_version = "3.7.0" %}
+{% set zimpl_version = "3.6.2" %}
 # For dispatching between Unix and Windows
 {% set install_prefix = "." %}        # [unix]
 {% set install_prefix = "Library" %}  # [win]
@@ -15,14 +15,15 @@ package:
 
 source:
   - url: https://scipopt.org/download/release/scipoptsuite-{{ scip_version }}.tgz
-    sha256: 331d9f30367add81518d95d353085dd051f3caf80f167548f8dd62d2ed959a6c
+    sha256: a174cc58592d245c74c9c95c1d4819750d7ba2d467b4baae616a5aa336aac8d0
     folder: scipoptsuite
     patches:
       # header-only does not work with current boost due to https://github.com/boostorg/serialization/issues/232
       - 0001-disable-boost-no-lib.patch  # [win]
+      - 0002-papilo-copy-findgmp.patch
 
 build:
-  number: 3
+  number: 0
 
 requirements:
   build:
@@ -61,19 +62,27 @@ outputs:
         - zlib
         - gmp
         - mpfr
-        - libboost-headers  # [unix]
-        - libboost-devel    # [win]
+        # to run the papilo exe, boost libs are needed on unix as well
+        - libboost-devel
         - libblas
       run:
         - tbb-devel
+        # papilo executable depends on scip library
+        - {{ pin_subpackage('scip') }}
     files:
       - "{{ install_prefix }}/lib/cmake/papilo/"
-      # Executable is not installed by Papilo's CMake
-      # - "{{ install_prefix }}/bin/papilo*"
+      - "{{ install_prefix }}/bin/papilo*"
+      - "{{ install_prefix }}/include/papilo/"
       # Vendored libraries
       - "{{ install_prefix }}/lib/libclusol*"
       - "{{ install_prefix }}/lib/libpapilo-core*"
-      - "{{ install_prefix }}/include/papilo/"
+    test:
+      commands:
+        - papilo
+        - test -d "${PREFIX}/lib/cmake/papilo"  # [unix]
+        - test -d "${PREFIX}/include/papilo"    # [unix]
+        - if exist %PREFIX%\\Library\\lib\\cmake\\papilo (exit 0) else (exit 1)  # [win]
+        - if exist %PREFIX%\\Library\\include\\papilo (exit 0) else (exit 1)     # [win]
 
   - name: scip
     version: {{ scip_version }}
@@ -236,7 +245,7 @@ outputs:
 
 about:
   home: https://scipopt.org/
-  license: Apache 2.0 AND ZIB-Academic AND LGPL-3.0-or-later
+  license: Apache-2.0 AND LGPL-3.0-or-later
   license_file:
     - scipoptsuite/papilo/COPYING
     - scipoptsuite/papilo/src/papilo/external/lusol/LICENSE.md

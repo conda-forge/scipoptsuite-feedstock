@@ -3,6 +3,7 @@ echo project(SoplexExample) >> CMakeLists.txt
 echo find_package(SOPLEX REQUIRED) >> CMakeLists.txt
 echo # Soplex needs papilo but does not add it >> CMakeLists.txt
 echo find_package(papilo REQUIRED) >> CMakeLists.txt
+echo set(CMAKE_CXX_STANDARD 14) >> CMakeLists.txt
 echo add_executable(example scipoptsuite/soplex/src/example.cpp) >> CMakeLists.txt
 echo target_link_libraries(example PUBLIC libsoplex papilo) >> CMakeLists.txt
 echo target_link_libraries(example PUBLIC libsoplex) >> CMakeLists.txt
