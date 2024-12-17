@@ -127,8 +127,9 @@ outputs:
       - "{{ install_prefix }}/include/xml/"
 
     test:
-      script: run_scip_test.sh   # [unix]
-      script: run_scip_test.bat  # [win]
+      script:
+         - run_scip_test.sh   # [unix]
+         - run_scip_test.bat  # [win]
       source_files:
         - scipoptsuite/scip/examples/Queens
       requires:
@@ -164,8 +165,9 @@ outputs:
       - "{{ install_prefix }}/include/soplex*"
       - "{{ install_prefix }}/include/soplex/"
     test:
-      script: run_soplex_test.sh   # [unix]
-      script: run_soplex_test.bat  # [win]
+      script:
+        - run_soplex_test.sh   # [unix]
+        - run_soplex_test.bat  # [win]
       source_files:
         - scipoptsuite/soplex/src/example.cpp
       requires:
