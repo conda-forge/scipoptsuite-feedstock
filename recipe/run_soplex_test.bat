@@ -1,4 +1,4 @@
-echo cmake_minimum_required(VERSION 3.0) >> CMakeLists.txt
+echo cmake_minimum_required(VERSION 3.11) >> CMakeLists.txt
 echo project(SoplexExample) >> CMakeLists.txt
 echo find_package(SOPLEX REQUIRED) >> CMakeLists.txt
 echo # Soplex needs papilo but does not add it >> CMakeLists.txt
