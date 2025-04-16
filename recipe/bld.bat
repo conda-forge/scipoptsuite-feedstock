@@ -20,6 +20,7 @@ cmake -G Ninja ^
       -D READLINE=OFF ^
       -D EXPRINT=cppad ^
       -D SYM=snauty ^
+      -D CMAKE_POLICY_VERSION_MINIMUM=3.5 ^
       %CMAKE_ARGS%
 if %ERRORLEVEL% neq 0 exit 1
 

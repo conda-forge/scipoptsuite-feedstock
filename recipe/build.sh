@@ -27,6 +27,7 @@ cmake -B scipoptsuite-build -S "${SRC_DIR}/scipoptsuite" \
       -D SYM=snauty \
       -D EXPRINT=cppad \
       -D CLIQUER=ON \
+      -D CMAKE_POLICY_VERSION_MINIMUM=3.5 \
       ${CMAKE_ARGS}
 cmake --build scipoptsuite-build --parallel ${CPU_COUNT}
 cmake --install scipoptsuite-build --prefix "${PREFIX}"

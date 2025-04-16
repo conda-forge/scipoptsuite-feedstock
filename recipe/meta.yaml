@@ -1,8 +1,8 @@
 # TODO check these versions have not changed
-{% set scip_version = "9.2.1" %}
-{% set papilo_version = "2.4.1" %}
-{% set soplex_version = "7.1.3" %}
-{% set gcg_version = "3.7.1" %}
+{% set scip_version = "9.2.2" %}
+{% set papilo_version = "2.4.2" %}
+{% set soplex_version = "7.1.4" %}
+{% set gcg_version = "3.7.2" %}
 {% set zimpl_version = "3.6.2" %}
 # For dispatching between Unix and Windows
 {% set install_prefix = "." %}        # [unix]
@@ -15,7 +15,7 @@ package:
 
 source:
   - url: https://scipopt.org/download/release/scipoptsuite-{{ scip_version }}.tgz
-    sha256: 41b71a57af773403e9a6724f78c37d8396ac4b6b270a9bbf3716d67f1af12edf
+    sha256: 1a6d5b2bceb99faf1facbd6cd79e4a3eb8de60ed1d480281f12ae5c540d4a8a4
     folder: scipoptsuite
     patches:
       # header-only does not work with current boost due to https://github.com/boostorg/serialization/issues/232
