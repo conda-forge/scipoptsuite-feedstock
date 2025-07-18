@@ -3,6 +3,7 @@
 set -o errexit
 set -o pipefail
 set -o nounset
+set -x
 
 # we need librt
 if [[ "${target_platform}" == linux-* ]] ; then
