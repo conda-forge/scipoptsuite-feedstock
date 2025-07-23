@@ -29,9 +29,9 @@ ipopt:
 libblas:
 - 3.9.* *netlib
 libboost_devel:
-- '1.86'
+- '1.88'
 libboost_headers:
-- '1.86'
+- '1.88'
 macos_machine:
 - x86_64-apple-darwin13.4.0
 mpfr:
