@@ -25,7 +25,7 @@ fortran_compiler_version:
 gmp:
 - '6'
 ipopt:
-- 3.14.17
+- 3.14.19
 libblas:
 - 3.9.* *netlib
 libboost_devel:
