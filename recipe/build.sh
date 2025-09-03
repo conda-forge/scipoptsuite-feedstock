@@ -10,11 +10,6 @@ if [[ "${target_platform}" == linux-* ]] ; then
     export LDFLAGS="-lrt ${LDFLAGS}"
 fi
 
-# conda's build of gfortran does not work anymore, it fails with clang: error: no input files
-if [ "${target_platform}" = osx-64 ] ; then
-    CMAKE_ARGS="$CMAKE_ARGS -DLUSOL=OFF"
-fi
-
 cmake -B scipoptsuite-build -S "${SRC_DIR}/scipoptsuite" \
       -G Ninja \
       -D CMAKE_BUILD_TYPE=Release \
