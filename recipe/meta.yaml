@@ -22,7 +22,7 @@ source:
       - 0001-disable-boost-no-lib.patch  # [win]
 
 build:
-  number: 3
+  number: 4
 
 requirements:
   build:
