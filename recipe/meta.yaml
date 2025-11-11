@@ -1,9 +1,9 @@
 # TODO check these versions have not changed
-{% set scip_version = "9.2.4" %}
-{% set papilo_version = "2.4.4" %}
-{% set soplex_version = "7.1.6" %}
-{% set gcg_version = "3.7.2" %}
-{% set zimpl_version = "3.6.2" %}
+{% set scip_version = "10.0.0" %}
+{% set papilo_version = "3.0.0" %}
+{% set soplex_version = "8.0.0" %}
+{% set gcg_version = "4.0.0" %}
+{% set zimpl_version = "3.7.0" %}
 # For dispatching between Unix and Windows
 {% set install_prefix = "." %}        # [unix]
 {% set install_prefix = "Library" %}  # [win]
