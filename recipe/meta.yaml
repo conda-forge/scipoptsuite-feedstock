@@ -254,7 +254,7 @@ about:
     - scipoptsuite/scip/LICENSE
     - scipoptsuite/gcg/LICENSE
     - scipoptsuite/zimpl/LICENSE
-  summary: Mixed Integer Programming (MIP) solver and Branch-and-Cut-and-Price Framework
+  summary: Constraint Integer Programming and Branch-and-Cut-and-Price Framework
 
 extra:
   recipe-maintainers:
