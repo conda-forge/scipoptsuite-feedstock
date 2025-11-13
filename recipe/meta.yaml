@@ -117,6 +117,7 @@ outputs:
       - "{{ install_prefix }}/include/blockmemshell/"
       - "{{ install_prefix }}/include/dijkstra/"
       - "{{ install_prefix }}/include/lpi/"
+      - "{{ install_prefix }}/include/lpiexact/"
       - "{{ install_prefix }}/include/objscip/"
       - "{{ install_prefix }}/include/scip/"
       - "{{ install_prefix }}/include/symmetry/"
