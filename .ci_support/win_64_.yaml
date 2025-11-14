@@ -27,6 +27,6 @@ pcre2:
 target_platform:
 - win-64
 tbb_devel:
-- '2021'
+- '2022'
 zlib:
 - '1'

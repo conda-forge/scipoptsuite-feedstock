@@ -39,7 +39,7 @@ mpfr:
 target_platform:
 - osx-arm64
 tbb_devel:
-- '2021'
+- '2022'
 zip_keys:
 - - c_compiler_version
   - cxx_compiler_version
