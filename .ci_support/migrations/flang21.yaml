@@ -1,0 +1,289 @@
+__migrator:
+  kind: version
+  migration_number: 1
+  build_number: 1
+  commit_message: |
+    Rebuild for flang 21
+    
+    TL;DR: We are trying to switch our Fortran compilers on windows to flang.
+    This is not 100% guaranteed to work, but should be fine in the majority of cases.
+    
+    The new LLVM-based flang has become mature enough that it should be possible to
+    broadly switch over our Fortran compilers on windows to it (until now we only had
+    an ancient pre-LLVM flang 5, or alternatively the GCC-based `m2w64_fortran`).
+    
+    As such, this PR attempts to homogenize any use of `m2w64_fortran` and other `m2w64_*`
+    compilers to our default stack (which would then be MSVC + flang on windows), with
+    the exception of feedstocks for R-packages, which stay on the `m2w64_` compilers.
+    
+    Recipes that have hard-coded expectations about the name of the fortran compiler
+    will need to adjust to use `%FC%` or `flang` for the compiler name. Similarly,
+    you may need to change the linker to `%FC_LD%` or use `lld-link`.
+    
+    It is also possible that you run into compilation errors due to differences in
+    compiler behaviour, bugs or as-yet unimplemented features. In case of compilation
+    errors due to stricter default language standards, you should be able to fix things
+    by passing `-std=legacy` to `FFLAGS`.
+    
+    If you have problems with this PR, feel free to ping the @c-f/flang-activation team.
+    In case you have convinced yourself that flang really is not ready yet to be used to
+    compile a given feedstock, you may also close this migrator PR.
+  platform_allowlist:
+    - win-64
+  override_cbc_keys:
+    - fortran_compiler_stub
+  exclude:
+    # bot detects a circular dependency between blas and lapack
+    - lapack
+    # these packages should be skipped because they're not built on windows, which
+    # contradicts platform_allowlist, see https://github.com/regro/cf-scripts/issues/3436
+    - mpich
+    - mvapich
+    - openmpi
+    # exclude r-packages, which generally use m2w64-stack consistently
+    - r-base
+    - r-acepack
+    - r-ade4
+    - r-adespatial
+    - r-admm
+    - r-akima
+    - r-amap
+    - r-ape
+    - r-ash
+    - r-aws
+    - r-bain
+    - r-bas
+    - r-bayesm
+    - r-bigalgebra
+    - r-biglasso
+    - r-biglm
+    - r-bigsnpr
+    - r-bigstatsr
+    - r-blockmodeling
+    - r-bma
+    - r-bootstrap
+    - r-cairodevice
+    - r-changepoint
+    - r-changepoints
+    - r-chnosz
+    - r-circular
+    - r-classint
+    - r-clinfun
+    - r-clues
+    - r-cluster
+    - r-clustercrit
+    - r-cmprsk
+    - r-coin
+    - r-conquer
+    - r-copula
+    - r-coxboost
+    - r-coxphf
+    - r-cubature
+    - r-dcurver
+    - r-ddalpha
+    - r-delaporte
+    - r-deldir
+    - r-desctools
+    - r-desolve
+    - r-distributionutils
+    - r-dixontest
+    - r-dotcall64
+    - r-dplr
+    - r-dppackage
+    - r-dpq
+    - r-dse
+    - r-earth
+    - r-expm
+    - r-fastica
+    - r-fastmatrix
+    - r-fbasics
+    - r-fd
+    - r-fgarch
+    - r-fields
+    - r-flashclust
+    - r-float
+    - r-fme
+    - r-forecast
+    - r-fracdiff
+    - r-gam
+    - r-gap
+    - r-gee
+    - r-geigen
+    - r-gensa
+    - r-gglasso
+    - r-glasso
+    - r-glassofast
+    - r-glmmml
+    - r-glmnet
+    - r-gmcm
+    - r-gmm
+    - r-gss
+    - r-harmony
+    - r-hdrcde
+    - r-hdtweedie
+    - r-hexbin
+    - r-hiclimr
+    - r-hiddenmarkov
+    - r-hier.part
+    - r-hmisc
+    - r-igraph
+    - r-interp
+    - r-ipred
+    - r-irlba
+    - r-iso
+    - r-kendall
+    - r-kernlab
+    - r-kernsmooth
+    - r-kfas
+    - r-l1pack
+    - r-labdsv
+    - r-lars
+    - r-lbfgsb3c
+    - r-leaps
+    - r-leidenalg
+    - r-leidenbase
+    - r-libcoin
+    - r-limsolve
+    - r-lmom
+    - r-lmtest
+    - r-logicreg
+    - r-logistf
+    - r-logspline
+    - r-lokern
+    - r-lsei
+    - r-maotai
+    - r-mashr
+    - r-matchit
+    - r-matrix
+    - r-mboost
+    - r-mclust
+    - r-mclustcomp
+    - r-mcr
+    - r-mda
+    - r-mendelianrandomization
+    - r-mets
+    - r-mgcv
+    - r-minpack.lm
+    - r-minqa
+    - r-mirt
+    - r-mixsqp
+    - r-mnormt
+    - r-mpmi
+    - r-mrfdepth
+    - r-msm
+    - r-muhaz
+    - r-multimode
+    - r-multitaper
+    - r-mvnfast
+    - r-mvord
+    - r-mvtnorm
+    - r-n1qn1
+    - r-nimble
+    - r-nleqslv
+    - r-nlme
+    - r-nlmixr2est
+    - r-nlmixr2extra
+    - r-nloptr
+    - r-nnls
+    - r-norm
+    - r-npregfast
+    - r-oce
+    - r-oceanview
+    - r-onlinepca
+    - r-openmx
+    - r-pamr
+    - r-pan
+    - r-party
+    - r-pbivnorm
+    - r-pcadapt
+    - r-pcapp
+    - r-pcit
+    - r-phangorn
+    - r-pmcmrplus
+    - r-polspline
+    - r-pqlseq
+    - r-projpred
+    - r-pspline
+    - r-qap
+    - r-qgg
+    - r-qtlrel
+    - r-quadprog
+    - r-quantreg
+    - r-randomfieldsutils
+    - r-randomforest
+    - r-randtoolbox
+    - r-rcpparmadillo
+    - r-rcppclock
+    - r-rcppde
+    - r-rcppdist
+    - r-rcppdpr
+    - r-rcppeigen
+    - r-rcppml
+    - r-rcsdp
+    - r-rdimtools
+    - r-rfast
+    - r-rmr2
+    - r-rms
+    - r-rmumps
+    - r-rmutil
+    - r-rmvp
+    - r-rnomni
+    - r-robstattm
+    - r-robust
+    - r-robustbase
+    - r-rootsolve
+    - r-roptim
+    - r-rpact
+    - r-rrcov
+    - r-rrf
+    - r-rsolnp
+    - r-rspectra
+    - r-rstpm2
+    - r-rtsne
+    - r-rxode
+    - r-rxode2
+    - r-sccore
+    - r-scs
+    - r-sctransform
+    - r-seriation
+    - r-sgeostat
+    - r-signal
+    - r-sitmo
+    - r-slam
+    - r-sm
+    - r-softimpute
+    - r-spam
+    - r-spam64
+    - r-sparsem
+    - r-spatialpack
+    - r-splancs
+    - r-splines2
+    - r-splus2r
+    - r-stanheaders
+    - r-statmod
+    - r-stochvol
+    - r-strucchange
+    - r-subplex
+    - r-subselect
+    - r-survc1
+    - r-survidinri
+    - r-svd
+    - r-timsac
+    - r-tmb
+    - r-tmvnsim
+    - r-tmvtnorm
+    - r-trend
+    - r-tripack
+    - r-tseries
+    - r-twdtw
+    - r-tweedie
+    - r-ucminf
+    - r-urca
+    - r-vcpen
+    - r-vegan
+    - r-vgam
+    - r-waveslim
+migrator_ts: 1761259558.8193212
+
+fortran_compiler_version:      # [win64]
+  - 21                         # [win64]
