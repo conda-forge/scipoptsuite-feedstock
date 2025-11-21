@@ -23,7 +23,7 @@ libboost_devel:
 mpfr:
 - '4'
 pcre2:
-- '10.46'
+- '10.47'
 target_platform:
 - win-64
 tbb_devel:
