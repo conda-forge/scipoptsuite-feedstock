@@ -250,16 +250,25 @@ outputs:
 
 about:
   home: https://scipopt.org/
-  license: Apache-2.0 AND LGPL-3.0-or-later
+  license: Apache-2.0 AND LGPL-3.0-or-later AND EPL-1.0 and MIT and Zlib and BSL-1.0 and HPND
   license_file:
-    - scipoptsuite/papilo/LICENSE
-    - scipoptsuite/papilo/src/papilo/external/lusol/LICENSE.md
-    - scipoptsuite/papilo/src/papilo/external/pdqsort/license.txt
-    - scipoptsuite/papilo/src/papilo/external/ska/LICENSE.txt
-    - scipoptsuite/soplex/LICENSE
-    - scipoptsuite/scip/LICENSE
-    - scipoptsuite/gcg/LICENSE
-    - scipoptsuite/zimpl/LICENSE
+    - scipoptsuite/papilo/LICENSE  # Apache 2.0
+    - scipoptsuite/papilo/src/papilo/external/lusol/LICENSE.md  # BSD or MIT
+    - scipoptsuite/papilo/src/papilo/external/pdqsort/license.txt  # Zlib
+    - scipoptsuite/papilo/src/papilo/external/ska/LICENSE.txt # Boost 1.0 (BSL-1.0)
+    - scipoptsuite/papilo/src/papilo/external/fmt/LICENSE.rst  # MIT
+    - scipoptsuite/soplex/LICENSE  # Apache 2.0
+    - scipoptsuite/soplex/src/soplex/external/zstr/License.txt  # MIT
+    - scipoptsuite/soplex/src/soplex/external/fmt/LICENSE.rst  # MIT
+    - scipoptsuite/scip/LICENSE  # Apache 2.0
+    - scipoptsuite/scip/src/amplmp/LICENSE.rst  # HPND, similar to ISC
+    - scipoptsuite/scip/src/cppad/COPYING  # EPL-1.0
+    - scipoptsuite/scip/src/dejavu/LICENSE  # MIT
+    - scipoptsuite/scip/src/nauty/COPYRIGHT  # Apache 2.0
+    - scipoptsuite/scip/src/tclique/LICENSE  # Apache 2.0
+    - scipoptsuite/scip/src/tinycthread/COPYRIGHT  # Zlib
+    - scipoptsuite/gcg/LICENSE  # Apache 2.0
+    - scipoptsuite/zimpl/LICENSE  # LGPL 3
   summary: Constraint Integer Programming and Branch-and-Cut-and-Price Framework
 
 extra:
