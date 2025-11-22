@@ -1,0 +1,11 @@
+--- a/gcg/cmake/Modules/FindJANSSON.cmake.orig	2025-11-22 16:10:12.879742718 +0100
++++ b/gcg/cmake/Modules/FindJANSSON.cmake	2025-11-22 16:10:31.699648348 +0100
+@@ -18,7 +18,7 @@
+ if(STATIC_JANSSON)
+     message(STATUS "Attempting to find libjansson.a")
+     find_library(JANSSON_LIBRARY
+-        NAMES libjansson.a jansson
++        NAMES libjansson.a jansson jansson_d
+         HINTS ${JANSSON_DIR}
+         PATH_SUFFIXES lib)
+ else()

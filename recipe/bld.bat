@@ -20,6 +20,7 @@ cmake -G Ninja ^
       -D ZLIB=ON ^
       -D READLINE=OFF ^
       -D OPENMP=ON ^
+      -D STATIC_JANSSON=ON ^
       %CMAKE_ARGS%
 if %ERRORLEVEL% neq 0 exit 1
 
