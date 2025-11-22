@@ -40,12 +40,13 @@ requirements:
     - libblas
     - zlib
     - ipopt
-    - cppad
     - libboost-devel
     - mpfr
     - gmp
     - cliquer         # [unix]
     - pcre2           # [win]
+    - jansson
+    - highs
 
 outputs:
 
@@ -61,6 +62,7 @@ outputs:
         - zlib
         - gmp
         - mpfr
+        - highs
         # to run the papilo exe, boost libs are needed on unix as well
         - libboost-devel
         - libblas
@@ -99,7 +101,6 @@ outputs:
       host:
         - zlib
         - ipopt
-        - cppad
         - gmp
         - mpfr
         # Papilo statically linked
@@ -193,6 +194,8 @@ outputs:
         - gnuplot   # [unix]
         - {{ pin_subpackage('scip', exact=True) }}
         - libboost-devel  # [win]
+        - jansson
+        - highs
       run:
         - {{ pin_subpackage('scip') }}
         # run_exports not set for cliquer
