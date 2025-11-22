@@ -70,6 +70,7 @@ outputs:
         - tbb-devel
         # papilo executable depends on scip library
         - {{ pin_subpackage('scip') }}
+        - highs
     files:
       - "{{ install_prefix }}/lib/cmake/papilo/"
       - "{{ install_prefix }}/bin/papilo*"
@@ -200,6 +201,7 @@ outputs:
         - {{ pin_subpackage('scip') }}
         # run_exports not set for cliquer
         - cliquer   # [unix]
+        - highs
     files:
       - "{{ install_prefix }}/lib/libgcg*"
       - "{{ install_prefix }}/lib/cmake/gcg"
