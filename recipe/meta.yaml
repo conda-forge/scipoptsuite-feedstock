@@ -26,9 +26,12 @@ source:
 build:
   number: 2
 
+# to reduce disk space use on Windows, I disabled the Fortran compiler there (https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/hosted?view=azure-devops&tabs=windows-images%2Cyaml#my-pipeline-fails-with-the-error-no-space-left-on-device)
+# this disables LUSOL for Papilo, and then libblas is no longer needed as well
+
 requirements:
   build:
-    - {{ compiler('fortran') }}
+    - {{ compiler('fortran') }}  # [unix]
     - {{ compiler('c') }}
     - {{ stdlib("c") }}
     - {{ compiler('cxx') }}
@@ -39,7 +42,7 @@ requirements:
     - winflexbison    # [win]
   host:
     - tbb-devel
-    - libblas
+    - libblas         # [unix]
     - zlib
     - ipopt
     - libboost-devel
@@ -56,7 +59,7 @@ outputs:
     version: {{ papilo_version }}
     requirements:
       build:
-        - {{ compiler('fortran') }}
+        - {{ compiler('fortran') }}  # [unix]
         - {{ compiler('c') }}
         - {{ stdlib("c") }}
         - {{ compiler('cxx') }}
@@ -67,7 +70,7 @@ outputs:
         - highs
         # to run the papilo exe, boost libs are needed on unix as well
         - libboost-devel
-        - libblas
+        - libblas  # [unix]
       run:
         - tbb-devel
         # papilo executable depends on scip library
@@ -100,7 +103,7 @@ outputs:
         # Soplex statically linked
         - {{ compiler('cxx') }}
         # Papilo statically linked but needs direct dependency from used shared libs.
-        - {{ compiler('fortran') }}
+        - {{ compiler('fortran') }}  # [unix]
       host:
         - zlib
         - ipopt
@@ -109,7 +112,7 @@ outputs:
         # Papilo statically linked
         # Papilo statically linked but needs direct dependency from used shared libs.
         - tbb-devel
-        - libblas
+        - libblas  # [unix]
         # zimpl statically linked, transitive usage requirements
         - pcre2  # [win]
         - libboost-devel  # [win]
@@ -146,7 +149,7 @@ outputs:
       build:
         - {{ compiler('cxx') }}
         # Papilo statically linked but needs direct dependency from used shared libs.
-        - {{ compiler('fortran') }}
+        - {{ compiler('fortran') }}  # [unix]
         - {{ stdlib("c") }}
       host:
         - zlib
@@ -156,7 +159,7 @@ outputs:
         - libboost-devel    # [win]
         # Papilo statically linked but needs direct dependency from used shared libs.
         - tbb-devel
-        - libblas
+        - libblas  # [unix]
       run:
         - zlib
         - {{ pin_subpackage('papilo', exact=True) }}
@@ -177,7 +180,7 @@ outputs:
         - cmake >=3.15
         - ninja
         # Papilo statically linked
-        - {{ compiler('fortran') }}
+        - {{ compiler('fortran') }}  # [unix]
         # compiling the example needs to find boost
         - libboost-devel
 
