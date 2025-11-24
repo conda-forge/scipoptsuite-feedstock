@@ -5,9 +5,9 @@ Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/scipoptsuite-fe
 
 Home: https://scipopt.org/
 
-Package license: Apache-2.0 AND LGPL-3.0-or-later
+Package license: Apache-2.0 AND LGPL-3.0-or-later AND EPL-1.0 and MIT and Zlib and BSL-1.0 and HPND
 
-Summary: Mixed Integer Programming (MIP) solver and Branch-and-Cut-and-Price Framework
+Summary: Constraint Integer Programming and Branch-and-Cut-and-Price Framework
 
 Current build status
 ====================

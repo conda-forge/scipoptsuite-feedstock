@@ -1,9 +1,9 @@
 # TODO check these versions have not changed
-{% set scip_version = "9.2.4" %}
-{% set papilo_version = "2.4.4" %}
-{% set soplex_version = "7.1.6" %}
-{% set gcg_version = "3.7.2" %}
-{% set zimpl_version = "3.6.2" %}
+{% set scip_version = "10.0.0" %}
+{% set papilo_version = "3.0.0" %}
+{% set soplex_version = "8.0.0" %}
+{% set gcg_version = "4.0.0" %}
+{% set zimpl_version = "3.7.0" %}
 # For dispatching between Unix and Windows
 {% set install_prefix = "." %}        # [unix]
 {% set install_prefix = "Library" %}  # [win]
@@ -15,18 +15,23 @@ package:
 
 source:
   - url: https://scipopt.org/download/release/scipoptsuite-{{ scip_version }}.tgz
-    sha256: 4327736efa07a83eb08580d339409936dfe40864a1670dc5fc75d3e3df78d290
+    sha256: 44877ca34f3d5f7e09dfed4738cf52046a20950417060f844f1ca37a77a60d1c
     folder: scipoptsuite
     patches:
       # header-only does not work with current boost due to https://github.com/boostorg/serialization/issues/232
       - 0001-disable-boost-no-lib.patch  # [win]
+      # conda-forge::jansson for windows contains only a static debug lib of jansson; make gcg use this one
+      - 0002-allow-jansson-debug-lib.patch  # [win]
 
 build:
-  number: 2
+  number: 0
+
+# to reduce disk space use on Windows, I disabled the Fortran compiler there (https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/hosted?view=azure-devops&tabs=windows-images%2Cyaml#my-pipeline-fails-with-the-error-no-space-left-on-device)
+# this disables LUSOL for Papilo, and then libblas is no longer needed as well
 
 requirements:
   build:
-    - {{ compiler('fortran') }}
+    - {{ compiler('fortran') }}  # [unix]
     - {{ compiler('c') }}
     - {{ stdlib("c") }}
     - {{ compiler('cxx') }}
@@ -37,15 +42,16 @@ requirements:
     - winflexbison    # [win]
   host:
     - tbb-devel
-    - libblas
+    - libblas         # [unix]
     - zlib
     - ipopt
-    - cppad
     - libboost-devel
     - mpfr
     - gmp
     - cliquer         # [unix]
     - pcre2           # [win]
+    - jansson
+    - highs
 
 outputs:
 
@@ -53,7 +59,7 @@ outputs:
     version: {{ papilo_version }}
     requirements:
       build:
-        - {{ compiler('fortran') }}
+        - {{ compiler('fortran') }}  # [unix]
         - {{ compiler('c') }}
         - {{ stdlib("c") }}
         - {{ compiler('cxx') }}
@@ -61,13 +67,15 @@ outputs:
         - zlib
         - gmp
         - mpfr
+        - highs
         # to run the papilo exe, boost libs are needed on unix as well
         - libboost-devel
-        - libblas
+        - libblas  # [unix]
       run:
         - tbb-devel
         # papilo executable depends on scip library
         - {{ pin_subpackage('scip') }}
+        - highs
     files:
       - "{{ install_prefix }}/lib/cmake/papilo/"
       - "{{ install_prefix }}/bin/papilo*"
@@ -95,17 +103,16 @@ outputs:
         # Soplex statically linked
         - {{ compiler('cxx') }}
         # Papilo statically linked but needs direct dependency from used shared libs.
-        - {{ compiler('fortran') }}
+        - {{ compiler('fortran') }}  # [unix]
       host:
         - zlib
         - ipopt
-        - cppad
         - gmp
         - mpfr
         # Papilo statically linked
         # Papilo statically linked but needs direct dependency from used shared libs.
         - tbb-devel
-        - libblas
+        - libblas  # [unix]
         # zimpl statically linked, transitive usage requirements
         - pcre2  # [win]
         - libboost-devel  # [win]
@@ -117,6 +124,7 @@ outputs:
       - "{{ install_prefix }}/include/blockmemshell/"
       - "{{ install_prefix }}/include/dijkstra/"
       - "{{ install_prefix }}/include/lpi/"
+      - "{{ install_prefix }}/include/lpiexact/"
       - "{{ install_prefix }}/include/objscip/"
       - "{{ install_prefix }}/include/scip/"
       - "{{ install_prefix }}/include/symmetry/"
@@ -141,7 +149,7 @@ outputs:
       build:
         - {{ compiler('cxx') }}
         # Papilo statically linked but needs direct dependency from used shared libs.
-        - {{ compiler('fortran') }}
+        - {{ compiler('fortran') }}  # [unix]
         - {{ stdlib("c") }}
       host:
         - zlib
@@ -151,7 +159,7 @@ outputs:
         - libboost-devel    # [win]
         # Papilo statically linked but needs direct dependency from used shared libs.
         - tbb-devel
-        - libblas
+        - libblas  # [unix]
       run:
         - zlib
         - {{ pin_subpackage('papilo', exact=True) }}
@@ -172,7 +180,7 @@ outputs:
         - cmake >=3.15
         - ninja
         # Papilo statically linked
-        - {{ compiler('fortran') }}
+        - {{ compiler('fortran') }}  # [unix]
         # compiling the example needs to find boost
         - libboost-devel
 
@@ -192,10 +200,13 @@ outputs:
         - gnuplot   # [unix]
         - {{ pin_subpackage('scip', exact=True) }}
         - libboost-devel  # [win]
+        - jansson
+        - highs
       run:
         - {{ pin_subpackage('scip') }}
         # run_exports not set for cliquer
         - cliquer   # [unix]
+        - highs
     files:
       - "{{ install_prefix }}/lib/libgcg*"
       - "{{ install_prefix }}/lib/cmake/gcg"
@@ -244,17 +255,26 @@ outputs:
 
 about:
   home: https://scipopt.org/
-  license: Apache-2.0 AND LGPL-3.0-or-later
+  license: Apache-2.0 AND LGPL-3.0-or-later AND EPL-1.0 and MIT and Zlib and BSL-1.0 and HPND
   license_file:
-    - scipoptsuite/papilo/COPYING
-    - scipoptsuite/papilo/src/papilo/external/lusol/LICENSE.md
-    - scipoptsuite/papilo/src/papilo/external/pdqsort/license.txt
-    - scipoptsuite/papilo/src/papilo/external/ska/LICENSE.txt
-    - scipoptsuite/soplex/LICENSE
-    - scipoptsuite/scip/LICENSE
-    - scipoptsuite/gcg/LICENSE
-    - scipoptsuite/zimpl/LICENSE
-  summary: Mixed Integer Programming (MIP) solver and Branch-and-Cut-and-Price Framework
+    - scipoptsuite/papilo/LICENSE  # Apache 2.0
+    - scipoptsuite/papilo/src/papilo/external/lusol/LICENSE.md  # BSD or MIT
+    - scipoptsuite/papilo/src/papilo/external/pdqsort/license.txt  # Zlib
+    - scipoptsuite/papilo/src/papilo/external/ska/LICENSE.txt # Boost 1.0 (BSL-1.0)
+    - scipoptsuite/papilo/src/papilo/external/fmt/LICENSE.rst  # MIT
+    - scipoptsuite/soplex/LICENSE  # Apache 2.0
+    - scipoptsuite/soplex/src/soplex/external/zstr/License.txt  # MIT
+    - scipoptsuite/soplex/src/soplex/external/fmt/LICENSE.rst  # MIT
+    - scipoptsuite/scip/LICENSE  # Apache 2.0
+    - scipoptsuite/scip/src/amplmp/LICENSE.rst  # HPND, similar to ISC
+    - scipoptsuite/scip/src/cppad/COPYING  # EPL-1.0
+    - scipoptsuite/scip/src/dejavu/LICENSE  # MIT
+    - scipoptsuite/scip/src/nauty/COPYRIGHT  # Apache 2.0
+    - scipoptsuite/scip/src/tclique/LICENSE  # Apache 2.0
+    - scipoptsuite/scip/src/tinycthread/COPYRIGHT  # Zlib
+    - scipoptsuite/gcg/LICENSE  # Apache 2.0
+    - scipoptsuite/zimpl/LICENSE  # LGPL 3
+  summary: Constraint Integer Programming and Branch-and-Cut-and-Price Framework
 
 extra:
   recipe-maintainers:

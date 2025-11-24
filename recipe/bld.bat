@@ -5,22 +5,22 @@ cmake -G Ninja ^
       -S "%SRC_DIR%\scipoptsuite" ^
       -D CMAKE_BUILD_TYPE=Release ^
       -D "CMAKE_PROJECT_TOP_LEVEL_INCLUDES=%RECIPE_DIR%\cmake-project-include.cmake" ^
-      -D PARASCIP=ON ^
+      -D LTO=ON ^
       -D PAPILO=ON ^
       -D SOPLEX=ON ^
       -D GCG=ON ^
       -D ZIMPL=ON ^
+      -D UG=OFF ^
       -D GMP=ON ^
+      -D HIGHS=ON ^
       -D BOOST=ON ^
-      -D Boost_LIB_DIAGNOSTIC_DEFINITIONS=ON ^
       -D Boost_USE_STATIC_LIBS=OFF ^
       -D IPOPT=ON ^
       -D IPOPT_DIR="%LIBRARY_PREFIX%" ^
       -D ZLIB=ON ^
       -D READLINE=OFF ^
-      -D EXPRINT=cppad ^
-      -D SYM=snauty ^
-      -D CMAKE_POLICY_VERSION_MINIMUM=3.5 ^
+      -D OPENMP=ON ^
+      -D STATIC_JANSSON=ON ^
       %CMAKE_ARGS%
 if %ERRORLEVEL% neq 0 exit 1
 
