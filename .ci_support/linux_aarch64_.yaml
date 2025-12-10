@@ -33,7 +33,7 @@ libboost_headers:
 mpfr:
 - '4'
 target_platform:
-- linux-ppc64le
+- linux-aarch64
 tbb_devel:
 - '2022'
 zip_keys:
