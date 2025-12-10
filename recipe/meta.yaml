@@ -24,7 +24,7 @@ source:
       - 0002-allow-jansson-debug-lib.patch  # [win]
 
 build:
-  number: 0
+  number: 1
 
 # to reduce disk space use on Windows, I disabled the Fortran compiler there (https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/hosted?view=azure-devops&tabs=windows-images%2Cyaml#my-pipeline-fails-with-the-error-no-space-left-on-device)
 # this disables LUSOL for Papilo, and then libblas is no longer needed as well
