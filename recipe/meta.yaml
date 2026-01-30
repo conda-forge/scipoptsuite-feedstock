@@ -15,7 +15,7 @@ package:
 
 source:
   - url: https://scipopt.org/download/release/scipoptsuite-{{ scip_version }}.tgz
-    sha256: 44877ca34f3d5f7e09dfed4738cf52046a20950417060f844f1ca37a77a60d1c
+    sha256: 60632b89935c0fd8f5d244dcc25f36504a82b1f68eb847f6e5c0c2c5d5936f39
     folder: scipoptsuite
     patches:
       # header-only does not work with current boost due to https://github.com/boostorg/serialization/issues/232
