@@ -1,8 +1,8 @@
 # TODO check these versions have not changed
-{% set scip_version = "10.0.0" %}
+{% set scip_version = "10.0.1" %}
 {% set papilo_version = "3.0.0" %}
-{% set soplex_version = "8.0.0" %}
-{% set gcg_version = "4.0.0" %}
+{% set soplex_version = "8.0.1" %}
+{% set gcg_version = "4.0.1" %}
 {% set zimpl_version = "3.7.0" %}
 # For dispatching between Unix and Windows
 {% set install_prefix = "." %}        # [unix]
@@ -24,7 +24,7 @@ source:
       - 0002-allow-jansson-debug-lib.patch  # [win]
 
 build:
-  number: 1
+  number: 0
 
 # to reduce disk space use on Windows, I disabled the Fortran compiler there (https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/hosted?view=azure-devops&tabs=windows-images%2Cyaml#my-pipeline-fails-with-the-error-no-space-left-on-device)
 # this disables LUSOL for Papilo, and then libblas is no longer needed as well
