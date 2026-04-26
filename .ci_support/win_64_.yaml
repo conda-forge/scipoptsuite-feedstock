@@ -13,7 +13,7 @@ gmp:
 ipopt:
 - 3.14.19
 libboost_devel:
-- '1.88'
+- '1.90'
 mpfr:
 - '4'
 pcre2:

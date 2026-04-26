@@ -1,7 +1,7 @@
 MACOSX_DEPLOYMENT_TARGET:
-- '10.13'
+- '11.0'
 MACOSX_SDK_VERSION:
-- '10.13'
+- '11.0'
 c_compiler:
 - clang
 c_compiler_version:
@@ -9,7 +9,7 @@ c_compiler_version:
 c_stdlib:
 - macosx_deployment_target
 c_stdlib_version:
-- '10.13'
+- '11.0'
 channel_sources:
 - conda-forge
 channel_targets:
@@ -29,7 +29,7 @@ ipopt:
 libblas:
 - 3.9.* *netlib
 libboost_devel:
-- '1.88'
+- '1.90'
 llvm_openmp:
 - '19'
 macos_machine:
