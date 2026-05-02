@@ -17,7 +17,8 @@ recipe:
   version: ${{ scip_version }}
 
 source:
-  url: https://scipopt.org/download/release/scipoptsuite-${{ scip_version }}.tgz
+  #url: https://scipopt.org/download/release/scipoptsuite-${{ scip_version }}.tgz
+  url: https://github.com/scipopt/scip/releases/download/v${{ scip_version }}/scipoptsuite-${{ scip_version }}.tgz
   sha256: eecc29f31e8c8a3089c95ef99dd310d05e1546ba40f4ff36551d75a5f5c47073
   target_directory: scipoptsuite
   patches:
