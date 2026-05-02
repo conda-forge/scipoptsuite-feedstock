@@ -17,7 +17,8 @@ recipe:
   version: ${{ scip_version }}
 
 source:
-  url: https://scipopt.org/download/release/scipoptsuite-${{ scip_version }}.tgz
+  #url: https://scipopt.org/download/release/scipoptsuite-${{ scip_version }}.tgz
+  url: https://github.com/scipopt/scip/releases/download/v${{ scip_version }}/scipoptsuite-${{ scip_version }}.tgz
   sha256: eecc29f31e8c8a3089c95ef99dd310d05e1546ba40f4ff36551d75a5f5c47073
   target_directory: scipoptsuite
   patches:
@@ -31,7 +32,7 @@ source:
         - 0002-allow-jansson-debug-lib.patch
 
 build:
-  number: 0
+  number: 1
 
 outputs:
 
@@ -105,7 +106,7 @@ outputs:
           bin:
             - papilo
       - script:
-        - papilo --version
+          - papilo --version
 
   - package:
       name: soplex
@@ -144,7 +145,7 @@ outputs:
             - ${{ "Library/" if win }}share/licenses/soplex/**/*
             - etc/conda/test-files/soplex/**/*
       - script:
-        - soplex --version
+          - soplex --version
       - script:
           file: run_soplex_test.nu
         files:
@@ -258,7 +259,7 @@ outputs:
             - ${{ "Library/" if win }}share/licenses/scip/**/*
             - etc/conda/test-files/scip/**/*
       - script:
-        - scip --version
+          - scip --version
       - script:
           file: run_scip_test.nu
         files:
