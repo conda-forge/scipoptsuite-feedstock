@@ -31,7 +31,7 @@ source:
         - 0002-allow-jansson-debug-lib.patch
 
 build:
-  number: 0
+  number: 1
 
 outputs:
 
@@ -105,7 +105,7 @@ outputs:
           bin:
             - papilo
       - script:
-        - papilo --version
+          - papilo --version
 
   - package:
       name: soplex
@@ -144,7 +144,7 @@ outputs:
             - ${{ "Library/" if win }}share/licenses/soplex/**/*
             - etc/conda/test-files/soplex/**/*
       - script:
-        - soplex --version
+          - soplex --version
       - script:
           file: run_soplex_test.nu
         files:
@@ -258,7 +258,7 @@ outputs:
             - ${{ "Library/" if win }}share/licenses/scip/**/*
             - etc/conda/test-files/scip/**/*
       - script:
-        - scip --version
+          - scip --version
       - script:
           file: run_scip_test.nu
         files:
