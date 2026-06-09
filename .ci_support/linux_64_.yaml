@@ -33,7 +33,7 @@ mpfr:
 target_platform:
 - linux-64
 tbb_devel:
-- '2022'
+- '2023'
 zip_keys:
 - - c_compiler_version
   - cxx_compiler_version
