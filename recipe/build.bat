@@ -79,6 +79,7 @@ cmake -B build -S "%SRC_DIR%\scipoptsuite\soplex" -G Ninja ^
     -D MPFR=ON ^
     -D PAPILO=ON ^
     -D PAPILO_DIR="%LIBRARY_PREFIX%" ^
+    -D LTO=ON ^
     -D BUILD_TESTING=OFF
 if %ERRORLEVEL% neq 0 exit 1
 
