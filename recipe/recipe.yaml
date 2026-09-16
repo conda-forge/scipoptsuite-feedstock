@@ -68,7 +68,7 @@ outputs:
             - libpapilo-core.${{ "a" if unix else "lib" }}
             - if: papilo_with_lusol
               then:
-                - libclusol.${{ "a" if unix else "lib" }}
+                - ${{ "" if win else "lib" }}clusol.${{ "a" if unix else "lib" }}
           include:
             - papilo/**/*
           files:
