@@ -35,17 +35,16 @@ if "%PIXI_CACHE_DIR%"=="%MINIFORGE_HOME%" (
 )
 move /y pixi.toml pixi.toml.bak
 set "arch=64"
-if "%PROCESSOR_ARCHITECTURE%"=="ARM64" set "arch=arm64"
 powershell -NoProfile -ExecutionPolicy unrestricted -Command "(Get-Content pixi.toml.bak -Encoding UTF8) -replace 'platforms = .*', 'platforms = [''win-%arch%'']' | Out-File pixi.toml -Encoding UTF8"
 :: Git on Windows needs to run post link scripts to properly set up SSL certificates
 pixi config set --global run-post-link-scripts insecure
 if !errorlevel! neq 0 exit /b !errorlevel!
-pixi install
+pixi install --environment build
 if !errorlevel! neq 0 exit /b !errorlevel!
-pixi list
+pixi list --environment build
 if !errorlevel! neq 0 exit /b !errorlevel!
 set "ACTIVATE_PIXI=%TMP%\pixi-activate-%RANDOM%.bat"
-pixi shell-hook > "%ACTIVATE_PIXI%"
+pixi shell-hook --environment build > "%ACTIVATE_PIXI%"
 if !errorlevel! neq 0 exit /b !errorlevel!
 call "%ACTIVATE_PIXI%"
 if !errorlevel! neq 0 exit /b !errorlevel!
@@ -89,7 +88,7 @@ call :end_group
 
 :: Build the recipe
 echo Building recipe
-rattler-build.exe build --recipe "recipe" -m .ci_support\%CONFIG%.yaml %EXTRA_CB_OPTIONS% --target-platform %HOST_PLATFORM%
+rattler-build.exe build --recipe "recipe" -m .ci_support\%CONFIG%.yaml %EXTRA_CB_OPTIONS% --build-platform %BUILD_PLATFORM% --target-platform %HOST_PLATFORM%
 if !errorlevel! neq 0 exit /b !errorlevel!
 
 call :start_group "Inspecting artifacts"
@@ -100,7 +99,7 @@ call :end_group
 :: Prepare some environment variables for the upload step
 if /i "%CI%" == "github_actions" (
     set "FEEDSTOCK_NAME=%GITHUB_REPOSITORY:*/=%"
-    set "GIT_BRANCH=%GITHUB_REF:refs/heads/=%"
+    set "GIT_BRANCH=%GITHUB_REF_NAME%"
     if /i "%GITHUB_EVENT_NAME%" == "pull_request" (
         set "IS_PR_BUILD=True"
     ) else (

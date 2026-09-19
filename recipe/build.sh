@@ -55,6 +55,7 @@ elif [[ $PKG_NAME == "soplex" ]]; then
     -D MPFR=ON \
     -D PAPILO=ON \
     -D PAPILO_DIR="${PREFIX}" \
+    -D LTO=ON \
     -D BUILD_TESTING=OFF
   cmake --build build/ --parallel ${CPU_COUNT}
   cmake --install build/ --prefix "${PREFIX}"
