@@ -1,0 +1,21 @@
+# scip's run_exports pinned only the major version (pin_subpackage default upper_bound="x"),
+# but libscip's soname is MAJOR.MINOR (libscip.10.0 vs libscip.10.1). Packages built against
+# scip 10.0.x therefore break with scip 10.1+.
+# See https://github.com/conda-forge/scipoptsuite-feedstock/issues/108
+if:
+  has_depends: scip >= 10.0.*
+  timestamp_lt: 1791446801000
+then:
+  - tighten_depends:
+      name: scip
+      max_pin: "x.x"
+
+---
+# same for gcg
+if:
+  has_depends: gcg >= 4.0.*
+  timestamp_lt: 1791446801000
+then:
+  - tighten_depends:
+      name: gcg
+      max_pin: "x.x"

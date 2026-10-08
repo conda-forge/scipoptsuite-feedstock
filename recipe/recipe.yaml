@@ -31,7 +31,7 @@ source:
         - 0002-allow-jansson-debug-lib.patch
 
 build:
-  number: 0
+  number: 1
   script:
     file: build
 
@@ -234,7 +234,7 @@ outputs:
         - ${{ "libblas" if papilo_with_lusol }}
         - ${{ "pcre2" if win }}
       run_exports:
-        - ${{ pin_subpackage("scip") }}
+        - ${{ pin_subpackage("scip", upper_bound = "x.x") }}
     tests:
       - package_contents:
           strict: true
@@ -302,7 +302,7 @@ outputs:
         - ${{ pin_compatible("cliquer", exact=True) if unix }}
         - ${{ pin_compatible("highs", exact=True) }}
       run_exports:
-        - ${{ pin_subpackage("gcg") }}
+        - ${{ pin_subpackage("gcg", upper_bound = "x.x") }}
     tests:
       - package_contents:
           strict: true
