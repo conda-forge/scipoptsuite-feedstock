@@ -11,7 +11,7 @@ cxx_compiler:
 gmp:
 - '6'
 ipopt:
-- 3.14.19
+- 3.14.20
 libboost_devel:
 - '1.90'
 mpfr:
