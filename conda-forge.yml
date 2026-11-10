@@ -1,9 +1,7 @@
 bot:
   automerge: true
 build_platform:
-  linux_aarch64: linux_64
   linux_ppc64le: linux_64
-  osx_arm64: osx_64
 conda_build:
   pkg_format: '2'
 conda_build_tool: rattler-build
@@ -12,4 +10,7 @@ conda_install_tool: pixi
 github:
   branch_name: main
   tooling_branch_name: main
+provider:
+  linux_aarch64: default
+  osx_arm64: default
 test: native_and_emulated
