@@ -31,7 +31,7 @@ source:
         - 0002-allow-jansson-debug-lib.patch
 
 build:
-  number: 0
+  number: 1
   script:
     file: build
 
